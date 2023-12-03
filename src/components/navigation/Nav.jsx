@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { CloseNav } from "./CloseNav";
 
 const Nav = () => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(true);
 
     const toogle = () => {
         setIsOpen(!isOpen);
