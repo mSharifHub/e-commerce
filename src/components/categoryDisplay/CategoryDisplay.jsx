@@ -1,53 +1,31 @@
 import { useCart } from "../../providers/contexts/cartContext";
 import { Product } from "../products/Product";
-import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+import { filterCategory } from "../filter/FilterCategory";
 
-const CategoryDisplay = () => {
+export const CategoryDisplay = () => {
     const {
         state: { products },
     } = useCart();
 
-    const categories = products.reduce((acc, product) => {
-        const { category } = product;
-        acc[product] = acc[product] || [];
-        acc[category].push(product);
-        return acc;
-    }, {});
-
-    const scrollLeft = () => {
-        const slider = document.getElementById("slider");
-        slider.scrollLeft = slider.scrollLeft - 500;
-    };
-
-    const scrollRight = () => {
-        const slider = document.getElementById("slider");
-        slider.scrollLeft = slider.scrollLeft + 500;
-    };
+    const categories = filterCategory(products);
 
     return (
         <>
-            <div className="h-screen shadow-lg m-4">
-                <div className=" relative flex items-center">
-                    <div className="cursor-pointer">
-                        <MdChevronLeft onClick={scrollLeft} size={50} />
-                    </div>
-                    <div
-                        id="slider"
-                        className="flex overflow-x-scroll scroll whitespace-nowrap srcoll-smooth gap-x-10 scrollbar-hide  "
-                    >
-                        {products.map((product) => {
-                            return (
-                                <div>
-                                    <Product />
+            {Object.keys(categories).map((category, index) => (
+                <>
+                    <div key={index} className="flex flex-col  items-start mb-10   bg-red-500">
+                        <div className="w-full text-center text-xl font-bold p-2 bg-green-700">{category.toUpperCase()}</div>
+
+                        <div className="relative flex items-center w-full h-full overflow-x-scroll scroll whitespace-nowrap scroll-smooth">
+                            {categories[category].map((product) => (
+                                <div key={product.id}>
+                                    <Product product={product} />
                                 </div>
-                            );
-                        })}
+                            ))}
+                        </div>
                     </div>
-                    <div className="cursor-pointer">
-                        <MdChevronRight onClick={scrollRight} size={50} />
-                    </div>
-                </div>
-            </div>
+                </>
+            ))}
         </>
     );
 };
