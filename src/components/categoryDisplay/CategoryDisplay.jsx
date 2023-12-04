@@ -29,14 +29,27 @@ export const CategoryDisplay = () => {
         <>
             {Object.keys(categories).map((category, index) => (
                 <>
-                    <div>{category.toUpperCase()}</div>
-                    <MdChevronLeft onClick={() => slider(category, "left")} size={40}  />
-                    <div key={index} id={`slider-${category}`}className="relative p-4 flex items-center w-full h-full overflow-x-scroll scroll whitespace-nowrap scroll-smooth ">
-                        {categories[category].map((product) => (
-                            <div key={product.id}>
-                                <Product product={product} />
-                            </div>
-                        ))}
+                    <div className="bg-slate-700 mb-10 mt-10">{category.toUpperCase()}</div>
+
+                    <div className="relative bg-yellow-600 p-10">
+                        <div className=" absolute z-10 p-4 text-center transform -translate-x-1/2 -translate-y-1/2 top-1/2  bg-red-400">
+                            <MdChevronLeft
+                                onClick={() => slider(category, "left")}
+                                size={40}
+                                className="justify-items-center bg-red-300"
+                            />
+                        </div>
+                        <div
+                            key={index}
+                            id={`slider-${category}`}
+                            className="relative p-4 flex items-center w-full h-full overflow-x-scroll scroll whitespace-nowrap scroll-smooth bg-purple-300 "
+                        >
+                            {categories[category].map((product) => (
+                                <div key={product.id}>
+                                    <Product product={product} />
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </>
             ))}
