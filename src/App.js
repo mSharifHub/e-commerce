@@ -2,11 +2,12 @@ import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 import { Home } from "./components/pages/Home";
-import Store from "./components/pages/Store";
 import Nav from "./components/navigation/Nav";
 import { Cart } from "./components/pages/Cart";
 import { CartProvider } from "./providers/CartProvider";
 import { ThemeProvider } from "./providers/themeProvider";
+import { SignIn } from "./components/pages/SignIn";
+import UserProfile from "./components/pages/UserProfile";
 
 const App = () => {
     return (
@@ -17,7 +18,8 @@ const App = () => {
                         <Nav />
                         <Routes>
                             <Route exact path="/" Component={Home} />
-                            <Route path="/place-order" Component={Store} />
+                            <Route path="/sign-in" Component={SignIn} />
+                            <Route path="/user-profile" Component={UserProfile} />
                             <Route path="/cart" Component={Cart} />
                         </Routes>
                     </Router>

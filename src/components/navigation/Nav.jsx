@@ -1,7 +1,7 @@
-import { BurgerIcon } from "./BurgerIcon";
+import { BurgerIcon } from "./icons/BurgerIcon";
 import { NavMenu } from "./NavMenu";
 import { useEffect, useState } from "react";
-import { CloseNav } from "./CloseNav";
+import { CloseNav } from "./icons/CloseNav";
 
 const Nav = () => {
     const [isOpen, setIsOpen] = useState(true);

@@ -1,6 +1,6 @@
 import { useCart } from "../../providers/contexts/cartContext";
 import { Product } from "../products/Product";
-import { filterCategory } from "../filter/FilterCategory";
+import { filterCategory } from "../../helpers/FilterCategory";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
 export const CategoryDisplay = () => {
@@ -32,7 +32,7 @@ export const CategoryDisplay = () => {
                     <>
                         <div className="text-center p-4  text-lg tracking-wide">{category.toUpperCase()}</div>
                         <div className="relative">
-                            <div className="absolute z-50 px-2 py-6 text-center transform -translate-x-1/2 -translate-y-1/2 top-1/2 hover:cursor-pointer opacity-0  hover:opacity-75 duration-150 ease-in-out  bg-slate-200">
+                            <div className="absolute z-10 px-2 py-6 text-center transform left-0 -translate-x-1/2 -translate-y-1/2 top-1/2 hover:cursor-pointer opacity-0  hover:opacity-75 duration-150 ease-in-out  bg-slate-200">
                                 <MdChevronLeft
                                     onClick={() => slider(category, "left")}
                                     size={40}
@@ -50,7 +50,7 @@ export const CategoryDisplay = () => {
                                     </div>
                                 ))}
                             </div>
-                            <div className="absolute z-50 px-2 py-6 text-center transform  right-0 translate-x-1/2 -translate-y-1/2 top-1/2  hover:cursor-pointer opacity-0  hover:opacity-75 duration-150 ease-in-out  bg-slate-200">
+                            <div className="absolute z-10 px-2 py-6 text-center transform  right-0 translate-x-1/2 -translate-y-1/2 top-1/2  hover:cursor-pointer opacity-0  hover:opacity-75 duration-150 ease-in-out  bg-slate-200">
                                 <MdChevronRight
                                     onClick={() => slider(category, "right")}
                                     size={40}
