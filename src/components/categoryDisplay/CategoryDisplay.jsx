@@ -29,26 +29,28 @@ export const CategoryDisplay = () => {
         <>
             {Object.keys(categories).map((category, index) => (
                 <>
-                    <div className="bg-slate-700 mb-10 mt-10">{category.toUpperCase()}</div>
-
-                    <div className="relative bg-yellow-600 p-10">
-                        <div className=" absolute z-10 p-4 text-center transform -translate-x-1/2 -translate-y-1/2 top-1/2  bg-red-400">
-                            <MdChevronLeft
-                                onClick={() => slider(category, "left")}
-                                size={40}
-                                className="justify-items-center bg-red-300"
-                            />
+                    <div className="text-center w-full mx-8 my-8">{category.toUpperCase()}</div>
+                    <div className="relative">
+                        <div className="absolute z-10 px-2 py-6 text-center transform -translate-x-1/2 -translate-y-1/2 top-1/2 hover:cursor-pointer opacity-0  hover:opacity-75 duration-150 ease-in-out  bg-slate-200">
+                            <MdChevronLeft onClick={() => slider(category, "left")} size={40} className="justify-items-center " />
                         </div>
                         <div
                             key={index}
                             id={`slider-${category}`}
-                            className="relative p-4 flex items-center w-full h-full overflow-x-scroll scroll whitespace-nowrap scroll-smooth bg-purple-300 "
+                            className="relative  flex items-center w-full h-full overflow-x-scroll scroll whitespace-nowrap scroll-smooth scrollbar-hide "
                         >
                             {categories[category].map((product) => (
                                 <div key={product.id}>
                                     <Product product={product} />
                                 </div>
                             ))}
+                        </div>
+                        <div className="absolute z-10 px-2 py-6 text-center transform  right-0 translate-x-1/2 -translate-y-1/2 top-1/2  hover:cursor-pointer opacity-0  hover:opacity-75 duration-150 ease-in-out  bg-slate-200">
+                            <MdChevronRight
+                                onClick={() => slider(category, "right")}
+                                size={40}
+                                className="justify-items-center"
+                            />
                         </div>
                     </div>
                 </>
