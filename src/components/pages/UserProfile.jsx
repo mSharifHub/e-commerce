@@ -1,9 +1,9 @@
-const UserProfile= () => {
-    return (
-        <>
-        <div>User Profile</div>
-        </>
-    );
+const UserProfile = () => {
+	return (
+		<>
+			<div>User Profile</div>
+		</>
+	);
 };
 
 export default UserProfile;
