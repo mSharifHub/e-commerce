@@ -1,7 +1,3 @@
-export const Cart = () => {
-	return (
-		<>
-			<div>cart</div>
-		</>
-	);
-};
+export function Cart() {
+	return <div>cart</div>;
+}

@@ -1,9 +1,9 @@
+import { useEffect, useState } from 'react';
 import { BurgerIcon } from './icons/BurgerIcon';
 import { NavMenu } from './NavMenu';
-import { useEffect, useState } from 'react';
 import { CloseNav } from './icons/CloseNav';
 
-const Nav = () => {
+function Nav() {
 	const [isOpen, setIsOpen] = useState(true);
 
 	const toogle = () => {
@@ -24,28 +24,28 @@ const Nav = () => {
 	}, [isOpen]);
 
 	return (
-		<>
-			<div className="m-4">
-				{isOpen ? (
-					<div className="relative">
-						<NavMenu />
-						<div
-							className={`absolute top-0 right-0 m-4 ${
-								isOpen ? ` ` : `hidden`
-							} sm:hidden`}
-						>
-							<button onClick={toogle}>{<CloseNav />}</button>
-						</div>
-					</div>
-				) : (
-					<div>
+		<div className="m-4">
+			{isOpen ? (
+				<div className="relative">
+					<NavMenu />
+					<div
+						className={`absolute top-0 right-0 m-4 ${
+							isOpen ? ` ` : `hidden`
+						} sm:hidden`}
+					>
 						<button onClick={toogle}>
-							<BurgerIcon />
+							<CloseNav />
 						</button>
 					</div>
-				)}
-			</div>
-		</>
+				</div>
+			) : (
+				<div>
+					<button onClick={toogle}>
+						<BurgerIcon />
+					</button>
+				</div>
+			)}
+		</div>
 	);
-};
+}
 export default Nav;

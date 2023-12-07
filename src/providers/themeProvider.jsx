@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ThemeContext } from './contexts/themeContext';
 
-export const ThemeProvider = ({ children }) => {
+export function ThemeProvider({ children }) {
 	const [theme, setTheme] = useState(localStorage.getItem(`theme`) || `light`);
 
 	useEffect(() => {
@@ -18,4 +18,4 @@ export const ThemeProvider = ({ children }) => {
 			{children}
 		</ThemeContext.Provider>
 	);
-};
+}

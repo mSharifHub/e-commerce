@@ -1,7 +1,3 @@
-export const SignIn = () => {
-	return (
-		<>
-			<div></div>
-		</>
-	);
-};
+export function SignIn() {
+	return <div />;
+}
