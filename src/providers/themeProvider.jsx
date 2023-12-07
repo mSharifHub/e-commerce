@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import { ThemeContext } from './contexts/themeContext';
+import React, { useEffect, useState } from "react";
+import { ThemeContext } from "./contexts/themeContext";
 
 export function ThemeProvider({ children }) {
-	const [theme, setTheme] = useState(localStorage.getItem(`theme`) || `light`);
+  const [theme, setTheme] = useState(localStorage.getItem(`theme`) || `light`);
 
-	useEffect(() => {
-		document.body.setAttribute(`data-theme`, theme);
-		localStorage.setItem(`theme`, theme);
-	}, [theme]);
+  useEffect(() => {
+    document.body.setAttribute(`data-theme`, theme);
+    localStorage.setItem(`theme`, theme);
+  }, [theme]);
 
-	const toogleTheme = () => {
-		setTheme((prevTheme) => (prevTheme === `light` ? `dark` : `light`));
-	};
+  const toogleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === `light` ? `dark` : `light`));
+  };
 
-	return (
-		<ThemeContext.Provider value={{ theme, toogleTheme }}>
-			{children}
-		</ThemeContext.Provider>
-	);
+  return (
+    <ThemeContext.Provider value={{ theme, toogleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
 }
