@@ -1,4 +1,10 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-npm run lint-staged --concurrent false
+
+if npm ! run lint-staged --concurrent false; then
+    echo "🤯 Commit failed due to linting errors!"
+    exit 1
+fi
+
+

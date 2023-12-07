@@ -13,6 +13,7 @@ export function App() {
       <CartProvider>
         <Router>
           <Nav />
+          
           <Routes>
             <Route exact path="/" Component={Home} />
             <Route path="/sign-in" Component={SignIn} />
