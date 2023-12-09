@@ -2,22 +2,25 @@ import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { useCart } from "../../providers/contexts/cartContext";
 import { Product } from "../products/Product";
 import { filterCategory } from "../../helpers/FilterCategory";
+import { useTheme } from "../../providers/contexts/themeContext";
 
 export function CategoryDisplay() {
   const {
     state: { products },
   } = useCart();
 
+  const { theme } = useTheme();
+
   const slider = (category, direction) => {
-    const slider = document.getElementById(`slider-${category}`);
+    const slide = document.getElementById(`slider-${category}`);
     const scrollAmount = 500;
 
     switch (direction) {
       case `left`:
-        slider.scrollLeft -= scrollAmount;
+        slide.scrollLeft -= scrollAmount;
         break;
       case `right`:
-        slider.scrollLeft += scrollAmount;
+        slide.scrollLeft += scrollAmount;
         break;
       default:
         return null;
@@ -26,14 +29,16 @@ export function CategoryDisplay() {
 
   const categories = filterCategory(products);
   return (
-    <div className="relative h-full w-full p-4 m-4 ">
-      {Object.keys(categories).map((category, index) => (
-        <>
-          <div className="text-center p-4  text-lg tracking-wide">
+    <>
+      {Object.keys(categories).map((category) => (
+        <div key={category}>
+          <div className=" w-full text-center p-4  text-lg tracking-wide">
             {category.toUpperCase()}
           </div>
-          <div className="relative">
-            <div className="absolute z-10 px-2 py-6 text-center transform left-0 -translate-x-1/2 -translate-y-1/2 top-1/2 hover:cursor-pointer opacity-0  hover:opacity-75 duration-150 ease-in-out  bg-slate-200">
+          <div
+            className={`relative ${theme === "dark" ? " bg-zinc-800" : "  "} `}
+          >
+            <div className="absolute z-10 px-4 py-6 mx-5 text-center transform left-0 -translate-x-1/2 -translate-y-1/2 top-1/2 hover:cursor-pointer opacity-0  hover:opacity-75 duration-150 ease-in-out  bg-slate-200">
               <MdChevronLeft
                 onClick={() => slider(category, `left`)}
                 size={40}
@@ -41,7 +46,6 @@ export function CategoryDisplay() {
               />
             </div>
             <div
-              key={index}
               id={`slider-${category}`}
               className="relative  flex items-center w-full h-full overflow-x-scroll scroll whitespace-nowrap scroll-smooth scrollbar-hide gap-4 "
             >
@@ -51,7 +55,7 @@ export function CategoryDisplay() {
                 </div>
               ))}
             </div>
-            <div className="absolute z-10 px-2 py-6 text-center transform  right-0 translate-x-1/2 -translate-y-1/2 top-1/2  hover:cursor-pointer opacity-0  hover:opacity-75 duration-150 ease-in-out  bg-slate-200">
+            <div className="absolute z-10 px-4 py-6 mx-5 text-center transform  right-0 translate-x-1/2 -translate-y-1/2 top-1/2  hover:cursor-pointer opacity-0  hover:opacity-75 duration-150 ease-in-out  bg-slate-200">
               <MdChevronRight
                 onClick={() => slider(category, `right`)}
                 size={40}
@@ -59,8 +63,8 @@ export function CategoryDisplay() {
               />
             </div>
           </div>
-        </>
+        </div>
       ))}
-    </div>
+    </>
   );
 }

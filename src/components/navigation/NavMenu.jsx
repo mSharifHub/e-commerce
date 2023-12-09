@@ -6,7 +6,7 @@ import { ChangeThemeIcon } from "./icons/ChangeThemeIcom";
 import { CartIcon } from "./icons/CartIcon";
 
 export function NavMenu() {
-  const { toogleTheme, theme } = useTheme();
+  const { toogleTheme } = useTheme();
 
   return (
     <ul
@@ -40,7 +40,9 @@ export function NavMenu() {
         </li>
       </div>
       <div className="flex  justify-start items-start  space-y-4  sm:space-y-0 sm:flex-row sm:justify-around  col-span-1  sm:col-span-1">
-        <button onClick={toogleTheme}>
+        {/* disabling next line  since no label is being used */}
+        {/* eslint-disable-next-line */}
+        <button type="button" onClick={toogleTheme}>
           <ChangeThemeIcon />
         </button>
       </div>

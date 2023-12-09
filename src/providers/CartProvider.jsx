@@ -1,4 +1,5 @@
-import React, { useReducer } from "react";
+import { useMemo, useReducer } from "react";
+
 import { cartReducer } from "./reducers/cartReducer";
 import { CartContext } from "./contexts/cartContext";
 import { products as data } from "../data/productsData/products";
