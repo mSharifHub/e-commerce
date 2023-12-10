@@ -31,9 +31,9 @@ export function Filter() {
   };
 
   return (
-    <div className="h-full w-full relative flex flex-col bg-slate-400">
+    <div className="h-full w-full relative flex flex-col  space-y-10 bg-slate-400">
       <form>
-        <div className="flex flex-col p-4  mt-10 bg-green-300">
+        <div className="flex flex-col p-4  mt-12 bg-green-300">
           <span className="font-bold text-center bg-red-600 mb-4">
             Sort By Price
           </span>
@@ -74,7 +74,7 @@ export function Filter() {
           </div>
         </div>
 
-        <div className="flex flex-col bg-yellow-400  p-4 ">
+        <div className="flex flex-col bg-yellow-400 mt-12  p-4 ">
           <span className="font-bold text-center bg-red-500 mb-4">
             Sort By Catergory
           </span>
@@ -178,7 +178,7 @@ export function Filter() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col bg-purple-200 p-4  ">
+        <div className="flex flex-col bg-purple-200 mt-12 p-4  ">
           <span className="font-bold text-center bg-red-500 mb-4">
             Sort By Availability
           </span>
@@ -191,7 +191,7 @@ export function Filter() {
             </label>
           </div>
         </div>
-        <div className="flex flex-col bg-purple-400 p-4  ">
+        <div className="flex flex-col bg-purple-400 mt-12 p-4  ">
           <span className="font-bold text-center bg-red-500 mb-4">
             Sort By Rating
           </span>
