@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useCart } from "../../providers/contexts/cartContext";
+import StarRating from "./ratingComponent/StarRating";
 
 export function Filter() {
   const [selected, setSelected] = useState(null);
@@ -188,6 +189,14 @@ export function Filter() {
                 <input type="checkbox" id="include-on-stock-only" />
               </div>
             </label>
+          </div>
+        </div>
+        <div className="flex flex-col bg-purple-400 p-4  ">
+          <span className="font-bold text-center bg-red-500 mb-4">
+            Sort By Rating
+          </span>
+          <div className="flex justify-center items-center">
+            <StarRating />
           </div>
         </div>
       </form>
