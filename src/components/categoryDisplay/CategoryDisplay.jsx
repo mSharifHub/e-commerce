@@ -36,7 +36,6 @@ export function CategoryDisplay() {
             {category.toUpperCase()}
           </div>
 
-          
           <div
             className={`relative ${theme === "dark" ? " bg-zinc-800" : "  "} `}
           >
