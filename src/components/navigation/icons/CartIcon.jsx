@@ -4,12 +4,8 @@ import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 export function CartIcon() {
   return (
     <>
-      <FontAwesomeIcon
-        icon={faCartShopping}
-        size="lg"
-        style={{ color: `white` }}
-      />
-      <div className="ml-2 text-white">{0}</div>
+      <FontAwesomeIcon icon={faCartShopping} size="lg" />
+      <div className="ml-2">{0}</div>
     </>
   );
 }

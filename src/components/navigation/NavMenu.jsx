@@ -1,45 +1,43 @@
 import { Link } from "react-router-dom";
-import { SearchBar } from "./SearchBar";
 import { useTheme } from "../../providers/contexts/themeContext";
-import { HomeIcon } from "./icons/HomeIcon";
+import { SearchBar } from "./SearchBar";
 import { ChangeThemeIcon } from "./icons/ChangeThemeIcom";
 import { CartIcon } from "./icons/CartIcon";
+import { ReactIcon } from "./icons/ReactIcon";
 
 export function NavMenu() {
   const { toogleTheme } = useTheme();
 
   return (
     <ul
-      className={`grid grid-cols-1 gap-4  sm:grid-cols-7 font-sans tracking-[4px] items-center py-4 `}
+      className={`grid grid-cols-1  sm:grid-cols-11 font-sans tracking-[4px] items-center py-4 border-b-2 `}
     >
-      <div className="flex  justify-items-start  sm:justify-center col-span-1 sm:col-span-1 ">
-        <li className=" hover:text-slate-500 transition duration-100">
-          <Link to="/sign-in">Sign In</Link>
-        </li>
+      <div className="hidden  md:flex sm:justify-start  ">
+        <ReactIcon />
       </div>
-      <div className="flex justify-items-start sm:justify-center  col-span-1 sm:col-span-1">
+      <div className="flex justify-items-start py-2 sm:justify-start  sm:col-start-1 md:justify-center md:col-start-2">
         <li className="hover:text-slate-500 transition duration-100">
           <Link to="/user-profile">Profile</Link>
         </li>
       </div>
-      <div className=" hidden sm:block  col-span-1 sm:col-span-3 sm:col-start-3 sm:col-end-5  ">
+
+      <div className="flex  justify-items-start  py-2 col-span-1 sm:justify-center sm:col-start-2   sm:col-span-2 md:col-start-3">
+        <li className="hover:text-slate-500 transition duration-100">
+          <Link to="/">Home</Link>
+        </li>
+      </div>
+      <div className="hidden sm:inline-block sm:justify-center sm:col-start-4   sm:col-span-4 md:col-start-5">
         <SearchBar />
       </div>
-      <div className="flex justify-start items-start sm:justify-center col-span-1 sm:col-span-1 sm:col-start-5 hover:text-slate-500 ">
+
+      <div className="flex justify-start items-start col-span-1 py-2 sm:col-start-8 sm:col-span-2 sm:justify-end md:col-start-9  md:justify-center hover:text-slate-500   ">
         <Link to="/cart">
-          <div className="flex  justify-between items-center bg-purple-500 py-2 px-3 rounded-lg">
+          <div className="flex justify-between">
             <CartIcon />
           </div>
         </Link>
       </div>
-      <div className="flex  justify-items-start -order-1 sm:justify-center sm:order-none col-span-1 sm:col-span-1 ">
-        <li>
-          <Link to="/">
-            <HomeIcon />
-          </Link>
-        </li>
-      </div>
-      <div className="flex  justify-start items-start  space-y-4  sm:space-y-0 sm:flex-row sm:justify-around  col-span-1  sm:col-span-1">
+      <div className="flex  justify-start items-start col-span-1  py-2 sm:col-start-11  sm:col-end-11 sm:justify-center">
         {/* disabling next line  since no label is being used */}
         {/* eslint-disable-next-line */}
         <button type="button" onClick={toogleTheme}>

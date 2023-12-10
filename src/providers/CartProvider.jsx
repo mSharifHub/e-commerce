@@ -1,4 +1,4 @@
-import { useMemo, useReducer } from "react";
+import { useReducer } from "react";
 
 import { cartReducer } from "./reducers/cartReducer";
 import { CartContext } from "./contexts/cartContext";
