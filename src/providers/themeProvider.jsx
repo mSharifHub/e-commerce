@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { ThemeContext } from "./contexts/themeContext";
 
 export function ThemeProvider({ children }) {
@@ -9,16 +9,14 @@ export function ThemeProvider({ children }) {
     localStorage.setItem(`theme`, theme);
   }, [theme]);
 
-  const toogleTheme = () => {
+  const toogleTheme = useCallback(() => {
     setTheme((prevTheme) => (prevTheme === `light` ? `dark` : `light`));
-  };
+  }, []);
 
-  const valueMemo = useMemo(
-    () => ({ theme, toogleTheme }),
-    [theme, toogleTheme],
-  );
   return (
-    <ThemeContext.Provider value={{ theme, toogleTheme }}>
+    <ThemeContext.Provider
+      value={useMemo(() => ({ theme, toogleTheme }), [theme, toogleTheme])}
+    >
       {children}
     </ThemeContext.Provider>
   );

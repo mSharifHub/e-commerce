@@ -1,16 +1,22 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { useFilter } from "../../../providers/contexts/filterContext";
 
 export default function StarRating() {
-  const [rating, setRating] = useState(null);
+  const { state, dispatch } = useFilter();
+
+  const resetRating = (newRating) => {
+    return (currentRating) => (currentRating === newRating ? null : newRating);
+  };
 
   const onSetRating = (newRating) => {
-    setRating((currentRating) =>
-      currentRating === newRating ? null : newRating,
-    );
+    dispatch({
+      type: "SET_RATING",
+      payload: newRating,
+    });
   };
+
   return (
     <div>
       {[...Array(5)].map((star, index) => {
@@ -28,7 +34,7 @@ export default function StarRating() {
             <FontAwesomeIcon
               icon={faStar}
               size="lg"
-              color={`${currentIndex <= rating ? "#ffa500" : "#f9f9f9"}`}
+              color={`${currentIndex <= state.rating ? "#ffa500" : "#f9f9f9"}`}
               className="cursor-pointer  p-2 mr-2"
             />
           </label>
