@@ -4,12 +4,13 @@ import { filterContext } from "./contexts/filterContext";
 import { products as data } from "../data/productsData/products";
 
 export function FilterProvider({ children }) {
-  const categories = Array.from(
+  const categoriesList = Array.from(
     new Set(data.map((product) => product.category)),
   );
 
   const initialState = {
-    category: categories,
+    category: "",
+    listCategories: categoriesList,
     rating: null,
   };
 

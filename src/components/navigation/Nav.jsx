@@ -1,3 +1,5 @@
+/* eslint-disable react/button-has-type */
+/* eslint-disable jsx-a11y/control-has-associated-label */
 import { useEffect, useState } from "react";
 import { BurgerIcon } from "./icons/BurgerIcon";
 import { NavMenu } from "./NavMenu";
