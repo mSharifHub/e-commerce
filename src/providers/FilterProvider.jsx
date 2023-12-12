@@ -11,6 +11,7 @@ export function FilterProvider({ children }) {
   const initialState = {
     category: [],
     listCategories: categoriesList,
+    inStock: false,
     rating: null,
   };
 

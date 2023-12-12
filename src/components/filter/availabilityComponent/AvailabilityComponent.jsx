@@ -1,15 +1,29 @@
+import { useFilter } from "../../../providers/contexts/filterContext";
+
 export default function AvailabilityComponent() {
+  const { dispatch } = useFilter();
+
+  const onInStockChange = (e) => {
+    dispatch({ type: "SET_AVAILABILITY", payload: e.target.checked });
+  };
+
   return (
-    <div className="flex flex-col bg-purple-200 mt-12 p-4  ">
-      <span className="font-bold text-center bg-red-500 mb-4">
+    <div className="flex flex-col mt-4 p-4 border-t-2">
+      <span className="flex justify-center font-light text-lg">
         Sort By Availability
       </span>
-      <div className="flex justify-around  bg-red-200">
-        <label htmlFor="include-on-stock-only">
+      <div className="flex justify-center w-full">
+        <label
+          htmlFor="include-on-stock-only"
+          className="flex justify-between items-center w-full mt-4  font-light capitalize"
+        >
           include on stock only
-          <div className="inline-block ml-4">
-            <input type="checkbox" id="include-on-stock-only" />
-          </div>
+          <input
+            type="checkbox"
+            id="include-on-stock-only"
+            className="w-5 h-5 mr-4 text-blue-600  border-gray-300 rounded focus:ring-blue-500"
+            onClick={onInStockChange}
+          />
         </label>
       </div>
     </div>

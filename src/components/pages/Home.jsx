@@ -7,7 +7,7 @@ export function Home() {
       <div className="">
         <Filter />
       </div>
-      <div className="p-4 h-full w-full overflow-x-scroll  scroll whitespace-nowrap bg-yellow-800">
+      <div className="p-4 h-full w-full overflow-x-scroll  scroll whitespace-nowrap">
         <CategoryDisplay />
       </div>
     </div>

@@ -31,18 +31,18 @@ export default function FilterComponent() {
   };
 
   return (
-    <div className="flex flex-col bg-yellow-400 mt-12  p-4 ">
-      <span className="font-bold text-center bg-red-500 mb-4">
+    <div className="flex flex-col mt-12  p-4 ">
+      <span className="font-light text-lg  text-center mb-4 py-2 border-t-2 ">
         Sort By Catergory
       </span>
-      <div className=" flex flex-col  bg-blue-300">
+      <div className=" flex flex-col  ">
         {listCategories.map((category) => (
           <label
             key={category}
             htmlFor={category}
-            className="flex mt-10  bg-green-300 justify-between w-full"
+            className="flex mt-10  justify-between w-full "
           >
-            <span className="font-semibold">
+            <span className="font-light py-2  w-full">
               {category}
               {"\t"}({numItemsPerCategory(category)})
             </span>
@@ -52,7 +52,7 @@ export default function FilterComponent() {
               id={category}
               name={category}
               onClick={() => onCategoryChange(category)}
-              className="w-5 h-5 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500"
+              className="w-5 h-5 mr-4 text-blue-600  border-gray-300 rounded focus:ring-blue-500"
             />
           </label>
         ))}

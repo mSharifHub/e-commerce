@@ -17,6 +17,12 @@ export const filterReducer = (state, action) => {
         rating: state.rating === action.payload ? null : action.payload,
       };
 
+    case "SET_AVAILABILITY":
+      return {
+        ...state,
+        inStock: action.payload,
+      };
+
     default:
       return state;
   }

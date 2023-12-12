@@ -14,8 +14,8 @@ export default function StarRatingComponent() {
   };
 
   return (
-    <div className="flex flex-col bg-purple-400 mt-12 p-4  ">
-      <span className="font-bold text-center bg-red-500 mb-4">
+    <div className="flex flex-col   p-4  ">
+      <span className="font-light text-lg text-center mb-4 border-t-2">
         Sort By Rating
       </span>
       <div className="flex justify-center items-center">
@@ -35,7 +35,7 @@ export default function StarRatingComponent() {
                 icon={faStar}
                 size="lg"
                 color={`${
-                  currentIndex <= state.rating ? "#ffa500" : "#f9f9f9"
+                  currentIndex <= state.rating ? "#ffa500" : "#b4b4b4"
                 }`}
                 className="cursor-pointer  p-2 mr-2"
               />
