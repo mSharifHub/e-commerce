@@ -51,6 +51,7 @@ export default function FilterComponent() {
               type="checkbox"
               id={category}
               name={category}
+              onClick={() => onCategoryChange(category)}
               className="w-5 h-5 text-blue-600 bg-gray-200 border-gray-300 rounded focus:ring-blue-500"
             />
           </label>

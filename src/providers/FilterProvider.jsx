@@ -9,7 +9,7 @@ export function FilterProvider({ children }) {
   );
 
   const initialState = {
-    category: "",
+    category: [],
     listCategories: categoriesList,
     rating: null,
   };

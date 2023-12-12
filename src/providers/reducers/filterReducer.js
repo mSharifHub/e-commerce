@@ -1,9 +1,15 @@
 export const filterReducer = (state, action) => {
+  const currentCategory = action.payload;
+
+  const isCategorySelected = state.category.includes(currentCategory);
+
   switch (action.type) {
     case "SET_CATEGORY":
       return {
         ...state,
-        category: state.category === action.payload ? "" : action.payload,
+        category: isCategorySelected
+          ? state.category.filter((category) => category !== currentCategory)
+          : [...state.category, currentCategory],
       };
     case "SET_RATING":
       return {
