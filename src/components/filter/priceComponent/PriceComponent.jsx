@@ -2,17 +2,25 @@
 import { useState } from "react";
 
 export default function PriceComponent() {
-  const [minValue, setMinValue] = useState(0);
-  const [maxValue, setMaxValue] = useState(300);
+  // TODO implement the reducer hook
+  const [priceRange, setPriceRange] = useState({ min: 0, max: 300 });
+
+  const onPriceRangeChange = (e) => {
+    setPriceRange((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+  // ToDo inputs collide causing only the highest input label to be selected. Add filled background for the range
 
   return (
-    <div className="flex flex-col p-4   bg-green-300 w-full">
-      <span className="font-bold text-center bg-red-600 mb-4">
+    <div className="flex flex-col p-4 ">
+      <span className="text-center mb-4 font-light text-large">
         Sort By Price
       </span>
       <div className="flex justify-between ">
-        <span>Lowest ${minValue}</span>
-        <span> Highest {maxValue}</span>
+        <span>Lowest ${priceRange.min}</span>
+        <span> Highest ${priceRange.max}</span>
       </div>
 
       <div className=" mt-8 relative w-full ">
@@ -26,10 +34,9 @@ export default function PriceComponent() {
             min="0"
             max="300"
             id="price-range-l"
-            name="price-range-l"
-            value={minValue}
-            onChange={() => ""}
-            onClick={() => console.log("selected lowest")}
+            name="min"
+            value={priceRange.min}
+            onChange={onPriceRangeChange}
             className="absolute w-full top-1/2 transform translate-y-[-50%] appearance-none bg-transparent  cursor-pointer  "
           />
         </label>
@@ -40,10 +47,9 @@ export default function PriceComponent() {
             min="0"
             max="300"
             id="price-range-h"
-            name="price-range-h"
-            value={maxValue}
-            onChange={() => ""}
-            onClick={() => console.log("selected highest")}
+            name="max"
+            value={priceRange.max}
+            onChange={onPriceRangeChange}
             className="absolute w-full top-1/2 transform translate-y-[-50%] appearance-none bg-transparent  cursor-pointer"
           />
         </label>

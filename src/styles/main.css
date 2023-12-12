@@ -35,7 +35,7 @@ input[type="radio"] {
   background-color: gray;
   top: 50%;
   transform: translateY(-50%);
-  z-index:1
+  z-index: 1;
 }
 
 .range-lower,
@@ -53,5 +53,5 @@ input[type="radio"] {
   background-color: blue;
   top: 50%;
   transform: translateY(-50%);
-  z-index:1
+  z-index: 1;
 }
