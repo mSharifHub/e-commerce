@@ -2,57 +2,63 @@
 import { useState } from "react";
 
 export default function PriceComponent() {
-  // TODO implement the reducer hook
-  const [priceRange, setPriceRange] = useState({ min: 0, max: 300 });
+  const [value, setValue] = useState({ min: 0, max: 1000 });
 
-  const onPriceRangeChange = (e) => {
-    setPriceRange((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
+  const onValueChange = (event) => {
+    event.preventDefault();
+    const parsedValue = parseFloat(event.target.value);
+
+    setValue((prevValue) => {
+      return event.target.name === "min"
+        ? { ...prevValue, min: Math.min(parsedValue, prevValue.max) }
+        : { ...prevValue, max: Math.max(parsedValue, prevValue.min) };
+    });
   };
-  // ToDo inputs collide causing only the highest input label to be selected. Add filled background for the range
+  const minPos = (value.min / 1000) * 100;
+  const maxPos = 100 - (value.max / 1000) * 100;
 
   return (
-    <div className="flex flex-col p-4 ">
-      <span className="text-center mb-4 font-light text-large">
-        Sort By Price
-      </span>
+    <div className="flex flex-col p-4  bg-red-200">
+      <span className="text-center font-light text-large">Sort By Price</span>
       <div className="flex justify-between ">
-        <span>Lowest ${priceRange.min}</span>
-        <span> Highest ${priceRange.max}</span>
+        <span>Lowest ${value.min}</span>
+        <span> Highest ${value.max}</span>
       </div>
-
-      <div className=" mt-8 relative w-full ">
-        {/* Gray track */}
-        <div className="absolute bg-gray-400 h-[5px] w-full top-1/2  -translate-y-1/2" />
-        {/* Blue track */}
-        <div className="absolute bg-blue-500 h-[5px]" />
-        <label htmlFor="price-range-l">
-          <input
-            type="range"
-            min="0"
-            max="300"
-            id="price-range-l"
-            name="min"
-            value={priceRange.min}
-            onChange={onPriceRangeChange}
-            className="absolute w-full top-1/2 transform translate-y-[-50%] appearance-none bg-transparent  cursor-pointer  "
+      {/* container for the price range */}
+      <div className="mt-4">
+        {/* unselected range */}
+        <div className="h-1 relative bg-slate-300">
+          {/* selected range */}
+          <div
+            className=" h-full absolute bg-blue-600"
+            style={{ left: `${minPos}%`, right: `${maxPos}%` }}
           />
-        </label>
-
-        <label htmlFor="price-range-h">
-          <input
-            type="range"
-            min="0"
-            max="300"
-            id="price-range-h"
-            name="max"
-            value={priceRange.max}
-            onChange={onPriceRangeChange}
-            className="absolute w-full top-1/2 transform translate-y-[-50%] appearance-none bg-transparent  cursor-pointer"
-          />
-        </label>
+          {/* thumbs */}
+          <label htmlFor="range-l">
+            <input
+              type="range"
+              id="range-l"
+              name="min"
+              min="0"
+              max="1000"
+              value={value.min}
+              onChange={onValueChange}
+              className="absolute w-full appearance-none  -top-2 rounded-lg  cursor-pointer bg-transparent"
+            />
+          </label>
+          <label htmlFor="range-h">
+            <input
+              type="range"
+              id="range-h"
+              name="max"
+              min="0"
+              max="1000"
+              value={value.max}
+              onChange={onValueChange}
+              className="absolute w-full appearance-none op-2 rounded-lg   cursor-pointer bg-transparent "
+            />
+          </label>
+        </div>
       </div>
     </div>
   );
