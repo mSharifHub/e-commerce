@@ -4,6 +4,15 @@ export const filterReducer = (state, action) => {
   const isCategorySelected = state.category.includes(currentCategory);
 
   switch (action.type) {
+    case "SET_PRICE_RANGE":
+      return {
+        ...state,
+        priceRange: {
+          min: Math.min(action.payload.min, state.priceRange.max - 1),
+          max: Math.max(action.payload.max, state.priceRange.min + 1),
+        },
+      };
+
     case "SET_CATEGORY":
       return {
         ...state,

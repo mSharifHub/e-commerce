@@ -6,13 +6,13 @@
 :root {
   --background-color: #fff;
   --text-color: #000;
-   --slider-thumb-color:#0000ff;
+  --slider-thumb-color: #0000ff;
 }
 
 [data-theme="dark"] {
   --background-color: #161618;
   --text-color: #ffffff;
-  --slider-thumb-color:#a500ff
+  --slider-thumb-color: #a500ff;
 }
 
 body {
@@ -28,7 +28,7 @@ input[type="radio"] {
 .thumb {
   height: 0;
 }
-.thumb-range{
+.thumb-range {
   background-color: var(--slider-thumb-color);
   border-radius: 40px;
 }
@@ -46,7 +46,7 @@ input[type="radio"] {
 }
 
 .thumb::-webkit-slider-thumb {
-  background-color: var(--slider-thumb-color)j;
+  background-color: var(--slider-thumb-color) j;
   border: none;
   border-radius: 50%;
   cursor: grab;

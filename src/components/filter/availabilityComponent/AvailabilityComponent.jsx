@@ -8,14 +8,14 @@ export default function AvailabilityComponent() {
   };
 
   return (
-    <div className="flex flex-col mt-4 p-4 border-t-2">
+    <div className="flex flex-col mt-8 p-4 border-t-2">
       <span className="flex justify-center font-light text-lg">
         Sort By Availability
       </span>
       <div className="flex justify-center w-full">
         <label
           htmlFor="include-on-stock-only"
-          className="flex justify-between items-center w-full mt-4  font-light capitalize"
+          className="flex justify-between items-center w-full mt-8  font-light capitalize"
         >
           include on stock only
           <input

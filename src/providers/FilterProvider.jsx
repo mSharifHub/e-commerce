@@ -10,6 +10,7 @@ export function FilterProvider({ children }) {
 
   const initialState = {
     category: [],
+    priceRange: { min: 0, max: 1000 },
     listCategories: categoriesList,
     inStock: false,
     rating: null,

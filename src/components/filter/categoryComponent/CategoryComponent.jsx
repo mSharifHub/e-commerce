@@ -1,7 +1,7 @@
 import { useFilter } from "../../../providers/contexts/filterContext";
 import { useCart } from "../../../providers/contexts/cartContext";
 
-export default function FilterComponent() {
+export default function CategoryComponent() {
   const { state, dispatch } = useFilter();
 
   const { listCategories } = state;
@@ -31,7 +31,7 @@ export default function FilterComponent() {
   };
 
   return (
-    <div className="flex flex-col mt-12  p-4 ">
+    <div className="flex flex-col mt-8  p-4 ">
       <span className="font-light text-lg  text-center mb-4 py-2 border-t-2 ">
         Sort By Catergory
       </span>

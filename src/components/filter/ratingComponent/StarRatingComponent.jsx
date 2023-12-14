@@ -14,8 +14,8 @@ export default function StarRatingComponent() {
   };
 
   return (
-    <div className="flex flex-col   p-4  ">
-      <span className="font-light text-lg text-center mb-4 border-t-2">
+    <div className="flex flex-col  mt-8 p-4  ">
+      <span className="font-light text-xl text-center mb-4 p-4 border-t-2">
         Sort By Rating
       </span>
       <div className="flex justify-center items-center">
@@ -33,7 +33,7 @@ export default function StarRatingComponent() {
               />
               <FontAwesomeIcon
                 icon={faStar}
-                size="lg"
+                size="xl"
                 color={`${
                   currentIndex <= state.rating ? "#ffa500" : "#b4b4b4"
                 }`}
