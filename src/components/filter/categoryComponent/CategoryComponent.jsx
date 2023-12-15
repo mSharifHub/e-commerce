@@ -31,16 +31,18 @@ export default function CategoryComponent() {
   };
 
   return (
-    <div className="flex  w-full flex-col p-4  bg-yellow-300 border-b-2 ">
-      <span className="font-light text-lg  text-center mb-4 py-2 bg-orange-300 ">
-        Sort By Catergory
-      </span>
-      <div className=" flex sm:flex-col bg-red-300">
+    <div className=" relative flex h-full w-full flex-col  justify-start p-4  ">
+      <div>
+        <span className="sticky px-4 left-0 font-light text-lg sm:flex sm:justify-center  py-4  ">
+          Sort By Catergory
+        </span>
+      </div>
+      <div className="flex  sm:flex-col ">
         {listCategories.map((category) => (
           <label
             key={category}
             htmlFor={category}
-            className="flex   justify-between items-center w-full mt-8 bg-purple-300"
+            className="flex w-full mt-10 mr-4 justify-center items-center sm:justify-between   "
           >
             <span className="font-light py-2  w-full">
               {category}
@@ -52,7 +54,7 @@ export default function CategoryComponent() {
               id={category}
               name={category}
               onClick={() => onCategoryChange(category)}
-              className="w-5 h-5 mr-4 text-blue-600  border-gray-300 rounded focus:ring-blue-500"
+              className="w-5 h-5 mx-5 text-blue-600  border-gray-300 rounded focus:ring-blue-500"
             />
           </label>
         ))}

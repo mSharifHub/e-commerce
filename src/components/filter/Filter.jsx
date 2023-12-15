@@ -5,7 +5,7 @@ import CategoryComponent from "./categoryComponent/CategoryComponent";
 
 export function Filter() {
   return (
-    <div className="relative flex w-full h-full overflow-x-scroll scroll whitespace-nowrap scroll-smooth sm:flex-col bg-slate-300 ">
+    <div className="relative flex w-full h-full overflow-x-scroll scroll whitespace-nowrap scroll-smooth scrollbar-hide sm:flex-col  ">
       <div>
         <PriceComponent />
       </div>

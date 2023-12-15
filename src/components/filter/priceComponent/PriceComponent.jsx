@@ -25,9 +25,9 @@ export default function PriceComponent() {
   const maxPos = 100 - (state.priceRange.max / 1000) * 100;
 
   return (
-    <div className="flex flex-col p-4  bg-green-300">
+    <div className="flex flex-col p-4 ">
       <span className="text-center font-light text-xl">Sort By Price</span>
-      <div className="flex justify-between mt-8 ">
+      <div className="flex justify-between  ">
         <span className="text-lg capitalize flex flex-col justify-center items-center  px-4">
           lowest
           <span className="font-bold">${state.priceRange.min}</span>
