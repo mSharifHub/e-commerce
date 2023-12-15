@@ -8,7 +8,7 @@ export default function AvailabilityComponent() {
   };
 
   return (
-    <div className="flex flex-col mt-8 p-4 border-t-2">
+    <div className="flex flex-col  p-4 border-t-2 bg-blue-500">
       <span className="flex justify-center font-light text-lg">
         Sort By Availability
       </span>

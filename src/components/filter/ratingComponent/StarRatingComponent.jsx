@@ -14,7 +14,7 @@ export default function StarRatingComponent() {
   };
 
   return (
-    <div className="flex flex-col  mt-8 p-4  ">
+    <div className="flex flex-col  p-4 bg-orange-500  ">
       <span className="font-light text-xl text-center mb-4 p-4 border-t-2">
         Sort By Rating
       </span>

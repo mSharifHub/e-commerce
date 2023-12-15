@@ -31,16 +31,16 @@ export default function CategoryComponent() {
   };
 
   return (
-    <div className="flex flex-col mt-8  p-4 ">
-      <span className="font-light text-lg  text-center mb-4 py-2 border-t-2 ">
+    <div className="flex  w-full flex-col p-4  bg-yellow-300 border-b-2 ">
+      <span className="font-light text-lg  text-center mb-4 py-2 bg-orange-300 ">
         Sort By Catergory
       </span>
-      <div className=" flex flex-col  ">
+      <div className=" flex sm:flex-col bg-red-300">
         {listCategories.map((category) => (
           <label
             key={category}
             htmlFor={category}
-            className="flex mt-10  justify-between w-full "
+            className="flex   justify-between items-center w-full mt-8 bg-purple-300"
           >
             <span className="font-light py-2  w-full">
               {category}

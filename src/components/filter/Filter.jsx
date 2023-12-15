@@ -5,13 +5,19 @@ import CategoryComponent from "./categoryComponent/CategoryComponent";
 
 export function Filter() {
   return (
-    <div className="h-full w-full relative flex flex-col  space-y-10 ">
-      <form>
+    <div className="relative flex w-full h-full overflow-x-scroll scroll whitespace-nowrap scroll-smooth sm:flex-col bg-slate-300 ">
+      <div>
         <PriceComponent />
+      </div>
+      <div>
         <CategoryComponent />
+      </div>
+      <div>
         <AvailabilityComponent />
+      </div>
+      <div>
         <StarRatingComponent />
-      </form>
+      </div>
     </div>
   );
 }

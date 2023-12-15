@@ -25,7 +25,7 @@ export default function PriceComponent() {
   const maxPos = 100 - (state.priceRange.max / 1000) * 100;
 
   return (
-    <div className="flex flex-col p-4  mt-8">
+    <div className="flex flex-col p-4  bg-green-300">
       <span className="text-center font-light text-xl">Sort By Price</span>
       <div className="flex justify-between mt-8 ">
         <span className="text-lg capitalize flex flex-col justify-center items-center  px-4">
