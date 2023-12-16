@@ -14,6 +14,7 @@ export function FilterProvider({ children }) {
     listCategories: categoriesList,
     inStock: false,
     rating: null,
+    toogle: false,
   };
 
   const [state, dispatch] = useReducer(filterReducer, initialState);
