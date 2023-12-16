@@ -15,19 +15,23 @@ export function SearchBar() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="flex p-2 items-center justify-center border shadow-md rounded-md">
-        <span className="flex mx-1 text-slate-400 ">
-          <FontAwesomeIcon icon={faSearch} />
-        </span>
-        <input
-          type="text"
-          value={searchTerm}
-          onChange={handleSearchTerm}
-          placeholder="Search"
-          className="flex-1  rounded-md ms-2 tracking-[2px] w-full outline-none bg-transparent "
+    <form onSubmit={handleSubmit} className="flex justify-center items-center">
+      <label htmlFor="searchBar" className="sr-only">
+        Search
+      </label>
+      <div className="relative flex justify-center items-center">
+        <FontAwesomeIcon
+          icon={faSearch}
+          size="lg"
+          className="absolute left-4 py-1 px-2 border-r-2 border-black "
         />
       </div>
+      <input
+        type="text"
+        id="searchBar"
+        className="rounded-full  w-full capitalize bg-slate-100  text-lg text-left pl-20  outline-none border-none"
+        placeholder="search"
+      />
     </form>
   );
 }
