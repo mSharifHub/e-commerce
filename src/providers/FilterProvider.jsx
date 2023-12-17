@@ -9,12 +9,12 @@ export function FilterProvider({ children }) {
   );
 
   const initialState = {
-    category: [],
-    priceRange: { min: 0, max: 1000 },
-    listCategories: categoriesList,
+    category: [], // displays the list of selected categories to be used to filter the display
+    priceRanges: [], // used to extract the min and max value if multiple ranges are selected
+    priceRange: { min: 0, max: 500 }, // the value extracted to filter data based on the price query
+    listCategories: categoriesList, // used to display number of items per category
     inStock: false,
     rating: null,
-    toogle: false,
   };
 
   const [state, dispatch] = useReducer(filterReducer, initialState);

@@ -1,6 +1,12 @@
-import { NavMenu } from "./NavMenu";
+import React from "react";
+import NavMenu from "./NavMenu";
+import NavHelper from "./NavHelper";
 
-function Nav() {
-  return <NavMenu />;
+export default function Nav() {
+  return (
+    <>
+      <NavMenu />
+      <NavHelper />
+    </>
+  );
 }
-export default Nav;

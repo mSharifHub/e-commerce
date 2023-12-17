@@ -6,7 +6,7 @@ import { useTheme } from "../../providers/contexts/themeContext";
 import { ReactIcon } from "./icons/ReactIcon";
 import ChangeThemeIcon from "./icons/ChangeThemeIcom";
 
-export function NavMenu() {
+export default function NavMenu() {
   const { toogleTheme } = useTheme();
 
   return (

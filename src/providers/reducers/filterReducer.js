@@ -1,16 +1,20 @@
+/* eslint-disable no-case-declarations */
 export const filterReducer = (state, action) => {
   const currentCategory = action.payload;
 
   const isCategorySelected = state.category.includes(currentCategory);
 
   switch (action.type) {
-    case "SET_PRICE_RANGE":
+    case "SET_PRICE":
+      const rangeGroup = action.payload;
+      const rangeValues = rangeGroup.flat();
+      const minPrice = rangeValues.length > 0 ? Math.min(...rangeValues) : 0;
+      const maxPrice = rangeValues.length > 0 ? Math.max(...rangeValues) : 500;
+
       return {
         ...state,
-        priceRange: {
-          min: Math.min(action.payload.min, state.priceRange.max - 1),
-          max: Math.max(action.payload.max, state.priceRange.min + 1),
-        },
+        priceRanges: rangeGroup,
+        priceRange: { min: minPrice, max: maxPrice },
       };
 
     case "SET_CATEGORY":

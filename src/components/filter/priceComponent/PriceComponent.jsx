@@ -3,78 +3,55 @@
 import { useFilter } from "../../../providers/contexts/filterContext";
 
 export default function PriceComponent() {
+  const priceRangeOptions = [
+    "$0 - $50",
+    "$50 - $100",
+    "$100 - $150",
+    "$150 - $200",
+    "$200 - $250",
+    "$250 - $300",
+  ];
+
   const { state, dispatch } = useFilter();
 
-  const onSetPricingRange = (event) => {
-    event.preventDefault();
-    const isMin = event.target.name === "min";
-    const value = parseFloat(event.target.value);
-    const { min } = state.priceRange;
-    const { max } = state.priceRange;
+  const handlePriceChange = (label) => {
+    const newRange = label
+      .split("-")
+      .map((str) => parseInt(str.trim().slice(1), 10));
 
-    dispatch({
-      type: "SET_PRICE_RANGE",
-      payload: {
-        min: isMin ? value : min,
-        max: isMin ? max : value,
-      },
-    });
+    let updatedRanges;
+
+    const isRangeSelected = state.priceRanges.some(
+      (range) => range[0] === newRange[0] && range[1] === newRange[1],
+    );
+
+    if (isRangeSelected) {
+      updatedRanges = state.priceRanges.filter(
+        (range) => !(range[0] === newRange[0] && range[1] === newRange[1]),
+      );
+    } else {
+      updatedRanges = [...state.priceRanges, newRange];
+    }
+
+    dispatch({ type: "SET_PRICE", payload: updatedRanges });
   };
-
-  const minPos = (state.priceRange.min / 1000) * 100;
-  const maxPos = 100 - (state.priceRange.max / 1000) * 100;
 
   return (
     <div className="flex flex-col p-4 ">
-      <span className="text-center font-light text-xl">Sort By Price</span>
-      <div className="flex justify-between  ">
-        <span className="text-lg capitalize flex flex-col justify-center items-center  px-4">
-          lowest
-          <span className="font-bold">${state.priceRange.min}</span>
-        </span>
-        <span className="text-lg  capitalize flex flex-col justify-center items-center px-4">
-          highest
-          <span className="font-bold">${state.priceRange.max}</span>
-        </span>
-      </div>
-      {/* container for the price range */}
-      <div className="mt-10">
-        {/* unselected range */}
-        <div className="h-1 relative bg-slate-300 ">
-          {/* selected range */}
-          <div
-            className="thumb-range h-full absolute "
-            style={{
-              left: `${minPos}%`,
-              right: `${maxPos}%`,
-            }}
-          />
-          {/* thumbs */}
-          <label htmlFor="range-l">
+      <span className="text-start font-light text-thin capitalize  w-full mb-3">
+        shop by price (0)
+      </span>
+      <div className="flex flex-col justify-start items-start ">
+        {priceRangeOptions.map((label) => (
+          <label key={label}>
             <input
-              type="range"
-              id="range-l"
-              name="min"
-              min="0"
-              max="1000"
-              value={state.priceRange.min}
-              onChange={onSetPricingRange}
-              className=" thumb absolute w-full appearance-none "
+              type="checkbox"
+              id={label}
+              onChange={() => handlePriceChange(label)}
             />
+            {label}
           </label>
-          <label htmlFor="range-h">
-            <input
-              type="range"
-              id="range-h"
-              name="max"
-              min="0"
-              max="1000"
-              value={state.priceRange.max}
-              onChange={onSetPricingRange}
-              className="thumb absolute w-full appearance-none"
-            />
-          </label>
-        </div>
+        ))}
       </div>
     </div>
   );
