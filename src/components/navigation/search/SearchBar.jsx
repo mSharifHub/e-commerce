@@ -15,7 +15,7 @@ export function SearchBar() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex justify-center items-center">
+    <form onSubmit={handleSubmit} className="flex justify-center items-center ">
       <label htmlFor="searchBar" className="sr-only">
         Search
       </label>
@@ -23,13 +23,13 @@ export function SearchBar() {
         <FontAwesomeIcon
           icon={faSearch}
           size="lg"
-          className="absolute left-4 py-1 px-2 border-r-2 border-black "
+          className="absolute left-0 p-3 cursor-pointer rounded-full  hover:bg-slate-200 transform ease-in-out"
         />
       </div>
       <input
         type="text"
         id="searchBar"
-        className="rounded-full  w-full capitalize bg-slate-100  text-lg text-left pl-20  outline-none border-none"
+        className="rounded-full  w-full capitalize bg-slate-100  text-lg text-left pl-20   border-none   hover:bg-slate-200 focus:outline-none  focus:border-transparent focus:ring-0"
         placeholder="search"
       />
     </form>

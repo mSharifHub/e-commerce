@@ -5,8 +5,10 @@ import { Cart } from "./components/pages/Cart";
 import { CartProvider } from "./providers/CartProvider";
 import { ThemeProvider } from "./providers/themeProvider";
 import { SignIn } from "./components/pages/SignIn";
-import UserProfile from "./components/pages/UserProfile";
 import { FilterProvider } from "./providers/FilterProvider";
+import Help from "./components/pages/Help";
+import JoinUs from "./components/pages/JoinUs";
+import FindStore from "./components/pages/FindStore";
 
 export function App() {
   return (
@@ -17,9 +19,11 @@ export function App() {
             <Nav />
             <Routes>
               <Route exact path="/" Component={Home} />
-              <Route path="/sign-in" Component={SignIn} />
-              <Route path="/user-profile" Component={UserProfile} />
-              <Route path="/cart" Component={Cart} />
+              <Route path="/api/find-store" Component={FindStore} />
+              <Route path="/api/help" Component={Help} />
+              <Route path="/api/join-us" Component={JoinUs} />
+              <Route path="/api/sign-in" Component={SignIn} />
+              <Route path="/api/cart" Component={Cart} />
             </Routes>
           </Router>
         </FilterProvider>

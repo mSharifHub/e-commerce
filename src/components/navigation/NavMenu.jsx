@@ -1,36 +1,47 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+
+import React from "react";
 import { Link } from "react-router-dom";
 import { useTheme } from "../../providers/contexts/themeContext";
-import { SearchBar } from "./SearchBar";
-import { ChangeThemeIcon } from "./icons/ChangeThemeIcom";
-import { CartIcon } from "./icons/CartIcon";
 import { ReactIcon } from "./icons/ReactIcon";
-import { Filter } from "../filter/Filter";
+import ChangeThemeIcon from "./icons/ChangeThemeIcom";
 
 export function NavMenu() {
   const { toogleTheme } = useTheme();
 
   return (
-    <ul className="grid grid-cols-11">
-      <div className="mx-4 flex col-start-1 col-span-1">
-        <ReactIcon />
+    <div className="p-2 flex  justify-between mt-2 mx-2">
+      <div className="mx-4 flex justify-center items-center cursor-pointer hover:text-slate-400">
+        <Link to="/">
+          <ReactIcon />
+        </Link>
       </div>
 
-      <div className=" hidden sm:inline-flex sm:col-start-7 sm:col-span-3 lg:col-start-8 xl:col-start-9 xl:col-span-2 xl:justify-center xl:items-center">
-        <SearchBar />
-      </div>
-      <div className="flex justify-around items-center col-start-10 col-span-3  md:col-start-10 md:col-span-2   lg:col-start-11  ">
-        <Link to="/cart">
-          <div className="flex">
-            <CartIcon />
-          </div>
-        </Link>
-        <div className="flex">
-          <button type="button" onClick={toogleTheme}>
-            <ChangeThemeIcon />
-          </button>
+      <div className="hidden sm:flex sm:justify-around sm:text-sm">
+        {[
+          { to: "/api/find-store", text: "find store" },
+          { to: "/api/help", text: "help" },
+          { to: "/api/join-us", text: "join us" },
+          { to: "/api/sign-in", text: "sign-in" },
+        ].map((link, index, array) => (
+          <React.Fragment key={link.to}>
+            <Link to={link.to}>
+              <span className="capitalize mx-4 hover:text-slate-400">
+                {link.text}
+              </span>
+            </Link>
+            {index < array.length - 1 && <span>|</span>}
+          </React.Fragment>
+        ))}
+        <div
+          type="button"
+          onClick={toogleTheme}
+          onKeyDown={toogleTheme}
+          className="cursor-pointer hover:text-slate-400"
+        >
+          <ChangeThemeIcon />
         </div>
       </div>
-    </ul>
+    </div>
   );
 }
