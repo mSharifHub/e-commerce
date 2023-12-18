@@ -32,11 +32,6 @@ export default function CategoryComponent() {
 
   return (
     <div className=" relative flex h-full w-full flex-col  justify-start p-4  ">
-      <div>
-        <span className=" flex   font-light text-lg sm:justify-center  py-4  ">
-          Sort By Catergory
-        </span>
-      </div>
       <div className="flex-col ">
         {listCategories.map((category) => (
           <label

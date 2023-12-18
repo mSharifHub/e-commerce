@@ -15,7 +15,7 @@ export default function FilterPopUpMenu({ label, Component }) {
       <div
         onClick={toogle}
         onKeyDown={toogle}
-        className="m-4 flex border-t-2 border-slate-200 py-2 px-4 rounded-md cursor-pointer  "
+        className="m-4 flex border-t-2 border-slate-200 py-2 px-4  cursor-pointer  "
       >
         <div className=" flex justify-between items-center w-full">
           <span className="text-lg capitalize hover:text-slate-500">

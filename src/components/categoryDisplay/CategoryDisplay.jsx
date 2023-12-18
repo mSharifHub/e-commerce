@@ -48,7 +48,7 @@ export function CategoryDisplay() {
             </div>
             <div
               id={`slider-${category}`}
-              className="relative  flex items-center w-full h-full overflow-x-scroll scroll whitespace-nowrap scroll-smooth scrollbar-hide gap-4 "
+              className="relative  flex items-center w-full h-full overflow-x-scroll scroll whitespace-nowrap scroll-smooth scrollbar-hide gap-8 "
             >
               {categories[category].map((product) => (
                 <div key={product.id}>
