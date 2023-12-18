@@ -15,11 +15,13 @@ export default function FilterPopUpMenu({ label, Component }) {
       <div
         onClick={toogle}
         onKeyDown={toogle}
-        className="m-4 flex border-2 border-slate-300 py-2 px-4 rounded-md cursor-pointer hover:bg-slate-100 transform ease-in-out sm:hidden"
+        className="m-4 flex border-t-2 border-slate-200 py-2 px-4 rounded-md cursor-pointer"
       >
-        <div className=" flex justify-center items-center">
-          {label}
-          <div className="justify-items-center mx-2 px-2">
+        <div className=" flex justify-between items-center w-full">
+          <span className="text-lg capitalize hover:text-slate-500">
+            {label}
+          </span>
+          <div className="justify-items-center mx-2 px-2 hover:text-slate-500">
             <FontAwesomeIcon
               icon={!isVisible ? faAngleDown : faAngleUp}
               size="lg"

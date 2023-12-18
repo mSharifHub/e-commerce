@@ -1,15 +1,15 @@
 import PriceComponent from "./priceComponent/PriceComponent";
-import AvailabilityComponent from "./availabilityComponent/AvailabilityComponent";
-import StarRatingComponent from "./ratingComponent/StarRatingComponent";
-import CategoryComponent from "./categoryComponent/CategoryComponent";
+import FilterPopUpMenu from "./filterPopUpMenu/FilterPopUpMenu";
 
 export function Filter() {
   return (
-    <div className="relative flex w-full h-full  flex-col  ">
-      <AvailabilityComponent />
-      <PriceComponent />
-      <CategoryComponent />
-      <StarRatingComponent />
+    <div className="flex w-full h-full  flex-col  ">
+      {/* price container filter */}
+      <div className="flex relative">
+        <div className="w-full">
+          <FilterPopUpMenu label="filter by price" Component={PriceComponent} />
+        </div>
+      </div>
     </div>
   );
 }

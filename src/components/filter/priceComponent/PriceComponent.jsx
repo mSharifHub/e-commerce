@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 
+import { useCart } from "../../../providers/contexts/cartContext";
 import { useFilter } from "../../../providers/contexts/filterContext";
+import { priceRangeResult } from "../../../helpers/FilterCategory";
 
 export default function PriceComponent() {
   const priceRangeOptions = [
@@ -13,6 +15,21 @@ export default function PriceComponent() {
   ];
 
   const { state, dispatch } = useFilter();
+
+  const {
+    state: { products },
+  } = useCart();
+
+  const isChecked = (label) => {
+    const range = label
+      .split("-")
+      .map((str) => parseInt(str.trim().slice(1), 10));
+
+    return state.priceRanges.some(
+      (selectedRange) =>
+        selectedRange[0] === range[0] && selectedRange[1] === range[1],
+    );
+  };
 
   const handlePriceChange = (label) => {
     const newRange = label
@@ -38,16 +55,27 @@ export default function PriceComponent() {
 
   return (
     <div className="flex flex-col p-4 ">
-      <span className="text-start font-light text-thin capitalize  w-full mb-3">
-        shop by price (0)
+      <span
+        className={`${
+          state.priceRanges.length === 0
+            ? "hidden"
+            : " absolute top-[12%] right-[40%] -translate-x-1/2 -translate-y-1/2 text-lg  w-10  text-center"
+        }`}
+      >
+        ({priceRangeResult(products, state)})
       </span>
       <div className="flex flex-col justify-start items-start ">
         {priceRangeOptions.map((label) => (
-          <label key={label}>
+          <label
+            key={label}
+            className="font-thin tracking-wide hover:text-slate-400 mb-3"
+          >
             <input
               type="checkbox"
               id={label}
               onChange={() => handlePriceChange(label)}
+              checked={isChecked(label)}
+              className=" w-5 h-5 mr-4 text-slate-400  border-gray-300 rounded focus:ring-slate-400 cursor-pointer"
             />
             {label}
           </label>
