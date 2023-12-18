@@ -1,30 +1,37 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import { useCart } from "../../../providers/contexts/cartContext";
 import { useFilter } from "../../../providers/contexts/filterContext";
+import ToogleButtonComponent from "./ToogleButtonComponent";
 
 export default function AvailabilityComponent() {
-  const { dispatch } = useFilter();
+  const {
+    dispatch,
+    state: { inStock },
+  } = useFilter();
 
-  const onInStockChange = (e) => {
-    dispatch({ type: "SET_AVAILABILITY", payload: e.target.checked });
+  const { state } = useCart();
+
+  const result = state.products.filter((product) => product.inStock > 0).length;
+
+  const onInStockChange = () => {
+    dispatch({ type: "SET_AVAILABILITY" });
   };
 
   return (
-    <div className=" h-full flex justify-start items-center flex-col  sm:mt-8 p-4 ">
-      <div className=" flex w-full justify-center items-center">
-        <span className="font-light text-lg">Sort By Availability</span>
-      </div>
-      <div className="flex justify-center  items-center w-full ">
-        <label
-          htmlFor="include-on-stock-only"
-          className="flex  justify-between items-center w-full  mt-10  font-light capitalize "
-        >
-          include on stock only
-          <input
-            type="checkbox"
-            id="include-on-stock-only"
-            className="w-5 h-5  mx-4 text-blue-600  border-gray-300 rounded focus:ring-blue-500"
-            onClick={onInStockChange}
-          />
-        </label>
+    <div className="flex justify-between  m-4 ">
+      <span className="flex justify-center items-center mx-4 text-lg ">
+        In Stock
+      </span>
+      <span
+        className={`${
+          inStock ? " inline-flex" : "hidden"
+        } text-lg   justify-center`}
+      >
+        ({result})
+      </span>
+      <div className="cursor-pointer px-2" onClick={onInStockChange}>
+        <ToogleButtonComponent inStock={inStock} />
       </div>
     </div>
   );

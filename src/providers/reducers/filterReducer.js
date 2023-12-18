@@ -31,9 +31,10 @@ export const filterReducer = (state, action) => {
       };
 
     case "SET_AVAILABILITY":
+      const currentValue = state.inStock;
       return {
         ...state,
-        inStock: action.payload,
+        inStock: !currentValue,
       };
 
     default:

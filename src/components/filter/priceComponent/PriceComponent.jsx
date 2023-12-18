@@ -2,7 +2,7 @@
 
 import { useCart } from "../../../providers/contexts/cartContext";
 import { useFilter } from "../../../providers/contexts/filterContext";
-import { priceRangeResult } from "../../../helpers/FilterCategory";
+import { priceRangeResult } from "../../../helpers/filter_helpers/filterHelpers";
 
 export default function PriceComponent() {
   const priceRangeOptions = [

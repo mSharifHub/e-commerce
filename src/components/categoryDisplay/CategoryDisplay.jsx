@@ -1,7 +1,7 @@
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { useCart } from "../../providers/contexts/cartContext";
 import { Product } from "../products/Product";
-import { filterCategory } from "../../helpers/FilterCategory";
+import { filterCategory } from "../../helpers/filter_helpers/filterHelpers";
 import { useTheme } from "../../providers/contexts/themeContext";
 
 export function CategoryDisplay() {
