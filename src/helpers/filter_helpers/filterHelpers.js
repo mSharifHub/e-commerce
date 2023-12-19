@@ -15,3 +15,9 @@ export const priceRangeResult = (products, min, max) => {
   }).length;
   return result;
 };
+
+export const inStockResult = (state, products) => {
+  return state.inStock
+    ? products.filter((product) => product.inStock).length
+    : null;
+};

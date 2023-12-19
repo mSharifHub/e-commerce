@@ -4,9 +4,12 @@ import CategoryComponent from "./categoryComponent/CategoryComponent";
 import StarRatingComponent from "./ratingComponent/StarRatingComponent";
 import AvailabilityComponent from "./availabilityComponent/AvailabilityComponent";
 import { useFilter } from "../../providers/contexts/filterContext";
+import { inStockResult } from "../../helpers/filter_helpers/filterHelpers";
+import { products } from "../../data/productsData/products";
 
 export function Filter() {
   const { state } = useFilter();
+
   return (
     <div className="flex w-full h-full  flex-col mt-10 ">
       {/* availability container filter */}
@@ -15,6 +18,7 @@ export function Filter() {
           <FilterPopUpMenu
             label="filter by availability"
             Component={AvailabilityComponent}
+            selectedTotal={inStockResult(state, products)}
           />
         </div>
       </div>
