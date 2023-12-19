@@ -1,17 +1,22 @@
 import { useMemo, useReducer } from "react";
 import { filterReducer } from "./reducers/filterReducer";
 import { filterContext } from "./contexts/filterContext";
-import { products as data } from "../data/productsData/products";
+import { products } from "../data/productsData/products";
+import { priceRangeResult } from "../helpers/filter_helpers/filterHelpers";
 
 export function FilterProvider({ children }) {
   const categoriesList = Array.from(
-    new Set(data.map((product) => product.category)),
+    new Set(products.map((product) => product.category)),
   );
+
+  const min = 0;
+  const max = 500;
 
   const initialState = {
     category: [], // displays the list of selected categories to be used to filter the display
     priceRanges: [], // used to extract the min and max value if multiple ranges are selected
-    priceRange: { min: 0, max: 500 }, // the value extracted to filter data based on the price query
+    priceRange: { min, max }, // the value extracted to filter data based on the price query
+    priceSelectedCount: priceRangeResult(products, min, max), // sets the initial value
     listCategories: categoriesList, // used to display number of items per category
     inStock: false,
     rating: null,

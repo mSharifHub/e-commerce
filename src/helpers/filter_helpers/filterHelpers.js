@@ -8,14 +8,10 @@ export const filterCategory = (products) =>
     return acc;
   }, {});
 
-export const priceRangeResult = (products, state) => {
+export const priceRangeResult = (products, min, max) => {
   const result = products.filter((product) => {
     const productPrice = parseFloat(product.price.slice(1), 10);
-    return (
-      productPrice >= state.priceRange.min &&
-      productPrice <= state.priceRange.max
-    );
+    return productPrice >= min && productPrice <= max;
   }).length;
-
   return result;
 };

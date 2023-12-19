@@ -1,4 +1,7 @@
 /* eslint-disable no-case-declarations */
+import { products } from "../../data/productsData/products";
+import { priceRangeResult } from "../../helpers/filter_helpers/filterHelpers";
+
 export const filterReducer = (state, action) => {
   const currentCategory = action.payload;
 
@@ -10,11 +13,17 @@ export const filterReducer = (state, action) => {
       const rangeValues = rangeGroup.flat();
       const minPrice = rangeValues.length > 0 ? Math.min(...rangeValues) : 0;
       const maxPrice = rangeValues.length > 0 ? Math.max(...rangeValues) : 500;
+      const newPriceSelectedCount = priceRangeResult(
+        products,
+        minPrice,
+        maxPrice,
+      );
 
       return {
         ...state,
         priceRanges: rangeGroup,
         priceRange: { min: minPrice, max: maxPrice },
+        priceSelectedCount: newPriceSelectedCount,
       };
 
     case "SET_CATEGORY":

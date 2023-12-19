@@ -13,37 +13,19 @@ export default function CategoryComponent() {
     dispatch({ type: "SET_CATEGORY", payload: category });
   };
 
-  const numItemsPerCategory = (category) => {
-    let numOfItems = 0;
-
-    switch (category) {
-      case "":
-        numOfItems = products.length;
-        break;
-      default:
-        numOfItems = products.filter(
-          (product) => product.category === category,
-        ).length;
-        break;
-    }
-
-    return numOfItems;
-  };
+  const result = products.filter((product) =>
+    state.category.includes(product.category),
+  ).length;
 
   return (
-    <div className=" relative flex h-full w-full flex-col  justify-start p-4  ">
-      <div className="flex-col ">
+    <div className=" relative m-2 flex w-full flex-col  justify-start  ">
+      <div className="flex-col w-full ">
         {listCategories.map((category) => (
           <label
             key={category}
             htmlFor={category}
-            className="flex w-full mt-10 mr-4 justify-center items-center sm:justify-between   "
+            className="flex w-full mt-8  justify-start items-center  "
           >
-            <span className="font-light py-2  w-full">
-              {category}
-              {"\t"}({numItemsPerCategory(category)})
-            </span>
-
             <input
               type="checkbox"
               id={category}
@@ -51,6 +33,7 @@ export default function CategoryComponent() {
               onClick={() => onCategoryChange(category)}
               className="w-5 h-5 mx-5 text-blue-600  border-gray-300 rounded focus:ring-blue-500"
             />
+            <span className="font-light py-2  w-full">{category}</span>
           </label>
         ))}
       </div>

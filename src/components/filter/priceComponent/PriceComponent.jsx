@@ -1,8 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 
-import { useCart } from "../../../providers/contexts/cartContext";
 import { useFilter } from "../../../providers/contexts/filterContext";
-import { priceRangeResult } from "../../../helpers/filter_helpers/filterHelpers";
 
 export default function PriceComponent() {
   const priceRangeOptions = [
@@ -15,10 +13,6 @@ export default function PriceComponent() {
   ];
 
   const { state, dispatch } = useFilter();
-
-  const {
-    state: { products },
-  } = useCart();
 
   const isChecked = (label) => {
     const range = label
@@ -50,20 +44,11 @@ export default function PriceComponent() {
       updatedRanges = [...state.priceRanges, newRange];
     }
 
-    dispatch({ type: "SET_PRICE", payload: updatedRanges });
+    dispatch({ type: "SET_PRICE", payload: updatedRanges }); // updates the price range
   };
 
   return (
     <div className="flex flex-col p-4 ">
-      <span
-        className={`${
-          state.priceRanges.length === 0
-            ? "hidden"
-            : " absolute top-[12%] right-[40%] -translate-x-1/2 -translate-y-1/2 text-lg  w-10  text-center"
-        }`}
-      >
-        ({priceRangeResult(products, state)})
-      </span>
       <div className="flex flex-col justify-start items-start ">
         {priceRangeOptions.map((label) => (
           <label
