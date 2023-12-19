@@ -2,33 +2,24 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Home } from "./components/pages/Home";
 import Nav from "./components/navigation/Nav";
 import { Cart } from "./components/pages/Cart";
-import { CartProvider } from "./providers/CartProvider";
-import { ThemeProvider } from "./providers/themeProvider";
 import { SignIn } from "./components/pages/SignIn";
-import { FilterProvider } from "./providers/FilterProvider";
 import Help from "./components/pages/Help";
 import JoinUs from "./components/pages/JoinUs";
 import FindStore from "./components/pages/FindStore";
 
 export function App() {
   return (
-    <ThemeProvider>
-      <CartProvider>
-        <FilterProvider>
-          <Router>
-            <Nav />
-            <Routes>
-              <Route exact path="/" Component={Home} />
-              <Route path="/api/find-store" Component={FindStore} />
-              <Route path="/api/help" Component={Help} />
-              <Route path="/api/join-us" Component={JoinUs} />
-              <Route path="/api/sign-in" Component={SignIn} />
-              <Route path="/api/cart" Component={Cart} />
-            </Routes>
-          </Router>
-        </FilterProvider>
-      </CartProvider>
-    </ThemeProvider>
+    <Router>
+      <Nav />
+      <Routes>
+        <Route exact path="/" Component={Home} />
+        <Route path="/api/find-store" Component={FindStore} />
+        <Route path="/api/help" Component={Help} />
+        <Route path="/api/join-us" Component={JoinUs} />
+        <Route path="/api/sign-in" Component={SignIn} />
+        <Route path="/api/cart" Component={Cart} />
+      </Routes>
+    </Router>
   );
 }
 
