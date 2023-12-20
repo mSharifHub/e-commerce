@@ -5,7 +5,7 @@ export default function CartIcon() {
   return (
     <>
       <FontAwesomeIcon icon={faCartShopping} size="lg" />
-      <div className="ml-2">{0}</div>
+      <div className="ml-2" />
     </>
   );
 }

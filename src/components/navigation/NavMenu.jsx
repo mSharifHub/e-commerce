@@ -10,14 +10,14 @@ export default function NavMenu() {
   const { toogleTheme } = useTheme();
 
   return (
-    <div className="p-2 flex  justify-between mt-2 mx-2">
+    <div className="hidden sm:flex  sm:justify-between   ">
       <div className="mx-4 flex justify-center items-center cursor-pointer hover:text-slate-400">
         <Link to="/">
           <ReactIcon />
         </Link>
       </div>
 
-      <div className="hidden sm:flex sm:justify-around sm:text-sm">
+      <div className="hidden sm:flex sm:justify-around sm:text-sm mx-8 my-2">
         {[
           { to: "/api/find-store", text: "find store" },
           { to: "/api/help", text: "help" },
