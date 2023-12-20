@@ -17,15 +17,7 @@ export function Filter() {
   return (
     <div className="flex w-full h-full  flex-col mt-10 ">
       {/* availability container filter */}
-      <div className="flex relative">
-        <div className="w-full">
-          <FilterPopUpMenu
-            label="filter by availability"
-            Component={AvailabilityComponent}
-            selectedTotal={inStockResult(state, products)}
-          />
-        </div>
-      </div>
+      <AvailabilityComponent />
       {/* price container filter */}
       <div className="flex relative">
         <div className="w-full">

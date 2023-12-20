@@ -14,11 +14,12 @@ export default function AvailabilityComponent() {
   };
 
   return (
-    <div className="flex justify-between  m-4 ">
-      <span className="flex justify-center items-center mx-4 text-lg ">
-        In Stock
+    <div className="flex justify-between mx-8 ">
+      <span className="flex justify-center items-center text-lg  capitalize font-thin">
+        pick up today at:
+        {/* // TODO add location to the store component// */}
       </span>
-      <div className="cursor-pointer px-2" onClick={onInStockChange}>
+      <div className=" justify-center items-center " onClick={onInStockChange}>
         <ToogleButtonComponent inStock={inStock} />
       </div>
     </div>
