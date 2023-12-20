@@ -4,12 +4,12 @@ import CategoryComponent from "./categoryComponent/CategoryComponent";
 import StarRatingComponent from "./ratingComponent/StarRatingComponent";
 import AvailabilityComponent from "./availabilityComponent/AvailabilityComponent";
 import { useFilter } from "../../providers/contexts/filterContext";
+import { products } from "../../data/productsData/products";
 import {
   inStockResult,
   categoryResult,
   ratingResult,
 } from "../../helpers/filter_helpers/filterHelpers";
-import { products } from "../../data/productsData/products";
 
 export function Filter() {
   const { state } = useFilter();
@@ -46,7 +46,7 @@ export function Filter() {
           <FilterPopUpMenu
             label="filter by Category"
             Component={CategoryComponent}
-            selectedTotal={categoryResult(state)}
+            selectedTotal={categoryResult(state, products)}
           />
         </div>
       </div>

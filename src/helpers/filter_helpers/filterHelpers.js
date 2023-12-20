@@ -22,8 +22,11 @@ export const inStockResult = (state, products) => {
     : null;
 };
 
-export const categoryResult = (state) => {
-  return state.category.length > 0 ? state.category.length : null;
+export const categoryResult = (state, products) => {
+  return state.category.length > 0
+    ? products.filter((product) => state.category.includes(product.category))
+        .length
+    : null;
 };
 
 export const ratingResult = (state) => {
