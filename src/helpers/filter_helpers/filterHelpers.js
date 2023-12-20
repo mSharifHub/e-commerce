@@ -21,3 +21,11 @@ export const inStockResult = (state, products) => {
     ? products.filter((product) => product.inStock).length
     : null;
 };
+
+export const categoryResult = (state) => {
+  return state.category.length > 0 ? state.category.length : null;
+};
+
+export const ratingResult = (state) => {
+  return state.rating;
+};

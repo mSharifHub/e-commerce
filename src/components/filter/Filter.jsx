@@ -4,7 +4,11 @@ import CategoryComponent from "./categoryComponent/CategoryComponent";
 import StarRatingComponent from "./ratingComponent/StarRatingComponent";
 import AvailabilityComponent from "./availabilityComponent/AvailabilityComponent";
 import { useFilter } from "../../providers/contexts/filterContext";
-import { inStockResult } from "../../helpers/filter_helpers/filterHelpers";
+import {
+  inStockResult,
+  categoryResult,
+  ratingResult,
+} from "../../helpers/filter_helpers/filterHelpers";
 import { products } from "../../data/productsData/products";
 
 export function Filter() {
@@ -42,6 +46,7 @@ export function Filter() {
           <FilterPopUpMenu
             label="filter by Category"
             Component={CategoryComponent}
+            selectedTotal={categoryResult(state)}
           />
         </div>
       </div>
@@ -51,6 +56,7 @@ export function Filter() {
           <FilterPopUpMenu
             label="filter by rating"
             Component={StarRatingComponent}
+            selectedTotal={ratingResult(state)}
           />
         </div>
       </div>

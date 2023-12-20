@@ -1,21 +1,17 @@
 import { useFilter } from "../../../providers/contexts/filterContext";
-import { useCart } from "../../../providers/contexts/cartContext";
 
 export default function CategoryComponent() {
   const { state, dispatch } = useFilter();
 
   const { listCategories } = state;
-  const {
-    state: { products },
-  } = useCart();
 
   const onCategoryChange = (category) => {
     dispatch({ type: "SET_CATEGORY", payload: category });
   };
 
-  const result = products.filter((product) =>
-    state.category.includes(product.category),
-  ).length;
+  const isChecked = (category) => {
+    return state.category.some((selectedRanges) => selectedRanges === category);
+  };
 
   return (
     <div className=" relative m-2 flex w-full flex-col  justify-start  ">
@@ -30,8 +26,9 @@ export default function CategoryComponent() {
               type="checkbox"
               id={category}
               name={category}
-              onClick={() => onCategoryChange(category)}
-              className="w-5 h-5 mx-5 text-blue-600  border-gray-300 rounded focus:ring-blue-500"
+              onChange={() => onCategoryChange(category)}
+              checked={isChecked(category)}
+              className=" w-5 h-5 mr-4 text-slate-400  border-gray-300 rounded focus:ring-slate-400 cursor-pointer"
             />
             <span className="font-light py-2  w-full">{category}</span>
           </label>
