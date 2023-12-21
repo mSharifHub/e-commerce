@@ -3,21 +3,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useTheme } from "../../providers/contexts/themeContext";
-import { ReactIcon } from "./icons/ReactIcon";
 import ChangeThemeIcon from "./icons/ChangeThemeIcom";
 
 export default function NavMenu() {
   const { toogleTheme } = useTheme();
 
   return (
-    <div className="hidden sm:flex  sm:justify-between   ">
-      <div className="mx-4 flex justify-center items-center cursor-pointer hover:text-slate-400">
-        <Link to="/">
-          <ReactIcon />
-        </Link>
-      </div>
-
-      <div className="hidden sm:flex sm:justify-around sm:text-sm mx-8 my-2">
+    <div className="flex justify-end items-center   ">
+      <div className="flex text-sm mx-8  transition-all duration-700 ease-in-out transform md:translate-y-0 -translate-y-full">
         {[
           { to: "/api/find-store", text: "find store" },
           { to: "/api/help", text: "help" },

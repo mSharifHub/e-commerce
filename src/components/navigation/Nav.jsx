@@ -4,9 +4,9 @@ import NavHelper from "./NavHelper";
 
 export default function Nav() {
   return (
-    <>
+    <div className="mx-4">
       <NavMenu />
       <NavHelper />
-    </>
+    </div>
   );
 }
