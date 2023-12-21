@@ -3,7 +3,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 export function SearchBar() {
   return (
-    <form onSubmit="" className="flex justify-center items-center ">
+    <form className="flex justify-center items-center ">
       <label htmlFor="searchBar" className="sr-only">
         Search
       </label>
