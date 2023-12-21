@@ -3,7 +3,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 export function SearchBar() {
   return (
-    <form className="flex justify-center items-center ">
+    <form className="flex">
       <label htmlFor="searchBar" className="sr-only">
         Search
       </label>
@@ -17,7 +17,7 @@ export function SearchBar() {
       <input
         type="text"
         id="searchBar"
-        className=" hidden  sm:flex rounded-full  w-64 py-2 pr-3 pl-12 capitalize bg-slate-100    text-nowrap  text-left border-none   hover:bg-slate-200 focus:outline-none  focus:border-transparent focus:ring-0"
+        className="flex rounded-full  w-auto py-2 pr-3 pl-12 capitalize bg-slate-100    text-nowrap  text-left border-none   hover:bg-slate-200 focus:outline-none  focus:border-transparent focus:ring-0"
         placeholder="Search..."
       />
     </form>
