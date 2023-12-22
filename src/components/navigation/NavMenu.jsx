@@ -10,7 +10,7 @@ export default function NavMenu() {
 
   return (
     <div className="flex justify-end items-center   ">
-      <div className="flex text-sm mx-8  transition-all duration-700 ease-in-out transform md:translate-y-0 -translate-y-full">
+      <div className="flex text-sm mx-8 ">
         {[
           { to: "/api/find-store", text: "find store" },
           { to: "/api/help", text: "help" },
