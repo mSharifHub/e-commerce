@@ -3,11 +3,11 @@ import { Filter } from "../filter/Filter";
 
 export function Home() {
   return (
-    <div className="h-screen grid  grid-cols-[350px_1fr] ">
-      <div>
+    <div className="h-screen  w-screen flex">
+      <div className=" flex flex-none  -ml-[300px] transition-all  duration-500 ease-in-out md:ml-0  ">
         <Filter />
       </div>
-      <div className="p-4 h-full w-full overflow-x-scroll  scroll whitespace-nowrap  scrollbar-hide">
+      <div className=" flex grow flex-col p-4  overflow-x-scroll  scroll whitespace-nowrap  scrollbar-hide">
         <CategoryDisplay />
       </div>
     </div>
