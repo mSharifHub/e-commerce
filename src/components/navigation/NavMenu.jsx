@@ -9,7 +9,7 @@ export default function NavMenu() {
   const { toogleTheme } = useTheme();
 
   return (
-    <div className="flex justify-end items-center   ">
+    <div className="flex justify-end items-center  ">
       <div className="flex text-sm mx-8 ">
         {[
           { to: "/api/find-store", text: "find store" },
