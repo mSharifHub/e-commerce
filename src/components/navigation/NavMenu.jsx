@@ -12,8 +12,7 @@ export default function NavMenu() {
     <div className="flex justify-end items-center  ">
       <div className="flex text-sm mx-8 ">
         {[
-          { to: "/api/find-store", text: "find store" },
-          { to: "/api/help", text: "help" },
+          { to: "/api/find-store", text: "choose store" },
           { to: "/api/join-us", text: "join us" },
           { to: "/api/sign-in", text: "sign-in" },
         ].map((link, index, array) => (

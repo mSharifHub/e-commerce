@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ReactDOM from "react-dom";
 
 export default function FilterHelpMenu({ label, Component }) {
@@ -15,8 +15,7 @@ export default function FilterHelpMenu({ label, Component }) {
 
   const modal = (
     <div
-      className={`fixed  top-[100px] inset-x-0  flex justify-center items-start h-1/2 rounded-lg bg-white  shadow-lg z-50 ${
-        isVisible ? " slide-in" : "slide-out "
+      className={`fixed inset-x-0  h-1/4  top-[8rem] flex justify-center items-start md:top-[6.5rem] z-50 bg-white shadow-lg rounded-lg
       }`}
     >
       <Component />
