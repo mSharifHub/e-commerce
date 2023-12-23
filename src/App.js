@@ -10,7 +10,9 @@ import FindStore from "./components/pages/FindStore";
 export function App() {
   return (
     <Router>
-      <Nav />
+      <div className="w-screen ">
+        <Nav />
+      </div>
       <Routes>
         <Route exact path="/" Component={Home} />
         <Route path="/api/find-store" Component={FindStore} />
