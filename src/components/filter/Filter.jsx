@@ -9,9 +9,8 @@ import { products } from "../../data/productsData/products";
 
 import {
   inStockResult,
-  categoryResult,
   ratingResult,
-  sizeResult,
+  itemsResult,
 } from "../../helpers/filter_helpers/filterHelpers";
 
 export function Filter() {
@@ -50,7 +49,7 @@ export function Filter() {
           <FilterPopUpMenu
             label="filter by Category"
             Component={CategoryComponent}
-            selectedTotal={categoryResult(state, products)}
+            selectedTotal={itemsResult(state, products, "category", "category")}
           />
         </div>
       </div>
@@ -60,7 +59,12 @@ export function Filter() {
           <FilterPopUpMenu
             label="filter by size"
             Component={SizeComponent}
-            selectedTotal={sizeResult(state, products)}
+            selectedTotal={itemsResult(
+              state,
+              products,
+              "selectedSizes",
+              "size",
+            )}
           />
         </div>
       </div>

@@ -7,6 +7,8 @@ export const filterReducer = (state, action) => {
 
   const isSizeSelected = state.selectedSizes.includes(action.payload);
 
+  const isColorSelected = state.selectedColors.includes(action.payload);
+
   switch (action.type) {
     case "SET_PRICE":
       const rangeGroup = action.payload;
@@ -44,6 +46,18 @@ export const filterReducer = (state, action) => {
       return {
         ...state,
         selectedSizes: updatedSelectedSizes,
+      };
+
+    case "SET_COLOR":
+      const updatedSelectedColors = isColorSelected
+        ? state.selectedColors.filter(
+            (selectedColor) => selectedColor !== action.payload,
+          )
+        : [...state.selectedColors, action.payload];
+
+      return {
+        ...state,
+        selectedColor: updatedSelectedColors,
       };
 
     case "SET_RATING":

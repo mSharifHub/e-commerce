@@ -22,16 +22,9 @@ export const inStockResult = (state, products) => {
     : null;
 };
 
-export const categoryResult = (state, products) => {
-  return state.category.length > 0
-    ? products.filter((product) => state.category.includes(product.category))
-        .length
-    : null;
-};
-
-export const sizeResult = (state, products) => {
-  return state.selectedSizes.length > 0
-    ? products.filter((product) => state.selectedSizes.includes(product.size))
+export const itemsResult = (state, products, key, instance) => {
+  return state[key].length > 0
+    ? products.filter((product) => state[key].includes(product[instance]))
         .length
     : null;
 };
@@ -40,12 +33,8 @@ export const ratingResult = (state) => {
   return state.rating;
 };
 
-export const categoriesList = (products) => {
-  return Array.from(new Set(products.map((product) => product.category)));
-};
-
-export const sizeList = (products) => {
-  return Array.from(new Set(products.map((product) => product.size)));
+export const instanceList = (products, instance) => {
+  return Array.from(new Set(products.map((product) => product[instance])));
 };
 
 export const min = 0;

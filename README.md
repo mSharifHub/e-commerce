@@ -14,8 +14,9 @@
     -Husky
 
 # Code Formatting:
-    Airbnb 
 
+    Airbnb
 
 # Pre Hooks:
+
     The pre hooks will format the code before committing the files.
