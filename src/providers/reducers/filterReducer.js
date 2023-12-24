@@ -36,7 +36,7 @@ export const filterReducer = (state, action) => {
 
     case "SET_SIZE":
       const updatedSelectedSizes = isSizeSelected
-        ? state.selectedSize.filter(
+        ? state.selectedSizes.filter(
             (selectedSize) => selectedSize !== action.payload,
           )
         : [...state.selectedSizes, action.payload];
