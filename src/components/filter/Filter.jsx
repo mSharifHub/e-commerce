@@ -3,12 +3,15 @@ import FilterPopUpMenu from "./filterPopUpMenu/FilterPopUpMenu";
 import CategoryComponent from "./categoryComponent/CategoryComponent";
 import StarRatingComponent from "./ratingComponent/StarRatingComponent";
 import AvailabilityComponent from "./availabilityComponent/AvailabilityComponent";
+import SizeComponent from "./sizeComponent/SizeComponent";
 import { useFilter } from "../../providers/contexts/filterContext";
 import { products } from "../../data/productsData/products";
+
 import {
   inStockResult,
   categoryResult,
   ratingResult,
+  sizeResult,
 } from "../../helpers/filter_helpers/filterHelpers";
 
 export function Filter() {
@@ -51,7 +54,17 @@ export function Filter() {
           />
         </div>
       </div>
-      {/* rating ccontainer filter */}
+      {/* size filter */}
+      <div className="flex relative">
+        <div className="w-full">
+          <FilterPopUpMenu
+            label="filter by size"
+            Component={SizeComponent}
+            selectedTotal={sizeResult(state, products)}
+          />
+        </div>
+      </div>
+      {/* rating container filter */}
       <div className="flex relative">
         <div className="w-full">
           <FilterPopUpMenu

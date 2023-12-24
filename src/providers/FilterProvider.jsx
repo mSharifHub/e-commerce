@@ -7,6 +7,7 @@ import {
   min,
   max,
   categoriesList,
+  sizeList,
 } from "../helpers/filter_helpers/filterHelpers";
 
 export function FilterProvider({ children }) {
@@ -14,7 +15,8 @@ export function FilterProvider({ children }) {
     category: [], // displays the list of selected categories to be used to filter the display
     priceRanges: [], // used to extract the min and max value if multiple ranges are selected
     colors: [], // array to keep filter the list of selected colors
-    sizes: [], // arrau to keep track of list of sizes
+    selectedSizes: [], // array to keep track of list of sizes
+    availableSizes: sizeList(products),
     priceRange: { min, max }, // the value extracted to filter data based on the price query
     priceSelectedCount: priceRangeResult(products, min, max), // sets the initial value
     listCategories: categoriesList(products), // used to display number of items per category

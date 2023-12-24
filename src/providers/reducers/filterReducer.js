@@ -3,9 +3,9 @@ import { products } from "../../data/productsData/products";
 import { priceRangeResult } from "../../helpers/filter_helpers/filterHelpers";
 
 export const filterReducer = (state, action) => {
-  const currentCategory = action.payload;
+  const isCategorySelected = state.category.includes(action.payload);
 
-  const isCategorySelected = state.category.includes(currentCategory);
+  const isSizeSelected = state.selectedSizes.includes(action.payload);
 
   switch (action.type) {
     case "SET_PRICE":
@@ -30,9 +30,20 @@ export const filterReducer = (state, action) => {
       return {
         ...state,
         category: isCategorySelected
-          ? state.category.filter((category) => category !== currentCategory)
-          : [...state.category, currentCategory],
+          ? state.category.filter((category) => category !== action.payload)
+          : [...state.category, action.payload],
       };
+
+    case "SET_SIZE":
+      return {
+        ...state,
+        selectedSizes: isSizeSelected
+          ? state.selectedSizes.filter(
+              (selectedSize) => selectedSize !== action.payload,
+            )
+          : [...state.selectedSizes, action.payload],
+      };
+
     case "SET_RATING":
       return {
         ...state,
@@ -40,10 +51,10 @@ export const filterReducer = (state, action) => {
       };
 
     case "SET_AVAILABILITY":
-      const currentValue = state.inStock;
+      const available = state.inStock;
       return {
         ...state,
-        inStock: !currentValue,
+        inStock: !available,
       };
 
     default:

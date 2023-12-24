@@ -18,7 +18,7 @@ export const priceRangeResult = (products, min, max) => {
 
 export const inStockResult = (state, products) => {
   return state.inStock
-    ? products.filter((product) => product.inStock).length
+    ? products.filter((product) => product.inStock > 0).length
     : null;
 };
 
@@ -29,12 +29,23 @@ export const categoryResult = (state, products) => {
     : null;
 };
 
+export const sizeResult = (state, products) => {
+  return state.selectedSizes.length > 0
+    ? products.filter((product) => state.selectedSizes.includes(product.size))
+        .length
+    : null;
+};
+
 export const ratingResult = (state) => {
   return state.rating;
 };
 
 export const categoriesList = (products) => {
-  Array.from(new Set(products.map((product) => product.category)));
+  return Array.from(new Set(products.map((product) => product.category)));
+};
+
+export const sizeList = (products) => {
+  return Array.from(new Set(products.map((product) => product.size)));
 };
 
 export const min = 0;
