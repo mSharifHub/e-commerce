@@ -32,3 +32,10 @@ export const categoryResult = (state, products) => {
 export const ratingResult = (state) => {
   return state.rating;
 };
+
+export const categoriesList = (products) => {
+  Array.from(new Set(products.map((product) => product.category)));
+};
+
+export const min = 0;
+export const max = 500;

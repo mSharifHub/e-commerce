@@ -17,7 +17,7 @@ export function Home() {
   };
 
   return (
-    <div className="h-screen  w-screen flex overflow-hidden">
+    <div className="w-screen flex overflow-hidden ">
       {/* filter component */}
       <div
         className={`flex flex-none transition-all duration-500 ease-in-out ${
