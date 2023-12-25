@@ -1,6 +1,6 @@
 import { useFilter } from "../../../providers/contexts/filterContext";
 
-export default function SizeBox({ size }) {
+export default function SizeBox({ size, isLast }) {
   const { state, dispatch } = useFilter();
 
   const isChecked = (sizeLabel) => {
@@ -14,7 +14,11 @@ export default function SizeBox({ size }) {
   };
 
   return (
-    <div className=" w-[40px] h-[40px] shadow-md  flex justify-center items-center  border-2 border-slate-200   rounded-lg transition-all duration-300 ease-out  hover:bg-slate-100  ">
+    <div
+      className={` ${
+        isLast ? "w-full" : " w-[40px] h-[40px] "
+      } shadow-md  flex justify-center items-center  border-2 border-slate-200   rounded-lg transition-all duration-150 ease-out`}
+    >
       <input
         type="checkbox"
         id={size}
@@ -27,7 +31,7 @@ export default function SizeBox({ size }) {
         htmlFor={size}
         className={`transition-color duration-300 ease-out ${
           isChecked(size)
-            ? " bg-slate-300  ring-offset-4 ring-2 ring-slate-300 rounded-lg "
+            ? "   ring-offset-2 ring-1 ring-black rounded-lg "
             : " "
         }cursor-pointer h-full w-full flex justify-center items-center `}
       >
