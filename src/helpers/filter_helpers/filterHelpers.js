@@ -37,5 +37,21 @@ export const instanceList = (products, instance) => {
   return Array.from(new Set(products.map((product) => product[instance])));
 };
 
+export const renderCategoryFilter = (category, onCategoryChange, isChecked) => (
+  <label key={category} htmlFor={category}>
+    <input
+      type="checkbox"
+      id={category}
+      name={category}
+      onChange={() => onCategoryChange(category)}
+      checked={isChecked(category)}
+      className="hidden"
+    />
+    <div className="flex justify-start mx-4 mt-4 font-black cursor-pointer transition-colr duration-300 hover:text-slate-600">
+      {category}
+    </div>
+  </label>
+);
+
 export const min = 0;
 export const max = 500;

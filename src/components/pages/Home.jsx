@@ -17,7 +17,7 @@ export function Home() {
   };
 
   return (
-    <div className="w-screen flex overflow-hidden ">
+    <div className="flex overflow-hidden  mx-4 relative">
       {/* filter component */}
       <div
         className={`flex flex-none transition-all duration-500 ease-in-out ${
@@ -29,7 +29,7 @@ export function Home() {
       {/* filter icon component */}
       <div
         onClick={toggle}
-        className=" hidden absolute  md:flex right-4 top-[120px]  px-4  justify-center items-center z-20  cursor-pointer transition-all duration-500   "
+        className="absolute flex right-0 top-0  mx-4  justify-center items-center z-20  cursor-pointer transition-all duration-500 md:translate-x-0 translate-x-full  "
       >
         <div className="capitalize mx-4">
           {!isFilterVisible ? "show filter" : "hide filter"}
@@ -38,6 +38,7 @@ export function Home() {
           <HideFiler />
         </div>
       </div>
+
       <div className=" flex grow flex-col p-4  overflow-x-scroll  scroll whitespace-nowrap  scrollbar-hide">
         <CategoryDisplay />
       </div>

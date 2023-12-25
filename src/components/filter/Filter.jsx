@@ -8,7 +8,6 @@ import { useFilter } from "../../providers/contexts/filterContext";
 import { products } from "../../data/productsData/products";
 
 import {
-  inStockResult,
   ratingResult,
   itemsResult,
 } from "../../helpers/filter_helpers/filterHelpers";
@@ -17,19 +16,19 @@ export function Filter() {
   const { state } = useFilter();
 
   return (
-    <div className="flex w-full h-full  flex-col mt-10 ">
+    <div className="flex flex-col mt-10  ">
       {/* availability container filter */}
-      <div className="relative  ">
-        <span
-          className={`${
-            !state.inStock ? "hidden" : "absolute"
-          } top-1/2 -right-2  -translate-x-1/2 -translate-y-1/2  text-2xl font-thin`}
-        >
-          {inStockResult(state, products)}
-        </span>
-        {/* price container filter */}
+      <div className="flex relative flex-col ">
         <AvailabilityComponent />
       </div>
+      {/* category container filter */}
+      <div className="flex relative">
+        <div className="border-t-2 mt-4 w-full">
+          {/* <div>{itemsResult(state, products, "category", "category")}</div> */}
+          <CategoryComponent />
+        </div>
+      </div>
+      {/* price container filter */}
       <div className="flex relative">
         <div className="w-full">
           <FilterPopUpMenu
@@ -40,16 +39,6 @@ export function Filter() {
               // this line of code will pass null if no checkboxes have been selected, therefore, only displaying 0 - max values
               state.priceRanges.length > 0 ? state.priceSelectedCount : null
             }
-          />
-        </div>
-      </div>
-      {/* category container filter */}
-      <div className="flex relative">
-        <div className="w-full">
-          <FilterPopUpMenu
-            label="filter by Category"
-            Component={CategoryComponent}
-            selectedTotal={itemsResult(state, products, "category", "category")}
           />
         </div>
       </div>
