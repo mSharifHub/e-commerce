@@ -13,7 +13,7 @@ export function FilterProvider({ children }) {
   const initialState = {
     category: [], // displays the list of selected categories to be used to filter the display
     priceRanges: [], // used to extract the min and max value if multiple ranges are selected
-    availableColors: [], // array to show all available colors
+    availableColors: instanceList(products, "color"), // array to show all available colors
     selectedColors: [], // array to keep track of the selected colors
     selectedSizes: [], // array to keep track of list of sizes
     availableSizes: instanceList(products, "size"),

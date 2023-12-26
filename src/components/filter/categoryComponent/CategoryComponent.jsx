@@ -39,8 +39,8 @@ export default function CategoryComponent() {
       </div>
       {/* dynamic section */}
       <div
-        className={`transition-all duration-500 ease-in-out overflow-hidden ${
-          isexpand ? "max-h-full" : "max-h-0"
+        className={`transtition-transform duration-300 ease-in-out ${
+          isexpand ? "translate-x-0" : "-translate-x-full"
         }`}
       >
         {isexpand &&
@@ -52,7 +52,7 @@ export default function CategoryComponent() {
       </div>
       <div
         onClick={toggler}
-        className="flex justify-start items-center mx-4 mt-4"
+        className="flex justify-center items-center mx-4 mt-4"
       >
         {isexpand ? <HideIcon /> : <ExpandIcon />}
       </div>

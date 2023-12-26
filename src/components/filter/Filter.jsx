@@ -11,6 +11,7 @@ import {
   ratingResult,
   itemsResult,
 } from "../../helpers/filter_helpers/filterHelpers";
+import ColorComponent from "./colorComponent/ColorComponent";
 
 export function Filter() {
   const { state } = useFilter();
@@ -53,6 +54,21 @@ export function Filter() {
               products,
               "selectedSizes",
               "size",
+            )}
+          />
+        </div>
+      </div>
+      {/* color filter */}
+      <div className="flex relative">
+        <div className="w-full">
+          <FilterPopUpMenu
+            label="filter by color"
+            Component={ColorComponent}
+            selectedTotal={itemsResult(
+              state,
+              products,
+              "selectedColors",
+              "color",
             )}
           />
         </div>

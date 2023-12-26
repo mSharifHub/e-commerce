@@ -36,6 +36,14 @@ export const filterReducer = (state, action) => {
           : [...state.category, action.payload],
       };
 
+    case "SET_COLOR":
+      return {
+        ...state,
+        selectedColors: isColorSelected
+          ? state.selectedColors.filter((color) => color !== action.payload)
+          : [...state.selectedColors, action.payload],
+      };
+
     case "SET_SIZE":
       const updatedSelectedSizes = isSizeSelected
         ? state.selectedSizes.filter(
@@ -46,18 +54,6 @@ export const filterReducer = (state, action) => {
       return {
         ...state,
         selectedSizes: updatedSelectedSizes,
-      };
-
-    case "SET_COLOR":
-      const updatedSelectedColors = isColorSelected
-        ? state.selectedColors.filter(
-            (selectedColor) => selectedColor !== action.payload,
-          )
-        : [...state.selectedColors, action.payload];
-
-      return {
-        ...state,
-        selectedColor: updatedSelectedColors,
       };
 
     case "SET_RATING":
