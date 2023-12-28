@@ -17,7 +17,7 @@ export function Filter() {
   const { state } = useFilter();
 
   return (
-    <div className="flex flex-col mt-10  ">
+    <div className="flex flex-col mt-10  mx-2">
       {/* availability container filter */}
       <div className="flex relative flex-col ">
         <AvailabilityComponent />

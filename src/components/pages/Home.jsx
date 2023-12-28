@@ -17,7 +17,7 @@ export function Home() {
   };
 
   return (
-    <div className="flex h-screen  scroll  scroll-smooth overflow-y-auto  relative ">
+    <div className=" relative flex h-screen scroll  scroll-smooth overflow-y-auto  transition-all duration-300  xl:mx-4  2xl:mx-[200px]  ">
       {/* filter component */}
       <div
         className={`flex flex-none transition-all duration-500 ease-in-out ${
