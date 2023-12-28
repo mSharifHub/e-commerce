@@ -4,9 +4,14 @@ import { useState } from "react";
 import { CategoryDisplay } from "../categoryDisplay/CategoryDisplay";
 import { Filter } from "../filter/Filter";
 import HideFiler from "../navigation/icons/HideFilter";
+import AngleUp from "../filter/icons/AngleUp";
+import AngleDown from "../filter/icons/AngleDown";
+import HideFilterComponent from "../filter/hideFilterComponent/HideFilterComponent";
+import SortByModalIcon from "../filter/sortByModal/SortByModal";
 
 export function Home() {
   const [isFilterVisible, setIsFilterVisible] = useState(true);
+  const [sortModalVisible, setsortModalVisible] = useState(false);
 
   const toggle = (e) => {
     if (e) {
@@ -14,6 +19,10 @@ export function Home() {
     }
 
     setIsFilterVisible((prev) => !prev);
+  };
+
+  const sortByModal = () => {
+    setsortModalVisible((prev) => !prev);
   };
 
   return (
@@ -26,20 +35,29 @@ export function Home() {
       >
         <Filter />
       </div>
-      {/* filter icon component */}
-      <div
-        onClick={toggle}
-        className="absolute flex right-0 top-0  mx-4  justify-center items-center z-20  cursor-pointer transition-all duration-500 md:translate-x-0 translate-x-full  "
-      >
-        <div className="capitalize mx-4">
-          {!isFilterVisible ? "show filter" : "hide filter"}
-        </div>
-        <div>
-          <HideFiler />
-        </div>
+
+      {/* hide filter component */}
+      <div className="absolute flex right-40 top-4  justify-end items-center z-20  cursor-pointer transition-all duration-500 md:translate-x-0 translate-x-full ">
+        <HideFilterComponent
+          toggle={toggle}
+          isFilterVisible={isFilterVisible}
+          HideFiler={HideFiler}
+        />
       </div>
 
-      <div className=" flex grow flex-col p-4 mx-8 overflow-x-scroll  scroll whitespace-nowrap  scrollbar-hide ">
+      {/* sort by modal icon */}
+      <div className="absolute flex right-0 top-4  justify-end items-center z-20  cursor-pointer transition-all duration-500 md:translate-x-0 translate-x-full">
+        <SortByModalIcon
+          sortModalVisible={sortModalVisible}
+          sortByModal={sortByModal}
+          AngleDown={AngleDown}
+          AngleUp={AngleUp}
+          label="sort by"
+        />
+      </div>
+
+      {/* To do */}
+      <div className=" flex grow flex-col p-4 mx-8 overflow-x-scroll  scroll whitespace-nowrap  scrollbar-hide">
         <CategoryDisplay />
       </div>
     </div>

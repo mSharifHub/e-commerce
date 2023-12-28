@@ -12,7 +12,7 @@ export default function Nav() {
       <div className=" row-start-2 p-2 mr-4 mt-4  ">
         <NavHelper />
       </div>
-      <div className="row-start-3">
+      <div className="row-start-3 ">
         <AddContainer />
       </div>
     </div>

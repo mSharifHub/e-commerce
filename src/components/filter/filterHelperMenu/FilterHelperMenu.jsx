@@ -3,7 +3,7 @@
 import { useState } from "react";
 import ReactDOM from "react-dom";
 
-export default function FilterHelpMenu({ label, Component }) {
+export default function FilterHelperModal({ label, Component, modalStyle }) {
   const [isVisible, setIsVisible] = useState(false);
 
   const toggle = (event) => {

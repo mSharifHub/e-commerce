@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
+import AngleUp from "../icons/AngleUp";
+import AngleDown from "../icons/AngleDown";
 
 export default function FilterPopUpMenu({
   label,
@@ -33,10 +33,7 @@ export default function FilterPopUpMenu({
             </span>
           </div>
           <div className="justify-items-center mx-2 px-2 hover:text-slate-500  trasition-all ease-out duration-300">
-            <FontAwesomeIcon
-              icon={!isVisible ? faAngleDown : faAngleUp}
-              size="lg"
-            />
+            {!isVisible ? <AngleDown /> : <AngleUp />}
           </div>
         </div>
       </div>

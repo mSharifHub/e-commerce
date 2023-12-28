@@ -5,11 +5,8 @@ import React, { useState } from "react";
 import { useFilter } from "../../../providers/contexts/filterContext";
 import HideIcon from "../icons/HideIcon";
 import ExpandIcon from "../icons/ExpandIcon";
-import { products } from "../../../data/productsData/products";
-import {
-  renderCategoryFilter,
-  itemsResult,
-} from "../../../helpers/filter_helpers/filterHelpers";
+
+import { renderCategoryFilter } from "../../../helpers/filter_helpers/filterHelpers";
 
 export default function CategoryComponent() {
   const [isexpand, setisExpand] = useState(false);
