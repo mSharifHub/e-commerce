@@ -17,12 +17,12 @@ export function Home() {
   };
 
   return (
-    <div className="flex overflow-hidden  mx-4 relative">
+    <div className="flex h-screen  scroll  scroll-smooth overflow-y-auto  relative ">
       {/* filter component */}
       <div
         className={`flex flex-none transition-all duration-500 ease-in-out ${
           !isFilterVisible ? "-ml-[300px] " : "-ml-[300px] md:ml-0"
-        }`}
+        }  h-screen overflow-y-scroll scroll  `}
       >
         <Filter />
       </div>
@@ -39,7 +39,7 @@ export function Home() {
         </div>
       </div>
 
-      <div className=" flex grow flex-col p-4  overflow-x-scroll  scroll whitespace-nowrap  scrollbar-hide">
+      <div className=" flex grow flex-col p-4 mx-8 overflow-x-scroll  scroll whitespace-nowrap  scrollbar-hide ">
         <CategoryDisplay />
       </div>
     </div>

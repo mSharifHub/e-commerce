@@ -1,10 +1,15 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { useState } from "react";
+
+import React, { useState } from "react";
 import { useFilter } from "../../../providers/contexts/filterContext";
 import HideIcon from "../icons/HideIcon";
 import ExpandIcon from "../icons/ExpandIcon";
-import { renderCategoryFilter } from "../../../helpers/filter_helpers/filterHelpers";
+import { products } from "../../../data/productsData/products";
+import {
+  renderCategoryFilter,
+  itemsResult,
+} from "../../../helpers/filter_helpers/filterHelpers";
 
 export default function CategoryComponent() {
   const [isexpand, setisExpand] = useState(false);
@@ -30,7 +35,7 @@ export default function CategoryComponent() {
   return (
     <>
       {/* static section */}
-      <div>
+      <div className="relative flex flex-col">
         {listCategories
           .slice(0, compactCategory)
           .map((category) =>

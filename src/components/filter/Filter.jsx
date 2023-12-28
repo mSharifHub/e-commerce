@@ -25,7 +25,6 @@ export function Filter() {
       {/* category container filter */}
       <div className="flex relative">
         <div className="border-t-2 mt-4 w-full">
-          {/* <div>{itemsResult(state, products, "category", "category")}</div> */}
           <CategoryComponent />
         </div>
       </div>
