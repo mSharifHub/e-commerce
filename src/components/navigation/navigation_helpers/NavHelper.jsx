@@ -14,7 +14,7 @@ export default function NavHelper() {
         <FilterHelpMenu label="new products" Component={NewProductModal} />
         <FilterHelpMenu label="open box" Component={OpenBoxProductModal} />
       </div>
-      <div className="flex -translate-y-1/2 mt-4 justify-center md:justify-end items-center  space-x-5 col-start-1 md:col-start-2  transition-all duration-500 sm:translate-y-0">
+      <div className="flex -translate-y-1/2 mt-4 mr-4 justify-center md:justify-end items-center  space-x-5 col-start-1 md:col-start-2  transition-all duration-500 sm:translate-y-0">
         <SearchBar />
         <HeartIcon />
         <CartIcon />
