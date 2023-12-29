@@ -8,11 +8,9 @@ export default function SortByModalIcon({
   label,
 }) {
   return (
-    <>
-      <div onClick={sortByModal} className="mx-4">
-        {!sortModalVisible ? <AngleDown /> : <AngleUp />}
-      </div>
-      <span className="capitalize text-lg">{label}</span>
-    </>
+    <div onClick={sortByModal}>
+      {!sortModalVisible ? <AngleDown /> : <AngleUp />}
+      <span className="capitalize text-lg mx-2">{label}</span>
+    </div>
   );
 }

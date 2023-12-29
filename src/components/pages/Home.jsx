@@ -26,7 +26,7 @@ export function Home() {
   };
 
   return (
-    <div className=" relative flex h-screen scroll  scroll-smooth overflow-y-auto  transition-all duration-300  xl:mx-4  2xl:mx-[200px]  ">
+    <div className=" relative flex h-screen scroll  scroll-smooth overflow-y-auto  transition-all duration-300  xl:mx-4  2xl:mx-[200px] ">
       {/* filter component */}
       <div
         className={`flex flex-none transition-all duration-500 ease-in-out ${
@@ -37,7 +37,7 @@ export function Home() {
       </div>
 
       {/* hide filter component */}
-      <div className="absolute flex right-40 top-4  justify-end items-center z-20  cursor-pointer transition-all duration-500 md:translate-x-0 translate-x-full ">
+      <div className="absolute flex right-60 top-4  justify-end items-center z-20  cursor-pointer transition-all duration-500 md:translate-x-0 translate-x-full ">
         <HideFilterComponent
           toggle={toggle}
           isFilterVisible={isFilterVisible}
@@ -46,16 +46,21 @@ export function Home() {
       </div>
 
       {/* sort by modal icon */}
-      <div className="absolute flex right-0 top-4  justify-end items-center z-20  cursor-pointer transition-all duration-500 md:translate-x-0 translate-x-full">
+      <div className="absolute flex right-20 top-4  justify-end items-center z-20  cursor-pointer transition-all duration-500 md:translate-x-0 translate-x-full">
         <SortByModalIcon
           sortModalVisible={sortModalVisible}
           sortByModal={sortByModal}
           AngleDown={AngleDown}
           AngleUp={AngleUp}
-          label="sort by"
+          label="sort by:"
         />
+        {/* Display the name of sort By chosen */}
+        {sortModalVisible && (
+          <div className="absolute whitespace-nowrap capitalize -right-10 text-lg font-thin text-neutral-400">
+            filter
+          </div>
+        )}
       </div>
-
       {/* To do */}
       <div className=" flex grow flex-col p-4 mx-8 overflow-x-scroll  scroll whitespace-nowrap  scrollbar-hide">
         <CategoryDisplay />
