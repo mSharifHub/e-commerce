@@ -60,7 +60,7 @@ export const renderColorFilter = (
   getHexValue,
 ) => (
   <label
-    key={parseInt(color, 10)}
+    key={color}
     htmlFor={color}
     style={{ backgroundColor: getHexValue(color) }}
     className={`relative h-10 w-10 rounded-full flex justify-center items-center border cursor-pointer transition-all duration-300  ${
