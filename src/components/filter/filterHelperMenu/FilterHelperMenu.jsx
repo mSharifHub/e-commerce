@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import { useState } from "react";
-import ReactDOM from "react-dom";
+import { reusePort } from "../../../helpers/ModalHelpers/reusePort";
 
 export default function FilterHelperModal({ label, Component, modalStyle }) {
   const [isVisible, setIsVisible] = useState(false);
@@ -28,8 +28,7 @@ export default function FilterHelperModal({ label, Component, modalStyle }) {
           </span>
         </div>
       </div>
-      {isVisible &&
-        ReactDOM.createPortal(modal, document.querySelector("#modal"))}
+      {isVisible && reusePort(modal)}
     </>
   );
 }

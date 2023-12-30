@@ -7,7 +7,9 @@ import HideFiler from "../navigation/icons/HideFilter";
 import AngleUp from "../filter/icons/AngleUp";
 import AngleDown from "../filter/icons/AngleDown";
 import HideFilterComponent from "../filter/hideFilterComponent/HideFilterComponent";
-import SortByModalIcon from "../filter/sortByModal/SortByModal";
+import SortByModalIcon from "../filter/sortByModal/SortByModalIcon";
+import SortByModal from "../filter/sortByModal/Components/SortByModal";
+import { reusePort } from "../../helpers/ModalHelpers/reusePort";
 
 export function Home() {
   const [isFilterVisible, setIsFilterVisible] = useState(true);
@@ -55,11 +57,7 @@ export function Home() {
           label="sort by:"
         />
         {/* Display the name of sort By chosen */}
-        {sortModalVisible && (
-          <div className="absolute whitespace-nowrap capitalize -right-10 text-lg font-thin text-neutral-400">
-            filter
-          </div>
-        )}
+        {sortModalVisible && reusePort(<SortByModal />)}
       </div>
       {/* To do */}
       <div className=" flex grow flex-col p-4 mx-8 overflow-x-scroll  scroll whitespace-nowrap  scrollbar-hide">

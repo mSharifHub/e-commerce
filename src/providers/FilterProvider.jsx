@@ -25,6 +25,9 @@ export function FilterProvider({ children }) {
     discount: false, // to filter is product is on discount
     openBox: false, // to filter if product is an open box
     rating: null, // set the rating to be filter
+    sortByLowest: false, // sortBy option to sort by lowest price
+    sortByHighest: false, // sortBy option to sort by the highest price
+    sortByMostOrdered: false, // sortBy option to sort by the highest price
   };
 
   const [state, dispatch] = useReducer(filterReducer, initialState);
