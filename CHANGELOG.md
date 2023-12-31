@@ -11,6 +11,7 @@
     Navigation header and Navigation bar development
 
 # 1.6
+
     SortBy Filter
 
 # Documentation

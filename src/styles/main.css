@@ -43,10 +43,40 @@ input[type="radio"] {
   }
 }
 
+
 .showAdd {
   animation: enterAdd 0.5s ease forwards;
 }
 
 .hideAdd {
   animation: exitAdd 0.5s ease forwards;
+}
+
+
+@keyframes modalSlideDown{
+  from {
+    transform: translateY(-10px)
+  }
+  to{
+    transform: translateY(0)
+  }
+}
+
+
+@keyframes modalSlideUp{
+  from {
+    transform: translateY(0)
+  }
+  to{
+    transform: translateY(-10px)
+  }
+}
+
+
+.slideModalDown{
+  animation: modalSlideDown 0.2s ease forwards
+}
+
+.slideModalUp{
+  animation: modalSlideUp 0.2s ease forwards
 }

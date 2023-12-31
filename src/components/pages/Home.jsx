@@ -8,13 +8,13 @@ import AngleUp from "../filter/icons/AngleUp";
 import AngleDown from "../filter/icons/AngleDown";
 import HideFilterComponent from "../filter/hideFilterComponent/HideFilterComponent";
 import SortByModalIcon from "../filter/sortByModal/SortByModalIcon";
-import SortByModal from "../filter/sortByModal/Components/SortByModal";
-import { reusePort } from "../../helpers/ModalHelpers/reusePort";
+import SortByModal from "../filter/sortByModal/SortByModal";
+import { useFilter } from "../../providers/contexts/filterContext";
 
 export function Home() {
   const [isFilterVisible, setIsFilterVisible] = useState(true);
   const [sortModalVisible, setsortModalVisible] = useState(false);
-
+  const { state } = useFilter();
   const toggle = (e) => {
     if (e) {
       e.preventDefault();
@@ -48,7 +48,8 @@ export function Home() {
       </div>
 
       {/* sort by modal icon */}
-      <div className="absolute flex right-20 top-4  justify-end items-center z-20  cursor-pointer transition-all duration-500 md:translate-x-0 translate-x-full">
+
+      <div className="absolute flex right-20 top-4  justify-end items-center z-20  transition-all duration-500 md:translate-x-0 translate-x-full">
         <SortByModalIcon
           sortModalVisible={sortModalVisible}
           sortByModal={sortByModal}
@@ -57,8 +58,16 @@ export function Home() {
           label="sort by:"
         />
         {/* Display the name of sort By chosen */}
-        {sortModalVisible && reusePort(<SortByModal />)}
+        {sortModalVisible && (
+          <SortByModal sortModalVisible={sortModalVisible} />
+        )}
+        {state.sortByDisplayName !== null ? (
+          <span className=" absolute -right-20  font-thin text-neutral-500 text-lg">
+            {state.sortByDisplayName}
+          </span>
+        ) : null}
       </div>
+
       {/* To do */}
       <div className=" flex grow flex-col p-4 mx-8 overflow-x-scroll  scroll whitespace-nowrap  scrollbar-hide">
         <CategoryDisplay />

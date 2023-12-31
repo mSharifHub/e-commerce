@@ -28,6 +28,7 @@ export function FilterProvider({ children }) {
     sortByLowest: false, // sortBy option to sort by lowest price
     sortByHighest: false, // sortBy option to sort by the highest price
     sortByMostOrdered: false, // sortBy option to sort by the highest price
+    sortByDisplayName: null, // display the name to show to the user
   };
 
   const [state, dispatch] = useReducer(filterReducer, initialState);

@@ -69,6 +69,37 @@ export const filterReducer = (state, action) => {
         inStock: !available,
       };
 
+    case "SET_BY_LOWEST":
+      return {
+        ...state,
+        sortByLowest: !state.sortByLowest,
+        sortByHighest: !state.sortByLowest ? false : state.sortByHighest,
+        sortByMostOrdered: !state.sortByLowest
+          ? false
+          : state.sortByMostOrdered,
+        sortByDisplayName: !state.sortByLowest ? "Lowest" : null,
+      };
+
+    case "SET_BY_HIGHEST":
+      return {
+        ...state,
+        sortByHighest: !state.sortByHighest,
+        sortByLowest: !state.sortByHighest ? false : state.sortByLowest,
+        sortByMostOrdered: !state.sortByHighest
+          ? false
+          : state.sortByMostOrdered,
+        sortByDisplayName: !state.sortByHighest ? "Highest" : null,
+      };
+
+    case "SET_BY_MOST_ORDERED":
+      return {
+        ...state,
+        sortByMostOrdered: !state.sortByMostOrdered,
+        sortByHighest: !state.sortByMostOrdered ? false : state.sortByHighest,
+        sortByLowest: !state.sortByMostOrdered ? false : state.sortByLowest,
+        sortByDisplayName: !state.sortByMostOrdered ? "Common" : null,
+      };
+
     default:
       return state;
   }

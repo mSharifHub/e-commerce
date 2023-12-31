@@ -8,7 +8,7 @@ export default function SortByModalIcon({
   label,
 }) {
   return (
-    <div onClick={sortByModal}>
+    <div onClick={sortByModal} className="cursor-pointer">
       {!sortModalVisible ? <AngleDown /> : <AngleUp />}
       <span className="capitalize text-lg mx-2">{label}</span>
     </div>
