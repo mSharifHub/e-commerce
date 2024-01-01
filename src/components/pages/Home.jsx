@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Filter } from "../filter/Filter";
 import { useFilter } from "../../providers/contexts/filterContext";
 import { GridDisplay } from "../gridDisplay/GridDisplay";
-import FilterHome from "../home/FIlterHome";
+import FilterHome from "../home/FilterHome";
 import { reusePort } from "../../helpers/ModalHelpers/reusePort";
 
 export function Home() {
@@ -39,17 +39,17 @@ export function Home() {
       )}
 
       {/* main home container */}
-      <div className=" min-h-screen  min-w-screen flex border-2 border-black ">
+      <div className=" min-h-screen  min-w-screen flex  transition-all duration-500 ease-in-out  mx-0 md:mx-[5%] lg:mx-[10%]">
         {/* filter component */}
         <div
-          className={` flex-initial  transition-all duration-500 ease-in-out ${
+          className={`my-8 flex-initial  transition-all duration-300 ease-in-out ${
             isFilterVisible ? "w-72 " : "w-0 "
-          }   border-2  overflow-hidden whitespace-nowrap`}
+          }   overflow-hidden whitespace-nowrap`}
         >
           <Filter />
         </div>
         {/* Grid Display of Products */}
-        <div className="flex-1">
+        <div className="flex-1 my-8 mx-8">
           <GridDisplay />
         </div>
       </div>
