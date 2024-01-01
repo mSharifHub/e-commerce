@@ -19,7 +19,7 @@ export function GridDisplay() {
   };
 
   return (
-    <div className=" w-full h-full  grid grid-cols-4  bg-slate-100 ">
+    <div className="w-full h-full  grid grid-cols-4  bg-slate-100 ">
       grid cols
     </div>
   );

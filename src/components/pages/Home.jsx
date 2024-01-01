@@ -25,30 +25,31 @@ export function Home() {
 
   return (
     <>
+      {/* home filter */}
+      {reusePort(
+        <div>
+          <FilterHome
+            toggle={toggle}
+            isFilterVisible={isFilterVisible}
+            sortModalVisible={sortModalVisible}
+            sortByModal={sortByModal}
+            state={state}
+          />
+        </div>,
+      )}
+
       {/* main home container */}
-      <div className=" relative flex h-screen transition-all duration-300  xl:mx-4  2xl:mx-[200px] overflow-hidden ">
+      <div className=" min-h-screen  min-w-screen flex border-2 border-black ">
         {/* filter component */}
         <div
-          className={`flex flex-none transition-all duration-500 ease-in-out ${
-            isFilterVisible ? "translate-x-0 " : "-translate-x-full"
-          }  h-screen overflow-y-scroll scroll  `}
+          className={` flex-initial  transition-all duration-500 ease-in-out ${
+            isFilterVisible ? "w-72 " : "w-0 "
+          }   border-2  overflow-hidden whitespace-nowrap`}
         >
           <Filter />
         </div>
-        {/* home filter container */}
-        {reusePort(
-          <div>
-            <FilterHome
-              toggle={toggle}
-              isFilterVisible={isFilterVisible}
-              sortModalVisible={sortModalVisible}
-              sortByModal={sortByModal}
-              state={state}
-            />
-          </div>,
-        )}
         {/* Grid Display of Products */}
-        <div className="w-full h-full">
+        <div className="flex-1">
           <GridDisplay />
         </div>
       </div>
