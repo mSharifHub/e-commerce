@@ -1,13 +1,3 @@
-export const filterCategory = (products) =>
-  products.reduce((acc, product) => {
-    if (!acc[product.category]) {
-      acc[product.category] = [];
-    }
-    acc[product.category].push(product);
-
-    return acc;
-  }, {});
-
 export const priceRangeResult = (products, min, max) => {
   const result = products.filter((product) => {
     const productPrice = parseFloat(product.price.slice(1), 10);
@@ -38,7 +28,13 @@ export const instanceList = (products, instance) => {
 };
 
 export const renderCategoryFilter = (category, onCategoryChange, isChecked) => (
-  <label key={category} htmlFor={category}>
+  <label
+    key={category}
+    htmlFor={category}
+    className={`flex justify-start mx-4 mt-4  cursor-pointer transition-color text-black n ${
+      isChecked(category) ? "font-bold" : "font-thin"
+    }`}
+  >
     <input
       type="checkbox"
       id={category}
@@ -47,9 +43,7 @@ export const renderCategoryFilter = (category, onCategoryChange, isChecked) => (
       checked={isChecked(category)}
       className="hidden"
     />
-    <div className="flex justify-start mx-4 mt-4 font-black cursor-pointer transition-color duration-300 hover:text-slate-600">
-      {category}
-    </div>
+    {category}
   </label>
 );
 
@@ -63,8 +57,8 @@ export const renderColorFilter = (
     key={color}
     htmlFor={color}
     style={{ backgroundColor: getHexValue(color) }}
-    className={`relative h-10 w-10 rounded-full flex justify-center items-center border cursor-pointer transition-all duration-300  ${
-      isChecked(color) ? " " : " "
+    className={`relative h-10 w-10 rounded-full flex justify-center items-center border cursor-pointer transition-all duration-75  ${
+      isChecked(color) ? "border-2 border-black " : " "
     }
     }`}
   >

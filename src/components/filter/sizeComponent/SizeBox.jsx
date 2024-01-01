@@ -17,7 +17,7 @@ export default function SizeBox({ size, isLast }) {
     <div
       className={` ${
         isLast ? "w-full" : " w-[40px] h-[40px] "
-      } shadow-md  flex justify-center items-center  border-2 border-slate-200   rounded-lg transition-all duration-150 ease-out`}
+      }   flex justify-center items-center  border-2 border-slate-200   rounded-lg transition-all `}
     >
       <input
         type="checkbox"
@@ -29,10 +29,8 @@ export default function SizeBox({ size, isLast }) {
       />
       <label
         htmlFor={size}
-        className={`transition-color duration-300 ease-out ${
-          isChecked(size)
-            ? "   ring-offset-2 ring-1 ring-black rounded-lg "
-            : " "
+        className={`transition-color duration-100 ease-out ${
+          isChecked(size) ? " ring-offset-0 ring-1 ring-black rounded-lg " : " "
         }cursor-pointer h-full w-full flex justify-center items-center `}
       >
         {size}

@@ -9,19 +9,19 @@ import FindStore from "./components/pages/FindStore";
 
 export function App() {
   return (
-    <Router>
-      <div className="w-screen ">
+    <div className="h-screen w-screen">
+      <Router>
         <Nav />
-      </div>
-      <Routes>
-        <Route exact path="/" Component={Home} />
-        <Route path="/api/find-store" Component={FindStore} />
-        <Route path="/api/help" Component={Help} />
-        <Route path="/api/join-us" Component={JoinUs} />
-        <Route path="/api/sign-in" Component={SignIn} />
-        <Route path="/api/cart" Component={Cart} />
-      </Routes>
-    </Router>
+        <Routes>
+          <Route exact path="/" Component={Home} />
+          <Route path="/api/find-store" Component={FindStore} />
+          <Route path="/api/help" Component={Help} />
+          <Route path="/api/join-us" Component={JoinUs} />
+          <Route path="/api/sign-in" Component={SignIn} />
+          <Route path="/api/cart" Component={Cart} />
+        </Routes>
+      </Router>
+    </div>
   );
 }
 

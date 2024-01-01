@@ -43,7 +43,6 @@ input[type="radio"] {
   }
 }
 
-
 .showAdd {
   animation: enterAdd 0.5s ease forwards;
 }
@@ -52,31 +51,30 @@ input[type="radio"] {
   animation: exitAdd 0.5s ease forwards;
 }
 
-
-@keyframes modalSlideDown{
+@keyframes modalSlideDown {
   from {
-    transform: translateY(-10px)
+    transform: translateY(-10px);
   }
-  to{
-    transform: translateY(0)
+  to {
+    transform: translateY(0);
   }
 }
 
-
-@keyframes modalSlideUp{
+@keyframes modalSlideUp {
   from {
-    transform: translateY(0)
+    transform: translateY(0);
   }
-  to{
-    transform: translateY(-10px)
+  to {
+    transform: translateY(-10px);
   }
 }
 
-
-.slideModalDown{
-  animation: modalSlideDown 0.2s ease forwards
+.slideModalDown {
+  animation: modalSlideDown 0.2s ease forwards;
 }
 
-.slideModalUp{
-  animation: modalSlideUp 0.2s ease forwards
+.slideModalUp {
+  animation: modalSlideUp 0.2s ease forwards;
 }
+
+
