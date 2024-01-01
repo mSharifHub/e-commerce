@@ -1,5 +1,7 @@
+import React from "react";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { products } from "../../data/productsData/products";
+import Product from "../products/Product";
 
 export function GridDisplay() {
   const slider = (product, direction) => {
@@ -19,8 +21,14 @@ export function GridDisplay() {
   };
 
   return (
-    <div className="w-full h-full  grid grid-cols-4  bg-slate-100 ">
-      grid cols
+    <div className="bg-slate-100 grid grid-cols-3  ">
+      {products.map((product) => (
+        <React.Fragment key={product.id}>
+          <div className="flex justify-center items-center">
+            <Product />
+          </div>
+        </React.Fragment>
+      ))}
     </div>
   );
 }

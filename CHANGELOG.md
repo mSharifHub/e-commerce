@@ -14,6 +14,10 @@
 
     SortBy Filter
 
+
+# 1.7
+    Home Layout and Producsts Grid Display
+
 # Documentation
 
     Git commit where documentation is added

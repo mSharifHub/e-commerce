@@ -39,18 +39,20 @@ export function Home() {
       )}
 
       {/* main home container */}
-      <div className=" min-h-screen  min-w-screen flex  transition-all duration-500 ease-in-out  mx-0 md:mx-[5%] lg:mx-[10%]">
-        {/* filter component */}
-        <div
-          className={`my-8 flex-initial  transition-all duration-300 ease-in-out ${
-            isFilterVisible ? "w-72 " : "w-0 "
-          }   overflow-hidden whitespace-nowrap`}
-        >
-          <Filter />
-        </div>
-        {/* Grid Display of Products */}
-        <div className="flex-1 my-8 mx-8">
-          <GridDisplay />
+      <div className="min-w-screen  flex transition-all duration-500 ease-in-out mx-0 md:mx-[5%] lg:mx-[10%]">
+        <div className="w-full h-screen flex flex-row  my-8 ">
+          {/* filter component */}
+          <div
+            className={`flex-initial transition-all duration-700 ease-in-out ${
+              isFilterVisible ? "w-72 " : "w-0 "
+            } overflow-hidden overflow-y-auto scroll-smooth `}
+          >
+            <Filter />
+          </div>
+          {/* Grid Display of Products */}
+          <div className="flex-1 mx-8 overflow-y-auto scroll-smooth">
+            <GridDisplay />
+          </div>
         </div>
       </div>
     </>

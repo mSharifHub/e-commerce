@@ -1,4 +1,4 @@
-export function Product() {
+export default function Product() {
   return (
     <div className="grid  bg-slate-50 w-[400px] h-[400px]  cursor-pointer">
       <div className="grid grid-rows-[1fr_0.2fr_0.2fr_0.2fr] m-1 ">
