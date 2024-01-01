@@ -5,6 +5,7 @@ import { Filter } from "../filter/Filter";
 import { useFilter } from "../../providers/contexts/filterContext";
 import { GridDisplay } from "../gridDisplay/GridDisplay";
 import FilterHome from "../home/FIlterHome";
+import { reusePort } from "../../helpers/ModalHelpers/reusePort";
 
 export function Home() {
   const [isFilterVisible, setIsFilterVisible] = useState(true);
@@ -35,15 +36,17 @@ export function Home() {
           <Filter />
         </div>
         {/* home filter container */}
-        <div>
-          <FilterHome
-            toggle={toggle}
-            isFilterVisible={isFilterVisible}
-            sortModalVisible={sortModalVisible}
-            sortByModal={sortByModal}
-            state={state}
-          />
-        </div>
+        {reusePort(
+          <div>
+            <FilterHome
+              toggle={toggle}
+              isFilterVisible={isFilterVisible}
+              sortModalVisible={sortModalVisible}
+              sortByModal={sortByModal}
+              state={state}
+            />
+          </div>,
+        )}
         {/* Grid Display of Products */}
         <div className="w-full h-full">
           <GridDisplay />

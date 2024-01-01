@@ -15,7 +15,7 @@ export default function FilterHome({
   return (
     <>
       {/* hide filter component */}
-      <div className="hidden  md:flex  absolute right-60 top-4  justify-end items-center z-20  cursor-pointer ">
+      <div className="hidden  md:flex  absolute right-60 top-60  justify-end items-center z-20  cursor-pointer ">
         <HideFilterComponent
           toggle={toggle}
           isFilterVisible={isFilterVisible}
@@ -24,7 +24,7 @@ export default function FilterHome({
       </div>
 
       {/* sort by modal icon */}
-      <div className="absolute hidden md:flex right-20 top-4  justify-end items-center z-20 ">
+      <div className="absolute hidden md:flex right-20 -translate-x-1/2 top-60  justify-end items-center z-20 ">
         <SortByModalIcon
           sortModalVisible={sortModalVisible}
           sortByModal={sortByModal}

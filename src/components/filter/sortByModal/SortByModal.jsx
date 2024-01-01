@@ -5,7 +5,7 @@ import SortByMostOrdered from "./Components/SortByMostOrdered";
 export default function SortByModal({ sortModalVisible }) {
   return (
     <div
-      className={`absolute top-6 -right-10   w-[180px] h-[130px]   shadow-lg rounded-b-lg bg-white z-20 transition-all duration-500 overflow-y-hidden ${
+      className={`absolute top-5 -right-20   w-[180px] h-[130px]   shadow-lg rounded-b-lg bg-white z-20 transition-all duration-500 overflow-y-hidden ${
         sortModalVisible ? "slideModalDown" : "slideModalUp"
       }`}
     >
