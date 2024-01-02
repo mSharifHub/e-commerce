@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Filter } from "../filter/Filter";
 import { useFilter } from "../../providers/contexts/filterContext";
 import { GridDisplay } from "../gridDisplay/GridDisplay";
@@ -23,6 +23,8 @@ export function Home() {
     setsortModalVisible((prev) => !prev);
   };
 
+  const filterWidth = isFilterVisible ? "w-72 " : "w-0 ";
+
   return (
     <>
       {/* home filter */}
@@ -43,14 +45,12 @@ export function Home() {
         <div className="w-full h-screen flex flex-row  my-8 ">
           {/* filter component */}
           <div
-            className={`flex-initial transition-all duration-700 ease-in-out ${
-              isFilterVisible ? "w-72 " : "w-0 "
-            } overflow-hidden overflow-y-auto scroll-smooth `}
+            className={` hidden sm:flex  flex-initial  ${filterWidth}  transition-all duration-700 ease-in-out  overflow-hidden overflow-y-auto scroll-smooth `}
           >
             <Filter />
           </div>
           {/* Grid Display of Products */}
-          <div className="flex-1 mx-8 overflow-y-auto scroll-smooth">
+          <div className="flex-1 mx-8 overflow-y-auto scroll-smooth scrollbar-hide">
             <GridDisplay />
           </div>
         </div>
