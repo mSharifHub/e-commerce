@@ -1,17 +1,25 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
+
 import { useState } from "react";
 import { Filter } from "../filter/Filter";
 import { useFilter } from "../../providers/contexts/filterContext";
 import { GridDisplay } from "../gridDisplay/GridDisplay";
-import FilterHome from "../home/FilterHome";
 import { reusePort } from "../../helpers/ModalHelpers/reusePort";
+import HideFiler from "../navigation/icons/HideFilter";
+import AngleUp from "../filter/icons/AngleUp";
+import AngleDown from "../filter/icons/AngleDown";
+import HideFilterComponent from "../filter/hideFilterComponent/HideFilterComponent";
+import SortByModalIcon from "../filter/sortByModal/SortByModalIcon";
+import SortByModal from "../filter/sortByModal/SortByModal";
 
 export function Home() {
   const [isFilterVisible, setIsFilterVisible] = useState(true);
+
   const [sortModalVisible, setsortModalVisible] = useState(false);
 
   const { state } = useFilter();
+
   const toggle = (e) => {
     if (e) {
       e.preventDefault();
@@ -28,15 +36,36 @@ export function Home() {
     <>
       {/* home filter */}
       {reusePort(
-        <div>
-          <FilterHome
-            toggle={toggle}
-            isFilterVisible={isFilterVisible}
-            sortModalVisible={sortModalVisible}
-            sortByModal={sortByModal}
-            state={state}
-          />
-        </div>,
+        <>
+          {/* hide filter component */}
+          <div className="hidden  md:flex  absolute right-60 top-[13rem]  justify-end items-center z-20  cursor-pointer ">
+            <HideFilterComponent
+              toggle={toggle}
+              isFilterVisible={isFilterVisible}
+              HideFiler={HideFiler}
+            />
+          </div>
+
+          {/* sort by modal icon */}
+          <div className="absolute hidden md:flex right-20 -translate-x-1/2 top-[13rem]  justify-end items-center z-20 ">
+            <SortByModalIcon
+              sortModalVisible={sortModalVisible}
+              sortByModal={sortByModal}
+              AngleDown={AngleDown}
+              AngleUp={AngleUp}
+              label="sort by:"
+            />
+            {/* Display the name of sort By chosen */}
+            {sortModalVisible && (
+              <SortByModal sortModalVisible={sortModalVisible} />
+            )}
+            {state.sortByDisplayName !== null ? (
+              <span className=" absolute -right-20  font-thin text-neutral-500 text-lg">
+                {state.sortByDisplayName}
+              </span>
+            ) : null}
+          </div>
+        </>,
       )}
 
       {/* main home container */}
