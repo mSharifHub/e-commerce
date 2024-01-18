@@ -41,7 +41,7 @@ export default function CategoryComponent() {
       </div>
       {/* dynamic section */}
       <div
-        className={`transtition-transform duration-300 ease-in-out ${
+        className={`transition-transform duration-300 ease-in-out ${
           isexpand ? "translate-x-0" : "-translate-x-full"
         }`}
       >

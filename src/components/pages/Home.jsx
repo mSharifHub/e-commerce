@@ -38,7 +38,7 @@ export function Home() {
       {reusePort(
         <>
           {/* hide filter component */}
-          <div className="hidden  md:flex  absolute right-60 top-[13rem]  justify-end items-center z-20  cursor-pointer ">
+          <div className="hidden  md:flex  absolute right-60 top-[12rem]  justify-end items-center z-20  cursor-pointer ">
             <HideFilterComponent
               toggle={toggle}
               isFilterVisible={isFilterVisible}
@@ -47,7 +47,7 @@ export function Home() {
           </div>
 
           {/* sort by modal icon */}
-          <div className="absolute hidden md:flex right-20 -translate-x-1/2 top-[13rem]  justify-end items-center z-20 ">
+          <div className="absolute hidden md:flex right-20 -translate-x-1/2 top-[12rem]  justify-end items-center z-20 ">
             <SortByModalIcon
               sortModalVisible={sortModalVisible}
               sortByModal={sortByModal}
@@ -69,7 +69,7 @@ export function Home() {
       )}
 
       {/* main home container */}
-      <div className="min-w-screen  flex transition-all duration-500 ease-in-out mx-0   xl:mx-[10%]">
+      <div className="min-w-screen  flex transition-all duration-500 ease-in-out mx-0   xl:mx-[5%]">
         <div className="w-full h-screen flex flex-row  justify-between my-8  overflow-hidden">
           {/* filter component */}
           <div

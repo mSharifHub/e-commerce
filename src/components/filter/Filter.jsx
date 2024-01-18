@@ -25,6 +25,20 @@ export function Filter() {
       {/* category container filter */}
       <div className="flex relative">
         <div className="border-t-2 mt-4 w-full">
+          <span
+            className={`${
+              !itemsResult(state, products, "category", "category")
+                ? "hidden"
+                : "flex "
+            }  justify-start  mx-4 items-center gap-x-4 text-2xl text-neutral-500 whitespace-nowrap `}
+          >
+            {state.category.length <= 1 ? (
+              state.category.map((item) => <div key={item}>{item}</div>)
+            ) : (
+              <div> Many categories</div>
+            )}
+            {itemsResult(state, products, "category", "category")}
+          </span>
           <CategoryComponent />
         </div>
       </div>

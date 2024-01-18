@@ -21,7 +21,7 @@ export function GridDisplay() {
   };
 
   return (
-    <div className="grid  transiton-all duration-500 ease-out  grid-cols-1 gap-8 lg:grid-cols-2  xl:grid-cols-3 ">
+    <div className="grid  transiton-all duration-500 ease-out  grid-cols-1 gap-4 lg:grid-cols-2  xl:grid-cols-3 ">
       {products.map((product) => (
         <React.Fragment key={product.id}>
           <div className="flex justify-center items-center">

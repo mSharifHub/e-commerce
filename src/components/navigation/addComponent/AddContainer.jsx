@@ -27,7 +27,7 @@ export default function AddContainer() {
   }, []);
 
   return (
-    <div className=" bg-neutral-100 w-full h-full  flex justify-center items-center">
+    <div className=" bg-neutral-100 w-full h-full mt-2 flex justify-center items-center">
       <div className={`w-full ${swipe} `}>{iterateArr(arr, currIndex)}</div>
     </div>
   );

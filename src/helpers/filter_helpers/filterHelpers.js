@@ -16,7 +16,7 @@ export const itemsResult = (state, products, key, instance) => {
   return state[key].length > 0
     ? products.filter((product) => state[key].includes(product[instance]))
         .length
-    : null;
+    : undefined;
 };
 
 export const ratingResult = (state) => {
@@ -80,7 +80,7 @@ export const renderColorFilter = (
 );
 
 export const getHexValue = (color) => {
-  // if color matches key it returns the hexidecimal value
+  // if color matches key it returns the hexadecimal value
   const colorHexidecimal = {
     "classic black": "#000000",
     "electric blue": "#7DF9FF",
