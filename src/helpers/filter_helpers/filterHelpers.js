@@ -16,7 +16,7 @@ export const itemsResult = (state, products, key, instance) => {
   return state[key].length > 0
     ? products.filter((product) => state[key].includes(product[instance]))
         .length
-    : undefined;
+    : null;
 };
 
 export const ratingResult = (state) => {

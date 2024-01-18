@@ -10,7 +10,7 @@ export default function SizeComponent() {
   // sort sizes by ascending order
   const sorted = availableSizes.sort((a, b) => a - b);
   /*
-  will map the availble sizes and use the size box component to display each size number
+  will map the available sizes and use the size box component to display each size number
   if the last element surpass 4 elements will take the full space
 */
   return (
@@ -19,6 +19,7 @@ export default function SizeComponent() {
         <div
           key={availableSize}
           className={
+            // if the remainder of the len is not 0 and is 1 then the last element will take all space available
             index === sorted.length - 1 && sorted.length % 4 !== 0
               ? "col-span-4"
               : "col-span-1"

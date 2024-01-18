@@ -49,7 +49,7 @@ export function Filter() {
             label="filter by price"
             Component={PriceComponent}
             selectedTotal={
-              // it will only display values from 0 to max items of items when an user selects a value.
+              // it will only display values from 0 to max items of items when a user selects a value.
               // this line of code will pass null if no checkboxes have been selected, therefore, only displaying 0 - max values
               state.priceRanges.length > 0 ? state.priceSelectedCount : null
             }

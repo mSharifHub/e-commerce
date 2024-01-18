@@ -16,7 +16,7 @@ export default function SizeBox({ size, isNewRow }) {
     );
   };
 
-  // funciton to dispatch the action when a size is selected to
+  // function to dispatch the action when a size is selected to
   //  mark the size  in the reducer hook array for sizes
   const onSizeChange = (labelSize) => {
     dispatch({ type: "SET_SIZE", payload: labelSize });
@@ -26,7 +26,7 @@ export default function SizeBox({ size, isNewRow }) {
     <div
       className={` ${
         isNewRow ? "w-full" : " w-[40px] h-[40px] "
-      }   flex justify-center items-center  border-2 border-slate-200   rounded-lg transition-all `}
+      }   flex justify-center items-center  border-2 border-slate-200   transition-all `}
     >
       <input
         type="checkbox"
@@ -38,8 +38,8 @@ export default function SizeBox({ size, isNewRow }) {
       />
       <label
         htmlFor={size}
-        className={`transition-color duration-100 ease-out ${
-          isChecked(size) ? " ring-offset-0 ring-1 ring-black rounded-lg " : " "
+        className={`transition-color duration-75 ease-out ${
+          isChecked(size) ? " ring-offset-0 ring-1 ring-black  " : " "
         }cursor-pointer h-full w-full flex justify-center items-center `}
       >
         {size}
