@@ -3,7 +3,6 @@ import { filterReducer } from "./reducers/filterReducer";
 import { filterContext } from "./contexts/filterContext";
 import { products } from "../data/productsData/products";
 import {
-  priceRangeResult,
   min,
   max,
   instanceList,
@@ -18,7 +17,6 @@ export function FilterProvider({ children }) {
     selectedSizes: [], // array to keep track of list of sizes
     availableSizes: instanceList(products, "size"),
     priceRange: { min, max }, // the value extracted to filter data based on the price query
-    priceSelectedCount: priceRangeResult(products, min, max), // sets the initial value
     listCategories: instanceList(products, "category"), // used to display number of items per category
     inStock: false, // to filter if product is in stock
     newProduct: false, // to filter if product is a new product

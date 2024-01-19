@@ -1,28 +1,32 @@
-import React from "react";
-import { MdChevronLeft, MdChevronRight } from "react-icons/md";
-import { products } from "../../data/productsData/products";
+import React, { useEffect, useState } from "react";
 import Product from "../products/Product";
+import { useFilter } from "../../providers/contexts/filterContext";
+import { products } from "../../data/productsData/products";
 
 export function GridDisplay() {
-  const slider = (product, direction) => {
-    const slide = document.getElementById(`slider-${product}`);
-    const scrollAmount = 500;
+  // Return statement for rendering the component
 
-    switch (direction) {
-      case `left`:
-        slide.scrollLeft -= scrollAmount;
-        break;
-      case `right`:
-        slide.scrollLeft += scrollAmount;
-        break;
-      default:
-        return null;
+  const {
+    state: { category },
+  } = useFilter();
+
+  const [filteredProducts, setFilterProducts] = useState([]);
+
+  useEffect(() => {
+    let updatedProducts = [...products];
+
+    if (category.length > 0) {
+      updatedProducts = updatedProducts.filter((product) =>
+        category.includes(product.category),
+      );
     }
-  };
+
+    setFilterProducts(updatedProducts);
+  }, [category]);
 
   return (
-    <div className="grid  transiton-all duration-500 ease-out  grid-cols-1 gap-4 lg:grid-cols-2  xl:grid-cols-3 ">
-      {products.map((product) => (
+    <div className="grid transition-all duration-500 ease-out grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3">
+      {filteredProducts.map((product) => (
         <React.Fragment key={product.id}>
           <div className="flex justify-center items-center">
             <Product />
