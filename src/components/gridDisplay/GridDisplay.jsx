@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useMemo, useState } from "react";
 import Product from "../products/Product";
 import { useFilter } from "../../providers/contexts/filterContext";
 import { products } from "../../data/productsData/products";
@@ -10,9 +10,7 @@ export function GridDisplay() {
     state: { category },
   } = useFilter();
 
-  const [filteredProducts, setFilterProducts] = useState([]);
-
-  useEffect(() => {
+  const filteredProducts = useMemo(() => {
     let updatedProducts = [...products];
 
     if (category.length > 0) {
@@ -21,7 +19,7 @@ export function GridDisplay() {
       );
     }
 
-    setFilterProducts(updatedProducts);
+    return updatedProducts;
   }, [category]);
 
   return (
