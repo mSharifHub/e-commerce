@@ -1,27 +1,8 @@
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { useMemo, useRef } from "react";
 import Product from "../products/Product";
 import { useFilter } from "../../providers/contexts/filterContext";
 import { products } from "../../data/productsData/products";
 import { reusePort } from "../../helpers/ModalHelpers/reusePort";
-
-const usePrevious = (value) => {
-  const ref = useRef();
-
-  useEffect(() => {
-    ref.current = value;
-  });
-  return ref.current;
-};
-
-const compareChanges = (prev, current) => {
-  if (prev) {
-    return (
-      prev.some((element) => !current.includes(element)) ||
-      current.some((element) => !prev.includes(element))
-    );
-  }
-  return false;
-};
 
 export function GridDisplay() {
   const {
@@ -38,10 +19,6 @@ export function GridDisplay() {
     },
   } = useFilter();
 
-  const prevCategory = usePrevious(category);
-  const prevSelectedColors = usePrevious(selectedColors);
-  const prevSelectedSizes = usePrevious(selectedSizes);
-
   const parseProductPrice = (priceStr) => {
     return parseInt(priceStr.slice(1), 10);
   };
@@ -55,76 +32,66 @@ export function GridDisplay() {
 
     let updatedProducts = [...products];
 
-    if (category.length > 0 && compareChanges(prevCategory, category)) {
+    // Filter by category
+    if (category.length > 0) {
       updatedProducts = updatedProducts.filter((product) =>
         category.includes(product.category),
       );
     }
 
-    if (
-      selectedSizes.length > 0 &&
-      compareChanges(prevSelectedSizes, selectedSizes)
-    ) {
+    // Filter by selected sizes
+    if (selectedSizes.length > 0) {
       updatedProducts = updatedProducts.filter((product) =>
         selectedSizes.includes(product.size),
       );
     }
 
-    if (
-      selectedColors.length > 0 &&
-      compareChanges(prevSelectedColors, selectedColors)
-    ) {
+    // Filter by selected colors
+    if (selectedColors.length > 0) {
       updatedProducts = updatedProducts.filter((product) =>
         selectedColors.includes(product.color),
       );
     }
 
+    // Filter by price range
     if (!Number.isNaN(minPrice) && !Number.isNaN(maxPrice)) {
       updatedProducts = updatedProducts.filter((product) => {
         const productPrice = parseProductPrice(product.price);
-        const productPriceInRange =
-          productPrice >= minPrice && productPrice <= maxPrice;
-
-        return productPriceInRange;
+        return productPrice >= minPrice && productPrice <= maxPrice;
       });
     }
 
+    // Filter by in-stock
     if (inStock) {
       updatedProducts = updatedProducts.filter((product) => product.inStock);
     }
 
+    // Filter by rating
     if (rating !== null) {
       updatedProducts = updatedProducts.filter(
         (product) => product.rating === rating,
       );
     }
 
+    // Sorting
     if (sortByHighest) {
-      updatedProducts = updatedProducts.sort((a, b) => {
-        let aPrice = parseProductPrice(a.price);
-        let bPrice = parseProductPrice(b.price);
-        aPrice = parseInt(aPrice, 10);
-        bPrice = parseInt(bPrice, 10);
-        return bPrice - aPrice;
-      });
+      updatedProducts.sort(
+        (a, b) => parseProductPrice(b.price) - parseProductPrice(a.price),
+      );
+    } else if (sortByLowest) {
+      updatedProducts.sort(
+        (a, b) => parseProductPrice(a.price) - parseProductPrice(b.price),
+      );
     }
 
-    if (sortByLowest) {
-      updatedProducts = updatedProducts.sort((a, b) => {
-        let aPrice = parseProductPrice(a.price);
-        let bPrice = parseProductPrice(b.price);
-        aPrice = parseInt(aPrice, 10);
-        bPrice = parseInt(bPrice, 10);
-        return aPrice - bPrice;
-      });
-    }
-
+    // Filter by most ordered
     if (sortByMostOrdered) {
       updatedProducts = updatedProducts.filter(
         (product) => product.sortByMostOrdered,
       );
     }
 
+    // Check if filters are applied
     if (updatedProducts.length !== products.length) {
       isFilterApplied.current = 1;
     } else {
@@ -134,11 +101,8 @@ export function GridDisplay() {
     return updatedProducts;
   }, [
     category,
-    prevCategory,
     selectedSizes,
-    prevSelectedSizes,
     selectedColors,
-    prevSelectedColors,
     priceRange,
     inStock,
     rating,
