@@ -25,7 +25,17 @@ const compareChanges = (prev, current) => {
 
 export function GridDisplay() {
   const {
-    state: { category, selectedColors, selectedSizes, priceRange },
+    state: {
+      category,
+      selectedColors,
+      selectedSizes,
+      priceRange,
+      inStock,
+      rating,
+      sortByLowest,
+      sortByHighest,
+      sortByMostOrdered,
+    },
   } = useFilter();
 
   const prevCategory = usePrevious(category);
@@ -79,6 +89,42 @@ export function GridDisplay() {
       });
     }
 
+    if (inStock) {
+      updatedProducts = updatedProducts.filter((product) => product.inStock);
+    }
+
+    if (rating !== null) {
+      updatedProducts = updatedProducts.filter(
+        (product) => product.rating === rating,
+      );
+    }
+
+    if (sortByHighest) {
+      updatedProducts = updatedProducts.sort((a, b) => {
+        let aPrice = parseProductPrice(a.price);
+        let bPrice = parseProductPrice(b.price);
+        aPrice = parseInt(aPrice, 10);
+        bPrice = parseInt(bPrice, 10);
+        return bPrice - aPrice;
+      });
+    }
+
+    if (sortByLowest) {
+      updatedProducts = updatedProducts.sort((a, b) => {
+        let aPrice = parseProductPrice(a.price);
+        let bPrice = parseProductPrice(b.price);
+        aPrice = parseInt(aPrice, 10);
+        bPrice = parseInt(bPrice, 10);
+        return aPrice - bPrice;
+      });
+    }
+
+    if (sortByMostOrdered) {
+      updatedProducts = updatedProducts.filter(
+        (product) => product.sortByMostOrdered,
+      );
+    }
+
     if (updatedProducts.length !== products.length) {
       isFilterApplied.current = 1;
     } else {
@@ -94,6 +140,11 @@ export function GridDisplay() {
     selectedColors,
     prevSelectedColors,
     priceRange,
+    inStock,
+    rating,
+    sortByHighest,
+    sortByLowest,
+    sortByMostOrdered,
   ]);
 
   return (

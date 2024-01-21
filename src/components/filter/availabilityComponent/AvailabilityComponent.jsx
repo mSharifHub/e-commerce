@@ -15,7 +15,7 @@ export default function AvailabilityComponent() {
 
   return (
     <div className="flex justify-between mx-4 ">
-      <span className="flex justify-center items-center text-lg  capitalize font-thin">
+      <span className="flex justify-center items-center text-lg  capitalize font-thin whitespace-nowrap">
         pick up today at:
         {/* // TODO add location to the store component// */}
       </span>
