@@ -119,11 +119,17 @@ export function GridDisplay() {
             {`${filteredProducts.length} items total`}
           </span>,
         )}
-      <div className="grid transition-all duration-500 ease-out grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3">
+      <div
+        className={` ${
+          filteredProducts.length >= 3
+            ? "grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3 "
+            : "flex flex-1 justify-center items-center"
+        }transition-all duration-500 ease-out `}
+      >
         {filteredProducts.map((product) => (
           <React.Fragment key={product.id}>
             <div className="flex justify-center items-center">
-              <Product />
+              <Product productsLen={filteredProducts.length} />
             </div>
           </React.Fragment>
         ))}
