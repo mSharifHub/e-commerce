@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef } from "react";
 import Product from "../products/Product";
 import { useFilter } from "../../providers/contexts/filterContext";
 import { products } from "../../data/productsData/products";
+import { reusePort } from "../../helpers/ModalHelpers/reusePort";
 
 const usePrevious = (value) => {
   const ref = useRef();
@@ -34,6 +35,8 @@ export function GridDisplay() {
   const parseProductPrice = (priceStr) => {
     return parseInt(priceStr.slice(1), 10);
   };
+
+  const isFilterApplied = useRef(0);
 
   const filteredProducts = useMemo(() => {
     const minPrice = parseInt(priceRange.min, 10);
@@ -76,6 +79,12 @@ export function GridDisplay() {
       });
     }
 
+    if (updatedProducts.length !== products.length) {
+      isFilterApplied.current = 1;
+    } else {
+      isFilterApplied.current = 0;
+    }
+
     return updatedProducts;
   }, [
     category,
@@ -88,14 +97,22 @@ export function GridDisplay() {
   ]);
 
   return (
-    <div className="grid transition-all duration-500 ease-out grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3">
-      {filteredProducts.map((product) => (
-        <React.Fragment key={product.id}>
-          <div className="flex justify-center items-center">
-            <Product />
-          </div>
-        </React.Fragment>
-      ))}
-    </div>
+    <>
+      {isFilterApplied.current === 1 &&
+        reusePort(
+          <span className=" hidden lg:inline  absolute  transition-all duration-150 top-[12rem] lg:left-[20rem] xl:left-[30rem] capitalize text-2xl italic font-thin">
+            {`${filteredProducts.length} items total`}
+          </span>,
+        )}
+      <div className="grid transition-all duration-500 ease-out grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3">
+        {filteredProducts.map((product) => (
+          <React.Fragment key={product.id}>
+            <div className="flex justify-center items-center">
+              <Product />
+            </div>
+          </React.Fragment>
+        ))}
+      </div>
+    </>
   );
 }
