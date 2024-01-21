@@ -5,12 +5,6 @@ import StarRatingComponent from "./ratingComponent/StarRatingComponent";
 import AvailabilityComponent from "./availabilityComponent/AvailabilityComponent";
 import SizeComponent from "./sizeComponent/SizeComponent";
 import { useFilter } from "../../providers/contexts/filterContext";
-import { products } from "../../data/productsData/products";
-
-import {
-  ratingResult,
-  itemsResult,
-} from "../../helpers/filter_helpers/filterHelpers";
 import ColorComponent from "./colorComponent/ColorComponent";
 
 export function Filter() {
@@ -25,19 +19,12 @@ export function Filter() {
       {/* category container filter */}
       <div className="flex relative">
         <div className="border-t-2 mt-4 w-full">
-          <span
-            className={`${
-              !itemsResult(state, products, "category", "category")
-                ? "hidden"
-                : "flex "
-            }  justify-start  mx-4 items-center gap-x-4 text-2xl text-neutral-500 whitespace-nowrap `}
-          >
+          <span className=" flex justify-start  mx-4 items-center gap-x-4 text-2xl text-neutral-500 whitespace-nowrap">
             {state.category.length <= 1 ? (
               state.category.map((item) => <div key={item}>{item}</div>)
             ) : (
               <div> Many categories</div>
             )}
-            {itemsResult(state, products, "category", "category")}
           </span>
           <CategoryComponent />
         </div>
@@ -45,45 +32,19 @@ export function Filter() {
       {/* price container filter */}
       <div className="flex relative">
         <div className="w-full">
-          <FilterPopUpMenu
-            label="filter by price"
-            Component={PriceComponent}
-            selectedTotal={
-              // it will only display values from 0 to max items of items when a user selects a value.
-              // this line of code will pass null if no checkboxes have been selected, therefore, only displaying 0 - max values
-              state.priceRanges.length > 0 ? state.priceSelectedCount : null
-            }
-          />
+          <FilterPopUpMenu label="filter by price" Component={PriceComponent} />
         </div>
       </div>
       {/* size filter */}
       <div className="flex relative">
         <div className="w-full">
-          <FilterPopUpMenu
-            label="filter by size"
-            Component={SizeComponent}
-            selectedTotal={itemsResult(
-              state,
-              products,
-              "selectedSizes",
-              "size",
-            )}
-          />
+          <FilterPopUpMenu label="filter by size" Component={SizeComponent} />
         </div>
       </div>
       {/* color filter */}
       <div className="flex relative">
         <div className="w-full">
-          <FilterPopUpMenu
-            label="filter by color"
-            Component={ColorComponent}
-            selectedTotal={itemsResult(
-              state,
-              products,
-              "selectedColors",
-              "color",
-            )}
-          />
+          <FilterPopUpMenu label="filter by color" Component={ColorComponent} />
         </div>
       </div>
       {/* rating container filter */}
@@ -92,7 +53,6 @@ export function Filter() {
           <FilterPopUpMenu
             label="filter by rating"
             Component={StarRatingComponent}
-            selectedTotal={ratingResult(state)}
           />
         </div>
       </div>

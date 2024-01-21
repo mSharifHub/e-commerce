@@ -121,9 +121,9 @@ export function GridDisplay() {
         )}
       <div
         className={` ${
-          filteredProducts.length >= 3
+          filteredProducts.length > 1
             ? "grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3 "
-            : "flex flex-1 justify-center items-center"
+            : "flex  flex-1 justify-center items-center"
         }transition-all duration-500 ease-out `}
       >
         {filteredProducts.map((product) => (

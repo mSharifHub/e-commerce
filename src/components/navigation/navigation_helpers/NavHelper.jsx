@@ -1,9 +1,6 @@
-import { modalStyles } from "../../../helpers/navigation_helpers/modalStyle";
 import CartIcon from "../icons/CartIcon";
 import HeartIcon from "../icons/HeartIcon";
 import { SearchBar } from "../search/SearchBar";
-
-const { full } = modalStyles;
 
 export default function NavHelper() {
   return (

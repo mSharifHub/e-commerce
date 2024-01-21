@@ -3,11 +3,7 @@ import { useState } from "react";
 import AngleUp from "../icons/AngleUp";
 import AngleDown from "../icons/AngleDown";
 
-export default function FilterPopUpMenu({
-  label,
-  Component,
-  selectedTotal = 0,
-}) {
+export default function FilterPopUpMenu({ label, Component }) {
   const [isVisible, setIsVisible] = useState(true);
 
   const toogle = () => {
@@ -24,13 +20,6 @@ export default function FilterPopUpMenu({
         <div className=" flex justify-between items-center w-full">
           <div className="flex justify-between  w-full  text-lg capitalize hover:text-slate-500">
             <span>{label} </span>
-            <span
-              className={`${
-                selectedTotal === null ? "hidden" : "inline-block"
-              }  text-xl mx-2 font-thin text-slate-500`}
-            >
-              {selectedTotal}
-            </span>
           </div>
           <div className="justify-items-center mx-2 px-2 hover:text-slate-500  trasition-all ease-out duration-300">
             {!isVisible ? <AngleDown /> : <AngleUp />}

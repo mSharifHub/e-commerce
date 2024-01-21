@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
-import { iterateArr } from "../../../helpers/navigation_helpers/navigationHelper";
+
 import AddOne from "./AddOne";
 import AddThree from "./AddThree";
 import AddTwo from "./AddTwo";
 
 // this array holds the components and is accessed using the a state hook that iterates the index
 const arr = [<AddOne />, <AddTwo />, <AddThree />];
+
+const iterateArr = (array, index) => {
+  return array[index];
+};
 
 export default function AddContainer() {
   // state hook iterates by increasing the index till the end of lenght and resets back to 0 using the prev state incremented by 1 module the length of arr
