@@ -6,7 +6,7 @@ export const products = [
     color: "Classic Black",
     size: 11,
     image: "",
-    inStock: 10,
+    inStock: 2,
     newArrival: true,
     openBox: false,
     discount: 10,

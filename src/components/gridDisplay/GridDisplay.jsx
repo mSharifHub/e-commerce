@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React, { useMemo, useRef } from "react";
 import Product from "../products/Product";
 import { useFilter } from "../../providers/contexts/filterContext";
@@ -118,12 +119,26 @@ export function GridDisplay() {
         className={`${
           !isFilterApplied.current
             ? "hidden "
-            : "flex justify-center mb-4  lg:justify-start items-center  transition-all duration-500 ease-in-out  capitalize text-2xl italic font-thin"
+            : "flex justify-center mb-4  lg:justify-start items-center  capitalize text-2xl italic font-extralight "
         } `}
       >
-        {`${filteredProducts.length} ${
-          filteredProducts.length <= 1 ? "item" : "items"
-        } total`}
+        {filteredProducts.length === 0 ? (
+          "No items found"
+        ) : filteredProducts.length === 1 ? (
+          <div>
+            {filteredProducts.map((product) => (
+              <span className="capitalize " key={product.id}>
+                {product.inStock <= 3 ? (
+                  <span>order fast only {product.inStock} left </span>
+                ) : (
+                  <span> {product.inStock} in stock</span>
+                )}
+              </span>
+            ))}
+          </div>
+        ) : (
+          `${filteredProducts.length} items found`
+        )}
       </span>
       <div className={getGridCount(filteredProducts.length)}>
         {filteredProducts.map((product) => (
