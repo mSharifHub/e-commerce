@@ -116,8 +116,10 @@ export function GridDisplay() {
     <>
       {isFilterApplied.current === 1 &&
         reusePort(
-          <span className=" hidden lg:inline  absolute  transition-all duration-150 top-[12rem] lg:left-[20rem] xl:left-[30rem] capitalize text-2xl italic font-thin">
-            {`${filteredProducts.length} items total`}
+          <span className=" hidden lg:inline  absolute  transition-all duration-150 top-[12rem] lg:left-[20rem] xl:left-[43rem] capitalize text-2xl italic font-thin">
+            {`${filteredProducts.length} ${
+              filteredProducts.length <= 1 ? "item" : "items"
+            } total`}
           </span>,
         )}
       <div className={getGridCount(filteredProducts.length)}>
