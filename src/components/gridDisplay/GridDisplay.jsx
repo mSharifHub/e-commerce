@@ -1,9 +1,9 @@
-/* eslint-disable no-nested-ternary */
 import React, { useMemo, useRef } from "react";
 import Product from "../products/Product";
 import { useFilter } from "../../providers/contexts/filterContext";
 import { products } from "../../data/productsData/products";
 import { reusePort } from "../../helpers/ModalHelpers/reusePort";
+import { getGridCount } from "../../helpers/filter_helpers/filterHelpers";
 
 export function GridDisplay() {
   const {
@@ -120,17 +120,7 @@ export function GridDisplay() {
             {`${filteredProducts.length} items total`}
           </span>,
         )}
-      <div
-        className={` ${
-          filteredProducts.length > 3
-            ? "grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3 "
-            : filteredProducts.length === 3
-              ? "grid grid-cols-3 gap-4 "
-              : filteredProducts.length === 2
-                ? "grid grid-cols-2 gap-4"
-                : ""
-        }transition-all duration-500 ease-out `}
-      >
+      <div className={getGridCount(filteredProducts.length)}>
         {filteredProducts.map((product) => (
           <React.Fragment key={product.id}>
             <div className="flex justify-center items-center">

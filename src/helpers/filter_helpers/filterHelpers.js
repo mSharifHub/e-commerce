@@ -135,3 +135,34 @@ export const getHexValue = (color) => {
 
 export const min = 0;
 export const max = 500;
+
+export const getGridCount = (productCount) => {
+  switch (productCount) {
+    case 1:
+      return "grid grid-cols-1 ";
+    case 2:
+      return "grid grid-cols-1 lg:grid-cols-2 gap-4 ";
+    case 3:
+      return "grid grid-cols-1  xl:grid-cols-3 gap-2 ";
+    default:
+      return productCount > 3
+        ? "grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3 "
+        : "";
+  }
+};
+
+export const productSizeHelper = (productCount) => {
+  switch (productCount) {
+    case 1:
+      return " grid  h-[400px] w-[400px]  lg:h-[800px] lg:w-[800px]  bg-slate-50  cursor-pointer  transition-all duration-200 ease-in ";
+    case 2:
+      return "grid h-[400px]  w-[400px]  lg:h-[500px] lg:w-[500px]  xl:h-[600px] xl:w-[600px] bg-slate-50 cursor-pointer  transition-all duration-200 ease-in";
+    case 3:
+      return "grid h-[400px] w-[400px]  xl:h-[500px] xl:w-[500px] bg-slate-50 cursor-pointer  transition-all duration-200 ease-in ";
+
+    default:
+      return productCount > 3
+        ? " grid h-[400px] w-[400px] 2xl:h-[400px]  bg-slate-50 cursor-pointer "
+        : " ";
+  }
+};
