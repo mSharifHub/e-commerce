@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React, { useMemo, useRef } from "react";
 import Product from "../products/Product";
 import { useFilter } from "../../providers/contexts/filterContext";
@@ -121,9 +122,13 @@ export function GridDisplay() {
         )}
       <div
         className={` ${
-          filteredProducts.length > 1
+          filteredProducts.length > 3
             ? "grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3 "
-            : "flex  flex-1 justify-center items-center"
+            : filteredProducts.length === 3
+              ? "grid grid-cols-3 gap-4 "
+              : filteredProducts.length === 2
+                ? "grid grid-cols-2 gap-4"
+                : ""
         }transition-all duration-500 ease-out `}
       >
         {filteredProducts.map((product) => (
