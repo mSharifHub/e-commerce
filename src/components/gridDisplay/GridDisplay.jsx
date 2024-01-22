@@ -2,7 +2,6 @@ import React, { useMemo, useRef } from "react";
 import Product from "../products/Product";
 import { useFilter } from "../../providers/contexts/filterContext";
 import { products } from "../../data/productsData/products";
-import { reusePort } from "../../helpers/ModalHelpers/reusePort";
 import { getGridCount } from "../../helpers/filter_helpers/filterHelpers";
 
 export function GridDisplay() {
@@ -24,6 +23,7 @@ export function GridDisplay() {
     return parseInt(priceStr.slice(1), 10);
   };
 
+  // Use to keep track when the filter is applied so to display results only when a filter is applied
   const isFilterApplied = useRef(0);
 
   const filteredProducts = useMemo(() => {
@@ -113,15 +113,18 @@ export function GridDisplay() {
   ]);
 
   return (
-    <>
-      {isFilterApplied.current === 1 &&
-        reusePort(
-          <span className=" hidden lg:inline  absolute  transition-all duration-150 top-[12rem] left-[10rem] capitalize text-2xl italic font-thin">
-            {`${filteredProducts.length} ${
-              filteredProducts.length <= 1 ? "item" : "items"
-            } total`}
-          </span>,
-        )}
+    <div className="relative">
+      <span
+        className={`${
+          !isFilterApplied.current
+            ? "hidden "
+            : "flex justify-center mb-4  lg:justify-start items-center  transition-all duration-500 ease-in-out  capitalize text-2xl italic font-thin"
+        } `}
+      >
+        {`${filteredProducts.length} ${
+          filteredProducts.length <= 1 ? "item" : "items"
+        } total`}
+      </span>
       <div className={getGridCount(filteredProducts.length)}>
         {filteredProducts.map((product) => (
           <React.Fragment key={product.id}>
@@ -131,6 +134,6 @@ export function GridDisplay() {
           </React.Fragment>
         ))}
       </div>
-    </>
+    </div>
   );
 }
