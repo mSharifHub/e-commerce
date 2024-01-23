@@ -28,14 +28,14 @@ export function Filter() {
   };
 
   return (
-    <div className="flex flex-col ">
+    <div className="relative flex flex-col ">
       {/* clear all filters button */}
 
       {isFilterActive && (
         <button
           type="button"
           onClick={handleRemoveFilters}
-          className=" flex justify-start mx-4 capitalize"
+          className=" flex justify-start mx-4 capitalize cursor-pointer transition-colors duration-75 text-slate-300 text-xl hover:text-slate-900"
         >
           clear all
         </button>
