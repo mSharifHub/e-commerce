@@ -35,7 +35,7 @@ export function Filter() {
         <button
           type="button"
           onClick={handleRemoveFilters}
-          className=" flex justify-start mx-4 capitalize cursor-pointer transition-colors duration-75 text-slate-300 text-xl hover:text-slate-900"
+          className=" flex justify-start mx-4 capitalize cursor-pointer transition-colors duration-75 text-slate-300 text-lg hover:text-slate-900"
         >
           clear all
         </button>

@@ -144,7 +144,10 @@ export function GridDisplay() {
         {filteredProducts.map((product) => (
           <React.Fragment key={product.id}>
             <div className="flex justify-center items-center">
-              <Product productsLen={filteredProducts.length} />
+              <Product
+                productsLen={filteredProducts.length}
+                product={product}
+              />
             </div>
           </React.Fragment>
         ))}
