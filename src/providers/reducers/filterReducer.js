@@ -1,6 +1,7 @@
 /* eslint-disable no-case-declarations */
 import { products } from "../../data/productsData/products";
-import { priceRangeResult } from "../../helpers/filter_helpers/filterHelpers";
+
+import { min, max } from "../../helpers/filter_helpers/filterHelpers";
 
 export const filterReducer = (state, action) => {
   const isCategorySelected = state.category.includes(action.payload);
@@ -15,17 +16,11 @@ export const filterReducer = (state, action) => {
       const rangeValues = rangeGroup.flat();
       const minPrice = rangeValues.length > 0 ? Math.min(...rangeValues) : 0;
       const maxPrice = rangeValues.length > 0 ? Math.max(...rangeValues) : 500;
-      const newPriceSelectedCount = priceRangeResult(
-        products,
-        minPrice,
-        maxPrice,
-      );
 
       return {
         ...state,
         priceRanges: rangeGroup,
         priceRange: { min: minPrice, max: maxPrice },
-        priceSelectedCount: newPriceSelectedCount,
       };
 
     case "SET_CATEGORY":
@@ -98,6 +93,27 @@ export const filterReducer = (state, action) => {
         sortByHighest: !state.sortByMostOrdered ? false : state.sortByHighest,
         sortByLowest: !state.sortByMostOrdered ? false : state.sortByLowest,
         sortByDisplayName: !state.sortByMostOrdered ? "Common" : null,
+        clearAllFilters: true,
+      };
+
+    case "CLEAR_ALL_FILTERS":
+      const resetState = {};
+      return {
+        ...state,
+        category: [],
+        priceRanges: [],
+        selectedColors: [],
+        selectedSizes: [],
+        priceRange: { min, max },
+        inStock: false,
+        newProduct: false,
+        discount: false,
+        openBox: false,
+        rating: null,
+        sortByLowest: false,
+        sortByHighest: false,
+        sortByMostOrdered: false,
+        sortByDisplayName: null,
       };
 
     default:

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 import PriceComponent from "./priceComponent/PriceComponent";
 import FilterPopUpMenu from "./filterPopUpMenu/FilterPopUpMenu";
 import CategoryComponent from "./categoryComponent/CategoryComponent";
@@ -8,10 +9,38 @@ import { useFilter } from "../../providers/contexts/filterContext";
 import ColorComponent from "./colorComponent/ColorComponent";
 
 export function Filter() {
-  const { state } = useFilter();
+  const { state, dispatch } = useFilter();
+
+  const isFilterActive =
+    state.category.length > 0 ||
+    state.selectedColors.length > 0 ||
+    state.selectedSizes.length > 0 ||
+    state.rating !== null ||
+    state.inStock ||
+    state.sortByLowest ||
+    state.sortByHighest ||
+    state.sortByMostOrdered;
+
+  const handleRemoveFilters = (e) => {
+    e.preventDefault();
+
+    dispatch({ type: "CLEAR_ALL_FILTERS" });
+  };
 
   return (
     <div className="flex flex-col ">
+      {/* clear all filters button */}
+
+      {isFilterActive && (
+        <button
+          type="button"
+          onClick={handleRemoveFilters}
+          className=" flex justify-start mx-4 capitalize"
+        >
+          clear all
+        </button>
+      )}
+
       {/* availability container filter */}
       <div className="flex relative flex-col ">
         <AvailabilityComponent />
