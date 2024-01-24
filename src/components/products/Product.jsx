@@ -10,8 +10,10 @@ export default function Product({ productsLen, product }) {
 
   const onModalVisible = () => {
     setModalVisible((prev) => !prev);
+  };
 
-    console.log(!modal);
+  const setOnClose = () => {
+    setModalVisible(false);
   };
 
   return (
@@ -30,7 +32,8 @@ export default function Product({ productsLen, product }) {
         </div>
       </div>
 
-      {modal && reusePort(<ProductModal product={product} />)}
+      {modal &&
+        reusePort(<ProductModal product={product} setOnClose={setOnClose} />)}
     </>
   );
 }
