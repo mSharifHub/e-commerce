@@ -4,11 +4,11 @@ export default function ProductModal({ product, setOnClose }) {
       {/* model frame */}
       <div className="fixed inset-0  flex justify-center items-center bg-black bg-opacity-50 z-50">
         {/* inner content frame */}
-        <div className=" relative w-[95%] h-[95%] grid grid-cols-[1fr_0.5fr] bg-white rounded-xl">
+        <div className=" relative w-[95%] h-[95%] grid  grid-cols-1   xl:grid-cols-[1fr_0.5fr] bg-white rounded-xl">
           {/* column left */}
-          <div className=" relative col-start-1 col-span-1 flex justify-center items-center">
+          <div className=" relative flex flex-1 first-letter:col-start-1 col-span-1 justify-center items-center">
             {/* product frame */}
-            <div className=" w-[80%] h-[80%] bg-white grid grid-rows-[1fr_0.2fr_0.2fr_0.1fr] rounded-lg shadow-lg">
+            <div className=" w-[400px] h-[400px] sm:w-[800px] sm:h-[800px]  bg-white grid grid-rows-[1fr_0.2fr_0.2fr_0.1fr] rounded-lg shadow-lg transition-all duration-100 ease-out">
               <div className=" flex justify-center items-center ">image</div>
               <div className=" flex justify-center items-center ">
                 {product.name}
