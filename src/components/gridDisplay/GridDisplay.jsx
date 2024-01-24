@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import React, { useMemo, useRef } from "react";
-import Product from "../products/Product";
+import Product from "../products/components/Product";
 import { useFilter } from "../../providers/contexts/filterContext";
 import { products } from "../../data/productsData/products";
 import { getGridCount } from "../../helpers/filter_helpers/filterHelpers";
