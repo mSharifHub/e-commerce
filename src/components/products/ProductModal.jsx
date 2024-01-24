@@ -1,7 +1,9 @@
-export default function ProductModal({ productInfo }) {
+export default function ProductModal({ product }) {
   return (
-    <div className="absolute top-0 inset-0 h-screen w-screen bg-red-500 z-50">
-      {productInfo.name}
+    <div className="fixed inset-0  flex justify-center items-center bg-black bg-opacity-50 z-50">
+      <div className="w-[95%] h-[95%] bg-white flex justify-center items-center rounded-lg shadow-lg">
+        <span>{product.name}</span>
+      </div>
     </div>
   );
 }

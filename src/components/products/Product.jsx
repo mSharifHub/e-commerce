@@ -10,17 +10,16 @@ export default function Product({ productsLen, product }) {
 
   const onModalVisible = () => {
     setModalVisible((prev) => !prev);
+
+    console.log(!modal);
   };
 
   return (
     <>
       {/* content outside */}
-      <div
-        className={productSizeHelper(productsLen)}
-        onClick={() => console.log(product.name)}
-      >
+      <div className={productSizeHelper(productsLen)} onClick={onModalVisible}>
         {/* content inside structured as grid */}
-        <div className="grid grid-rows-[1fr_0.2fr_0.2fr] m-1 ">
+        <div className="grid grid-rows-[1fr_0.2fr_0.2fr] m-1 cursor-pointer ">
           <div className=" flex justify-center items-center ">image</div>
           <div className=" flex justify-center items-center ">
             {product.name}
@@ -30,6 +29,8 @@ export default function Product({ productsLen, product }) {
           </div>
         </div>
       </div>
+
+      {modal && reusePort(<ProductModal product={product} />)}
     </>
   );
 }

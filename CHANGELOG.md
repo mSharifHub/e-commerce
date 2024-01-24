@@ -18,6 +18,10 @@
 
     Home Layout and Producsts Grid Display
 
+
+# 1.8
+    Product Modal Screen
+
 # Documentation
 
     Git commit where documentation is added
