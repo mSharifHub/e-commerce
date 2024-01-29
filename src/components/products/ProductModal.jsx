@@ -21,9 +21,9 @@ export default function ProductModal({ product, setOnClose }) {
           {/* column right */}
           <div className="col-start-1 xl:col-start-2 col-p-1 overflow-y-auto scroll-smooth  max-h-[90%] w-full">
             {/* inner content */}
-            <div className="h-full grid grid-rows-1 xl:grid-rows-[1fr_0.5fr_1fr_0.25fr]">
+            <div className="h-full grid grid-cols-1 xl:grid-rows-[1fr_0.5fr_1fr_0.25fr]">
               {/* Product details */}
-              <div className="h-full row-start-1 row-span-1 mt-4 mx-4">
+              <div className="h-full col-span-1 col-start-1 xl:row-start-1 xl:row-span-1 mt-4 mx-4 whitespace-normal">
                 <div className="flex flex-col justify-between ">
                   <div className="flex  flex-col justify-start items-center font-thin font-sans tracking-wider ">
                     <span className="text-xl">{product.name}</span>
@@ -52,7 +52,7 @@ export default function ProductModal({ product, setOnClose }) {
               {/* End Product details  */}
 
               {/* shopping cart and favorites */}
-              <div className=" flex flex-col mt-8 justify-center items-center row-start-1 xl:row-start-2  row-span-1 space-y-10">
+              <div className=" flex flex-col mt-8 justify-center items-center col-span-1 col-start-1   xl:row-start-2  xl:row-span-1 space-y-10">
                 <button
                   type="button"
                   className=" w-[20rem] h-[4rem] bg-black text-white rounded-xl text-lg font-thin  capitalize transition-all duration-100 hover:scale-105"
@@ -70,12 +70,12 @@ export default function ProductModal({ product, setOnClose }) {
 
                 {/* shopping cart and favorites  end */}
               </div>
-              <div className="w-full flex flex-col justify-center  row-start-1 xl:row-start-3 row-p-1">
+              <div className="w-full flex flex-col justify-center  col-span-1 col-start-1  xl:row-start-3 xl:row-span-1">
                 <FilterPopUpMenu label="product rating" Component={() => {}} />
                 <FilterPopUpMenu label="see reviews" Component={() => {}} />
                 <FilterPopUpMenu label="write a review" Component={() => {}} />
               </div>
-              <div className="flex justify-center items-center row-start-4 row-span-1">
+              <div className="flex justify-center items-center col-span-1 col-start-1 xl:row-start-4 xl:row-span-1">
                 <button
                   type="button"
                   className=" w-[8rem] h-[4rem] border-2 rounded-xl text-lg font-thin  capitalize transition-all duration-100 hover:scale-105"
