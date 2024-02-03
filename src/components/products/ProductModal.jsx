@@ -37,15 +37,7 @@ export default function ProductModal({ product, setOnClose }) {
                   </div>
 
                   <div className="flex flex-1  text-balance  mt-4">
-                    <p className="font-thin text-lg">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Est doloremque voluptatem veritatis ipsum, consequatur,
-                      sint quas placeat suscipit similique, omnis officiis quia.
-                      Exercitationem sequi qui itaque veniam debitis, fugit
-                      perspiciatis dolores molestiae laborum quasi tenetur
-                      aliquid officia alias beatae! Fuga voluptatibus rerum sit.
-                      Sunt aperiam maiores vitae maxime, voluptatibus corporis.
-                    </p>
+                    <p className="font-thin text-lg">{product.description}</p>
                   </div>
                 </div>
               </div>
