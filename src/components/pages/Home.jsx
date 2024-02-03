@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Filter } from "../filter/Filter";
 import { useFilter } from "../../providers/contexts/filterContext";
 import { GridDisplay } from "../gridDisplay/GridDisplay";
-import { reusePort } from "../../helpers/ModalHelpers/reusePort";
+import { reusePort } from "../../helpers/modal_helpers/reusePort";
 import HideFiler from "../navigation/icons/HideFilter";
 import AngleUp from "../filter/icons/AngleUp";
 import AngleDown from "../filter/icons/AngleDown";

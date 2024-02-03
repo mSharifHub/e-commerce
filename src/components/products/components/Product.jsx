@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useState } from "react";
 import { productSizeHelper } from "../../../helpers/filter_helpers/filterHelpers";
-import { reusePort } from "../../../helpers/ModalHelpers/reusePort";
+import { reusePort } from "../../../helpers/modal_helpers/reusePort";
 import ProductModal from "../ProductModal";
 
 export default function Product({ productsLen, product }) {

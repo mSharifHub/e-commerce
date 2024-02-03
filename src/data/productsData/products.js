@@ -23,11 +23,13 @@ export const products = [
         reviewer: "JohnDoe123",
         comment: "Amazing grip and comfort! Played my best game in these.",
         rating: 5,
+        date: "2024-01-01",
       },
       {
         reviewer: "BasketballFanatic",
         comment: "Good quality but runs a bit small. Order a size up.",
         rating: 4,
+        date: "2024-02-01",
       },
     ],
   },

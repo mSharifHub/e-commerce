@@ -1,5 +1,6 @@
 import React from "react";
-import FilterPopUpMenu from "../filter/filterPopUpMenu/FilterPopUpMenu";
+import ReviewList from "./components/ReviewList";
+import ProductPopUpMenu from "./components/ProductPopUpMenu";
 
 export default function ProductModal({ product, setOnClose }) {
   return (
@@ -36,9 +37,9 @@ export default function ProductModal({ product, setOnClose }) {
                     </span>
                   </div>
 
-                  <div className="flex flex-1  text-balance  mt-4">
-                    <p className="font-thin text-lg">{product.description}</p>
-                  </div>
+                  <p className="font-thin text-lg flex text-justify xl:text-left p-4 text-balance">
+                    {product.description}
+                  </p>
                 </div>
               </div>
               {/* End Product details  */}
@@ -63,9 +64,11 @@ export default function ProductModal({ product, setOnClose }) {
                 {/* shopping cart and favorites  end */}
               </div>
               <div className="w-full flex flex-col justify-center  col-span-1 col-start-1  xl:row-start-3 xl:row-span-1">
-                <FilterPopUpMenu label="product rating" Component={() => {}} />
-                <FilterPopUpMenu label="see reviews" Component={() => {}} />
-                <FilterPopUpMenu label="write a review" Component={() => {}} />
+                <ProductPopUpMenu
+                  Label="see reviews"
+                  Component={ReviewList}
+                  ComponentProps={{ reviews: product.reviews }}
+                />
               </div>
               <div className="flex justify-center items-center col-span-1 col-start-1 xl:row-start-4 xl:row-span-1">
                 <button

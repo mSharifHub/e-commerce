@@ -1,3 +1,0 @@
-function reviewList() {
-  return null;
-}
