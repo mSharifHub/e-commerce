@@ -15,11 +15,11 @@ export default function ProductModal({ product, setOnClose }) {
       {/* model frame */}
       <div className="fixed inset-0  flex justify-center items-center bg-black bg-opacity-50 z-50 ">
         {/* inner content frame */}
-        <div className=" relative w-[95%] h-[95%] grid  grid-cols-1   xl:grid-cols-[1fr_0.5fr] bg-white rounded-xl ">
+        <div className=" relative w-[95%] h-[95%] grid grid-cols-1 overflow-y-auto  scroll-smooth  xl:grid-cols-[1fr_0.5fr] bg-white rounded-xl ">
           {/* column left */}
           <div className=" relative flex flex-col flex-1  col-start-1 col-p-1 justify-center items-center">
             {/* product frame */}
-            <div className=" w-[400px] h-[400px] sm:w-[600px] sm:h-[600px]  bg-white grid grid-cols-1 rounded-lg shadow-lg transition-all duration-100 ease-out">
+            <div className=" w-[400px] h-[400px] mt-4 sm:w-[600px] sm:h-[600px]  bg-white grid grid-cols-1 rounded-lg shadow-lg transition-all duration-100 ease-out">
               <div className=" flex justify-center items-center ">image</div>
             </div>
             {/* end product frame */}
@@ -27,7 +27,7 @@ export default function ProductModal({ product, setOnClose }) {
           {/* end column left */}
 
           {/* column right */}
-          <div className="col-start-1 xl:col-start-2 col-p-1 overflow-y-auto scroll-smooth  max-h-[90%] w-full">
+          <div className="col-start-1  xl:col-start-2 col-span-1 xl:overflow-y-auto xl:scroll-smooth  max-h-[90%] w-full">
             {/* inner content */}
             <div className="h-full grid grid-cols-1 xl:grid-rows-[1fr_0.5fr_1fr_0.25fr]">
               {/* Product details */}
@@ -70,7 +70,7 @@ export default function ProductModal({ product, setOnClose }) {
 
                 {/* shopping cart and favorites  end */}
               </div>
-              <div className="w-full flex flex-col justify-center  col-span-1 col-start-1  xl:row-start-3 xl:row-span-1">
+              <div className="w-full  mb-4 flex flex-col justify-center  col-span-1 col-start-1  xl:row-start-3 xl:row-span-1">
                 <ProductPopUpMenu
                   label="see reviews"
                   Component={ReviewList}
@@ -84,10 +84,10 @@ export default function ProductModal({ product, setOnClose }) {
                   componentProps={{ addReview }}
                 />
               </div>
-              <div className="flex justify-center items-center col-span-1 col-start-1 xl:row-start-4 xl:row-span-1">
+              <div className="flex justify-center items-center  col-span-1 col-start-1 xl:row-start-4 xl:row-span-1">
                 <button
                   type="button"
-                  className=" w-[8rem] h-[4rem] border-2 rounded-xl text-lg font-thin  capitalize transition-all duration-100 hover:scale-105"
+                  className="  w-[8rem] h-[3rem]  border-2 rounded-xl text-lg font-thin  capitalize transition-all duration-100 hover:scale-105"
                   onClick={setOnClose}
                 >
                   return
