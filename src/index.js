@@ -6,17 +6,20 @@ import "./index.css";
 import { ThemeProvider } from "./providers/themeProvider";
 import { CartProvider } from "./providers/CartProvider";
 import { FilterProvider } from "./providers/FilterProvider";
+import { UserProvider } from "./providers/UserProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <StrictMode>
     <ThemeProvider>
-      <CartProvider>
-        <FilterProvider>
-          <App />
-        </FilterProvider>
-      </CartProvider>
+      <UserProvider>
+        <CartProvider>
+          <FilterProvider>
+            <App />
+          </FilterProvider>
+        </CartProvider>
+      </UserProvider>
     </ThemeProvider>
   </StrictMode>,
 );

@@ -1,14 +1,21 @@
-import React, { useState } from "react";
 import ReviewList from "./components/ReviewList";
 import ProductPopUpMenu from "./components/ProductPopUpMenu";
 import WriteReview from "./components/WriteReview";
+import { useUser } from "../../providers/contexts/userContext";
 
 export default function ProductModal({ product, setOnClose }) {
-  const [reviews, setReviews] = useState(product.reviews || []);
+  const { state, dispatch } = useUser();
 
   const addReview = (newReview) => {
-    setReviews((prevReviews) => [...prevReviews, newReview]);
+    dispatch({
+      type: "ADD_REVIEW",
+      payload: newReview,
+    });
   };
+
+  const productReviews = state.reviews.filter(
+    (review) => review.productId === product.id,
+  );
 
   return (
     <>
@@ -74,14 +81,14 @@ export default function ProductModal({ product, setOnClose }) {
                 <ProductPopUpMenu
                   label="see reviews"
                   Component={ReviewList}
-                  componentProps={{ reviews }}
-                  count={reviews.length}
+                  componentProps={{ reviews: productReviews }}
+                  count={productReviews.length}
                 />
 
                 <ProductPopUpMenu
                   label="write a review"
                   Component={WriteReview}
-                  componentProps={{ addReview }}
+                  componentProps={{ addReview, productId: product.id }}
                 />
               </div>
               <div className="flex justify-center items-center  col-span-1 col-start-1 xl:row-start-4 xl:row-span-1">

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
-export default function WriteReview({ addReview }) {
+export default function WriteReview({ addReview, productId }) {
   const [reviewer, setReviewer] = useState("");
   const [comment, setComment] = useState("");
   const [productRating, setProductRating] = useState(0);
@@ -11,10 +11,14 @@ export default function WriteReview({ addReview }) {
   const handleOnSubmit = (e) => {
     e.preventDefault();
 
+    const reviewerName = reviewer.trim() !== "" ? reviewer : "Anonymous";
+
     const newReview = {
-      reviewer,
+      reviewer: reviewerName,
       comment,
+      rating: productRating,
       date: new Date().toISOString().split("T")[0],
+      productId,
     };
 
     addReview(newReview);
