@@ -4,8 +4,13 @@ import { useState } from "react";
 import AngleUp from "../../filter/icons/AngleUp";
 import AngleDown from "../../filter/icons/AngleDown";
 
-export default function ProductPopUpMenu({ Label, Component, ComponentProps }) {
-  const [isVisible, setIsVisible] = useState(true);
+export default function ProductPopUpMenu({
+  label,
+  Component,
+  componentProps,
+  count,
+}) {
+  const [isVisible, setIsVisible] = useState(false);
 
   const toogle = () => {
     setIsVisible((prev) => !prev);
@@ -20,7 +25,8 @@ export default function ProductPopUpMenu({ Label, Component, ComponentProps }) {
       >
         <div className=" flex justify-between items-center w-full">
           <div className="flex justify-between  w-full  text-lg capitalize hover:text-slate-500">
-            <span>{Label} </span>
+            <span>{label} </span>
+            <span>{count}</span>
           </div>
           <div className="justify-items-center mx-2 px-2 hover:text-slate-500  trasition-all ease-out duration-300">
             {!isVisible ? <AngleDown /> : <AngleUp />}
@@ -33,7 +39,7 @@ export default function ProductPopUpMenu({ Label, Component, ComponentProps }) {
           isVisible ? "mt-0  " : "-mt-5 "
         }overflow-hidden`}
       >
-        {isVisible && <Component {...ComponentProps} />}
+        {isVisible && <Component {...componentProps} />}
       </div>
     </>
   );

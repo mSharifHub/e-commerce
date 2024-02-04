@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import ReviewList from "./components/ReviewList";
 import ProductPopUpMenu from "./components/ProductPopUpMenu";
+import WriteReview from "./components/WriteReview";
 
 export default function ProductModal({ product, setOnClose }) {
+  const [reviews, setReviews] = useState(product.reviews || []);
+
+  const addReview = (newReview) => {
+    setReviews((prevReviews) => [...prevReviews, newReview]);
+  };
+
   return (
     <>
       {/* model frame */}
@@ -65,9 +72,16 @@ export default function ProductModal({ product, setOnClose }) {
               </div>
               <div className="w-full flex flex-col justify-center  col-span-1 col-start-1  xl:row-start-3 xl:row-span-1">
                 <ProductPopUpMenu
-                  Label="see reviews"
+                  label="see reviews"
                   Component={ReviewList}
-                  ComponentProps={{ reviews: product.reviews }}
+                  componentProps={{ reviews }}
+                  count={reviews.length}
+                />
+
+                <ProductPopUpMenu
+                  label="write a review"
+                  Component={WriteReview}
+                  componentProps={{ addReview }}
                 />
               </div>
               <div className="flex justify-center items-center col-span-1 col-start-1 xl:row-start-4 xl:row-span-1">
