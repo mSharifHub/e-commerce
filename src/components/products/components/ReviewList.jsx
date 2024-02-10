@@ -1,5 +1,5 @@
-import timeAgo from "../../../helpers/product_helpers/dataHelpers";
 import RenderRating from "./RenderRating";
+import timeSince from "../../../helpers/product_helpers/dataHelpers";
 
 export default function ReviewList({ reviews }) {
   return (
@@ -11,7 +11,7 @@ export default function ReviewList({ reviews }) {
               <div className="flex justify-start items-center space-x-4">
                 <span>{RenderRating(rating)}</span>
                 <span className="italic text-neutral-500">
-                  {timeAgo(new Date(date))}
+                  {timeSince(date)}
                 </span>
               </div>
               <div className="flex justify-start items-center">

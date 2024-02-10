@@ -39,7 +39,9 @@ export default function ProductPopUpMenu({
           isVisible ? "mt-0  " : "-mt-5 "
         }overflow-hidden`}
       >
-        {isVisible && <Component {...componentProps} />}
+        {isVisible && (
+          <Component {...componentProps} setIsVisible={setIsVisible} />
+        )}
       </div>
     </>
   );

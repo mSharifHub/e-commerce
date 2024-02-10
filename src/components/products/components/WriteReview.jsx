@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
-export default function WriteReview({ addReview, productId }) {
+export default function WriteReview({ addReview, productId, setIsVisible }) {
   const [reviewer, setReviewer] = useState("");
   const [comment, setComment] = useState("");
   const [productRating, setProductRating] = useState(0);
@@ -12,20 +12,25 @@ export default function WriteReview({ addReview, productId }) {
     e.preventDefault();
 
     const reviewerName = reviewer.trim() !== "" ? reviewer : "Anonymous";
+    const commentContent =
+      comment.trim() !== "" ? comment : "No comment provided";
 
-    const newReview = {
-      reviewer: reviewerName,
-      comment,
-      rating: productRating,
-      date: new Date().toISOString().split("T")[0],
-      productId,
-    };
+    if (productRating > 0) {
+      const date = new Date();
+      const newReview = {
+        reviewer: reviewerName,
+        comment: commentContent,
+        rating: productRating,
+        date: date.toISOString(),
+        productId,
+      };
 
-    addReview(newReview);
-
-    setReviewer("");
-    setComment("");
-    setProductRating(0);
+      addReview(newReview);
+      setReviewer("");
+      setComment("");
+      setProductRating(0);
+      setIsVisible(false);
+    }
   };
 
   return (
@@ -38,7 +43,11 @@ export default function WriteReview({ addReview, productId }) {
           <div>
             {[...Array(5)].map((_, index) => {
               const value = index + 1;
+
               const id = `star-value-${value}`;
+
+              const isRatingRequired = index === 0;
+
               return (
                 <label htmlFor={id} key={value}>
                   <input
@@ -48,6 +57,7 @@ export default function WriteReview({ addReview, productId }) {
                     value={value}
                     checked={productRating === value}
                     onChange={() => setProductRating(value)}
+                    required={isRatingRequired}
                   />
 
                   <FontAwesomeIcon
@@ -74,7 +84,7 @@ export default function WriteReview({ addReview, productId }) {
           <textarea
             value={comment}
             onChange={(e) => setComment(e.target.value)}
-            required
+            required={!(comment.length > 0)}
             className=" flex justify-start h-12  rounded-lg outline-none ring-0 ring-transparent resize-none focus:outline-none focus:ring-0 text-lg"
             placeholder="Type your review"
             maxLength={200}

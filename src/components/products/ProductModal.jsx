@@ -88,7 +88,10 @@ export default function ProductModal({ product, setOnClose }) {
                 <ProductPopUpMenu
                   label="write a review"
                   Component={WriteReview}
-                  componentProps={{ addReview, productId: product.id }}
+                  componentProps={{
+                    addReview,
+                    productId: product.id,
+                  }}
                 />
               </div>
               <div className="flex justify-center items-center  col-span-1 col-start-1 xl:row-start-4 xl:row-span-1">

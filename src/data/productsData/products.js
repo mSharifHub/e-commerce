@@ -23,7 +23,7 @@ export const products = [
         reviewer: "JohnDoe123",
         comment: "Amazing grip and comfort! Played my best game in these.",
         rating: 5,
-        date: "2024-01-01",
+        date: "2024-02-10",
       },
       {
         reviewer: "BasketballFanatic",
