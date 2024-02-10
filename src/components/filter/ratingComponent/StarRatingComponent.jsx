@@ -30,7 +30,7 @@ export default function StarRatingComponent() {
             <FontAwesomeIcon
               icon={faStar}
               size="xl"
-              color={`${currentIndex <= state.rating ? "#ffa500" : "#b4b4b4"}`}
+              color={`${currentIndex <= state.rating ? "#444444" : "#D9D9D9"}`}
               className="cursor-pointer  p-2 mr-2"
             />
           </label>
