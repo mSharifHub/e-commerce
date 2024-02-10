@@ -84,7 +84,6 @@ export default function WriteReview({ addReview, productId, setIsVisible }) {
           <textarea
             value={comment}
             onChange={(e) => setComment(e.target.value)}
-            required={!(comment.length > 0)}
             className=" flex justify-start h-12  rounded-lg outline-none ring-0 ring-transparent resize-none focus:outline-none focus:ring-0 text-lg"
             placeholder="Type your review"
             maxLength={200}
