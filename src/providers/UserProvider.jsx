@@ -7,6 +7,8 @@ import { extractReviews } from "../helpers/product_helpers/extractReviews";
 export function UserProvider({ children }) {
   const initialState = {
     reviews: extractReviews(products),
+    shoppingCart: [],
+    balance: 0,
   };
 
   const [state, dispatch] = useReducer(userReducer, initialState);

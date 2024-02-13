@@ -1,5 +1,4 @@
 /* eslint-disable no-case-declarations */
-import { products } from "../../data/productsData/products";
 
 import { min, max } from "../../helpers/filter_helpers/filterHelpers";
 

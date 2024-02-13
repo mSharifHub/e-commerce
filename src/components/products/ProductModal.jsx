@@ -1,16 +1,53 @@
+import React, { useState } from "react";
 import ReviewList from "./components/ReviewList";
 import ProductPopUpMenu from "./components/ProductPopUpMenu";
 import WriteReview from "./components/WriteReview";
 import { useUser } from "../../providers/contexts/userContext";
+import { reusePort } from "../../helpers/modal_helpers/reusePort";
+import Message from "./components/Message";
 
 export default function ProductModal({ product, setOnClose }) {
   const { state, dispatch } = useUser();
+  const [itemAdded, setItemAdded] = useState(false);
+
+  const onAddItem = () => {
+    setItemAdded(true);
+
+    setTimeout(() => {
+      setItemAdded(false);
+      setOnClose(false);
+    }, 1000);
+  };
 
   const addReview = (newReview) => {
     dispatch({
       type: "ADD_REVIEW",
       payload: newReview,
     });
+  };
+
+  const selectItem = (productItem) => {
+    const price = productItem.price.slice(1);
+    const parsedPrice = parseFloat(price);
+
+    const productToAdd = {
+      id: productItem.id,
+      name: productItem.name,
+      price: productItem.price,
+      image: productItem.image,
+    };
+
+    dispatch({
+      type: "ADD_ITEM",
+      payload: productToAdd,
+    });
+
+    dispatch({
+      type: "UPDATE_BALANCE",
+      payload: parsedPrice,
+    });
+
+    onAddItem();
   };
 
   const productReviews = state.reviews.filter(
@@ -63,7 +100,14 @@ export default function ProductModal({ product, setOnClose }) {
                 <button
                   type="button"
                   className=" w-[20rem] h-[4rem] bg-black text-white rounded-xl text-lg font-thin  capitalize transition-all duration-100 hover:scale-105"
-                  onClick={setOnClose}
+                  onClick={() =>
+                    selectItem({
+                      id: product.id,
+                      name: product.name,
+                      price: product.price,
+                      image: product.image,
+                    })
+                  }
                 >
                   Add To cart
                 </button>
@@ -111,6 +155,8 @@ export default function ProductModal({ product, setOnClose }) {
         {/* inner content frame */}
       </div>
       {/* end model frame */}
+
+      {itemAdded && reusePort(<Message />)}
     </>
   );
 }
