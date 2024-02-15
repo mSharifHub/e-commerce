@@ -9,13 +9,16 @@ import Message from "./components/Message";
 export default function ProductModal({ product, setOnClose }) {
   const { state, dispatch } = useUser();
   const [itemAdded, setItemAdded] = useState(false);
+  const [lastAction, setLastAction] = useState(null);
 
-  const onAddItem = () => {
+  const onAddItem = (actionType) => {
     setItemAdded(true);
+    setLastAction(actionType);
 
     setTimeout(() => {
       setItemAdded(false);
       setOnClose(false);
+      setLastAction(null);
     }, 1000);
   };
 
@@ -47,7 +50,15 @@ export default function ProductModal({ product, setOnClose }) {
       payload: parsedPrice,
     });
 
-    onAddItem();
+    onAddItem("cart");
+  };
+
+  const addToFavorites = (item) => {
+    dispatch({
+      type: "ADD_FAVORITES",
+      payload: item,
+    });
+    onAddItem("favorites");
   };
 
   const productReviews = state.reviews.filter(
@@ -114,7 +125,7 @@ export default function ProductModal({ product, setOnClose }) {
                 <button
                   type="button"
                   className=" w-[20rem] h-[4rem] border-2 rounded-xl text-lg font-thin  capitalize transition-all duration-100 hover:scale-105"
-                  onClick={setOnClose}
+                  onClick={() => addToFavorites(product)}
                 >
                   Add To Favorites
                 </button>
@@ -156,7 +167,7 @@ export default function ProductModal({ product, setOnClose }) {
       </div>
       {/* end model frame */}
 
-      {itemAdded && reusePort(<Message />)}
+      {itemAdded && reusePort(<Message actionType={lastAction} />)}
     </>
   );
 }

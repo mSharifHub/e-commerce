@@ -8,6 +8,7 @@ export function UserProvider({ children }) {
   const initialState = {
     reviews: extractReviews(products),
     shoppingCart: [],
+    favorites: [],
     balance: 0,
   };
 
