@@ -1,8 +1,4 @@
 export const userReducer = (state, action) => {
-  const isItemSelected = state.shoppingCart.some(
-    (cartItem) => cartItem.id === action.payload.id,
-  );
-
   const isItemFavorite = state.favorites.some(
     (favoriteItem) => favoriteItem.id === action.payload.id,
   );
@@ -17,9 +13,7 @@ export const userReducer = (state, action) => {
     case "ADD_ITEM":
       return {
         ...state,
-        shoppingCart: isItemSelected
-          ? state.shoppingCart.filter((item) => item !== action.payload)
-          : [...state.shoppingCart, action.payload],
+        shoppingCart: [...state.shoppingCart, action.payload],
       };
 
     case "ADD_FAVORITES":
