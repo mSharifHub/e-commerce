@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReviewList from "./components/ReviewList";
 import ProductPopUpMenu from "./components/ProductPopUpMenu";
 import WriteReview from "./components/WriteReview";
@@ -10,16 +10,11 @@ export default function ProductModal({ product, setOnClose }) {
   const { state, dispatch } = useUser();
   const [itemAdded, setItemAdded] = useState(false);
   const [lastAction, setLastAction] = useState(null);
+  const [messageClass, setMessageClass] = useState("");
 
   const onAddItem = (actionType) => {
     setItemAdded(true);
     setLastAction(actionType);
-
-    setTimeout(() => {
-      setItemAdded(false);
-      setOnClose(false);
-      setLastAction(null);
-    }, 1000);
   };
 
   const addReview = (newReview) => {
@@ -64,6 +59,27 @@ export default function ProductModal({ product, setOnClose }) {
   const productReviews = state.reviews.filter(
     (review) => review.productId === product.id,
   );
+
+  useEffect(() => {
+    let fadeOutTimer;
+    if (itemAdded) {
+      setMessageClass("messageFade-in");
+      const timer = setTimeout(() => {
+        // time spam of message display
+        setMessageClass("messageFade-out");
+        fadeOutTimer = setTimeout(() => {
+          // reset item added so user can add again
+          setItemAdded(false);
+          // reset item action
+          setLastAction(null);
+        }, 2000);
+      }, 2000);
+      return () => {
+        clearTimeout(timer);
+        clearTimeout(fadeOutTimer);
+      };
+    }
+  }, [itemAdded]);
 
   return (
     <>
@@ -167,7 +183,14 @@ export default function ProductModal({ product, setOnClose }) {
       </div>
       {/* end model frame */}
 
-      {itemAdded && reusePort(<Message actionType={lastAction} />)}
+      {itemAdded &&
+        reusePort(
+          <Message
+            actionType={lastAction}
+            product={product}
+            messageClass={messageClass}
+          />,
+        )}
     </>
   );
 }
