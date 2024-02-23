@@ -78,10 +78,9 @@ export default function ProductModal({ product, setOnClose }) {
         // time spam of message display
         setMessageClass("messageFade-out");
         fadeOutTimer = setTimeout(() => {
-          // reset item added so user can add again
           setItemAdded(false);
-          // reset item action
           setLastAction(null);
+          setLastItemAdded(null);
         }, 3000);
       }, 3000);
       return () => {
@@ -141,7 +140,7 @@ export default function ProductModal({ product, setOnClose }) {
                       : " text-md capitalize  text-neutral-900 font-semibold"
                   }`}
                 >
-                  select a size to proceed
+                  select a size to checkout
                 </span>
 
                 <ProductSizes
@@ -216,11 +215,10 @@ export default function ProductModal({ product, setOnClose }) {
       {/* end model frame */}
 
       {itemAdded &&
-        lastItemAdded &&
         reusePort(
           <Message
             actionType={lastAction}
-            product={lastItemAdded}
+            product={lastItemAdded !== null ? lastItemAdded : product}
             messageClass={messageClass}
           />,
         )}

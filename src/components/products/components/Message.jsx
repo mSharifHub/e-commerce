@@ -40,9 +40,12 @@ export default function Message({ actionType, product, messageClass }) {
                 <span className="flex whitespace-normal text-sm text-neutral-600 font-semibold">
                   {product.category} section
                 </span>
-                <span className="flex whitespace-normal capitalize text-sm text-neutral-600 font-semibold">
-                  size {product.size}
-                </span>
+                {product.size !== null ? (
+                  <span className="flex whitespace-normal capitalize text-sm text-neutral-600 font-semibold">
+                    {`size ${product.size}`}
+                  </span>
+                ) : null}
+
                 <span className="flex whitespace-normal capitalize text-sm text-neutral-600 font-semibold">
                   {product.price}
                 </span>
