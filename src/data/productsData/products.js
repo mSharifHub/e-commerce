@@ -105,7 +105,7 @@ export const products = [
     color: "deep navy",
     sizes: [
       2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 10, 10.5, 11,
-      11.5, 12, 12.5, 13, 13.5,
+      11.5, 12, 13.5,
     ],
     image: "",
     inStock: 4,
@@ -128,8 +128,8 @@ export const products = [
     price: "$130.00",
     color: "neon yellow",
     sizes: [
-      2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 10, 10.5, 11,
-      11.5, 12, 12.5, 13, 13.5,
+      2, 2.5, 3, 3.5, 4, 4.5, 5, 7, 7.5, 8, 8.5, 9, 10, 10.5, 11, 11.5, 12,
+      12.5, 13, 13.5,
     ],
     image: "",
     inStock: 8,
@@ -152,8 +152,8 @@ export const products = [
     price: "$45.00",
     color: "laser lime",
     sizes: [
-      2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 10, 10.5, 11,
-      11.5, 12, 12.5, 13, 13.5,
+      2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 11, 11.5, 12,
+      12.5, 13, 13.5,
     ],
     image: "",
     inStock: 10,
@@ -177,8 +177,8 @@ export const products = [
     price: "$50.00",
     color: "sandy beige",
     sizes: [
-      2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 10, 10.5, 11,
-      11.5, 12, 12.5, 13, 13.5,
+      2, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 10, 10.5, 11, 11.5, 12,
+      12.5, 13, 13.5,
     ],
     image: "",
     inStock: 7,
@@ -212,8 +212,8 @@ export const products = [
     price: "$140.00",
     color: "blazing red",
     sizes: [
-      2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 10, 10.5, 11,
-      11.5, 12, 12.5, 13, 13.5,
+      2, 2.5, 3, 3.5, 4, 4.5, 7, 7.5, 8, 8.5, 9, 10, 10.5, 11, 11.5, 12, 12.5,
+      13, 13.5,
     ],
     image: "",
     inStock: 4,
@@ -249,7 +249,7 @@ export const products = [
     color: "metallic silver",
     sizes: [
       2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 10, 10.5, 11,
-      11.5, 12, 12.5, 13, 13.5,
+      11.5, 13, 13.5,
     ],
 
     image: "",
@@ -284,10 +284,7 @@ export const products = [
       "Keep your feet warm and dry with these insulated snow boots, perfect for chilly winter days.",
     price: "$100.00",
     color: "icy white",
-    sizes: [
-      2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 10, 10.5, 11,
-      11.5, 12, 12.5, 13, 13.5, 14,
-    ],
+    sizes: [2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8],
 
     image: "",
     inStock: 6,
@@ -321,8 +318,8 @@ export const products = [
     price: "$40.00",
     color: "aqua blue",
     sizes: [
-      2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 10, 10.5, 11,
-      11.5, 12, 12.5, 13, 13.5,
+      2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 10, 10.5, 11, 11.5, 12, 12.5,
+      13, 13.5,
     ],
 
     image: "",
@@ -358,8 +355,7 @@ export const products = [
     price: "$90.00",
     color: "flame red",
     sizes: [
-      2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 10, 10.5, 11,
-      11.5, 12, 12.5, 13, 13.5,
+      3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 9, 10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5,
     ],
     image: "",
     inStock: 8,
@@ -393,8 +389,8 @@ export const products = [
     price: "$95.00",
     color: "sky blue",
     sizes: [
-      2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 10, 10.5, 11,
-      11.5, 12, 12.5, 13, 13.5,
+      2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 10.5, 11, 11.5, 12, 12.5,
+      13, 13.5,
     ],
     image: "",
     inStock: 7,
@@ -428,8 +424,8 @@ export const products = [
     price: "$80.00",
     color: "vibrant violet",
     sizes: [
-      2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 10, 10.5, 11,
-      11.5, 12, 12.5, 13, 13.5, 14,
+      2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 7.5, 8, 8.5, 9, 10, 10.5, 11, 11.5, 12,
+      12.5, 13,
     ],
     image: "",
     inStock: 9,
@@ -464,8 +460,8 @@ export const products = [
     price: "$120.00",
     color: "granite gray",
     sizes: [
-      2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 10, 10.5, 11,
-      11.5, 12, 12.5, 13, 13.5,
+      2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 10, 10.5, 11, 11.5, 12,
+      12.5, 13, 13.5,
     ],
     image: "",
     inStock: 5,
@@ -498,10 +494,7 @@ export const products = [
       "Optimized for track and field athletes, these spikes offer unmatched grip and lightweight performance.",
     price: "$110.00",
     color: "neon yellow",
-    sizes: [
-      2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 10, 10.5, 11,
-      11.5, 12, 12.5, 13, 13.5,
-    ],
+    sizes: [7, 7.5, 8, 8.5, 9, 10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5],
 
     image: "",
     inStock: 8,
@@ -536,10 +529,7 @@ export const products = [
       "Eco-friendly sneakers made from recycled materials, combining style and sustainability.",
     price: "$70.00",
     color: "moss green",
-    sizes: [
-      2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 10, 10.5, 11,
-      11.5, 12, 12.5, 13, 13.5, 14,
-    ],
+    sizes: [10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5, 14],
     image: "",
     inStock: 12,
     newArrival: false,
@@ -573,10 +563,7 @@ export const products = [
       "Elegant high heels perfect for gala events and formal gatherings, offering both style and comfort.",
     price: "$95.00",
     color: "coral pink",
-    sizes: [
-      2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 10, 10.5, 11,
-      11.5, 12, 12.5, 13, 13.5,
-    ],
+    sizes: [5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 10, 10.5, 11, 11.5],
     image: "",
     inStock: 6,
     newArrival: false,
@@ -609,10 +596,7 @@ export const products = [
       "Ultra-comfortable slippers perfect for lounging at home, with soft cushioning and a cozy fit.",
     price: "$35.00",
     color: "sunrise pink",
-    sizes: [
-      2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 10, 10.5, 11,
-      11.5, 12, 12.5, 13, 13.5, 14,
-    ],
+    sizes: [8, 8.5, 9, 10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5, 14],
     image: "",
     inStock: 15,
     newArrival: false,

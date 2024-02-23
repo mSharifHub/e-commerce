@@ -5,12 +5,19 @@ import WriteReview from "./components/WriteReview";
 import { useUser } from "../../providers/contexts/userContext";
 import { reusePort } from "../../helpers/modal_helpers/reusePort";
 import Message from "./components/Message";
+import ProductSizes from "./components/ProductSizes";
 
 export default function ProductModal({ product, setOnClose }) {
   const { state, dispatch } = useUser();
   const [itemAdded, setItemAdded] = useState(false);
   const [lastAction, setLastAction] = useState(null);
   const [messageClass, setMessageClass] = useState("");
+  const [selectedSize, setSelectedSize] = useState(null);
+  const [lastItemAdded, setLastItemAdded] = useState(null);
+
+  const handleSizeSelect = (size) => {
+    setSelectedSize((prevSize) => (prevSize === size ? null : size));
+  };
 
   const onAddItem = (actionType) => {
     setItemAdded(true);
@@ -28,16 +35,19 @@ export default function ProductModal({ product, setOnClose }) {
     const price = productItem.price.slice(1);
     const parsedPrice = parseFloat(price);
 
-    const productToAdd = {
+    const itemToAdd = {
       id: productItem.id,
       name: productItem.name,
       price: productItem.price,
       image: productItem.image,
+      size: selectedSize,
     };
+
+    setLastItemAdded(itemToAdd);
 
     dispatch({
       type: "ADD_ITEM",
-      payload: productToAdd,
+      payload: itemToAdd,
     });
 
     dispatch({
@@ -124,10 +134,29 @@ export default function ProductModal({ product, setOnClose }) {
 
               {/* shopping cart and favorites */}
               <div className=" flex flex-col mt-8 justify-center items-center col-span-1 col-start-1   xl:row-start-2  xl:row-span-1 space-y-10">
-                <div>place holder for product sizes</div>
+                <span
+                  className={`${
+                    selectedSize
+                      ? "opacity-0 "
+                      : " text-md capitalize  text-neutral-900 font-semibold"
+                  }`}
+                >
+                  select a size to proceed
+                </span>
+
+                <ProductSizes
+                  sizes={product.sizes}
+                  onSizeSelect={handleSizeSelect}
+                  selectedSize={selectedSize}
+                />
+
                 <button
                   type="button"
-                  className=" w-[20rem] h-[4rem] bg-black text-white rounded-xl text-lg font-thin  capitalize transition-all duration-100 hover:scale-105"
+                  className={` w-[20rem] h-[4rem] bg-black text-white rounded-xl text-lg font-thin  capitalize ${
+                    selectedSize === null
+                      ? "opacity-10"
+                      : " transition-all duration-100 opacity-100 hover:scale-105"
+                  } `}
                   onClick={() =>
                     selectItem({
                       id: product.id,
@@ -136,12 +165,14 @@ export default function ProductModal({ product, setOnClose }) {
                       image: product.image,
                     })
                   }
+                  disabled={selectedSize === null}
                 >
                   Add To cart
                 </button>
                 <button
                   type="button"
-                  className=" w-[20rem] h-[4rem] border-2 rounded-xl text-lg font-thin  capitalize transition-all duration-100 hover:scale-105"
+                  className="w-[20rem] h-[4rem] border-2 rounded-xl text-lg font-thin  capitalize  
+                  transition-all duration-100 hover:scale-105"
                   onClick={() => addToFavorites(product)}
                 >
                   Add To Favorites
@@ -185,10 +216,11 @@ export default function ProductModal({ product, setOnClose }) {
       {/* end model frame */}
 
       {itemAdded &&
+        lastItemAdded &&
         reusePort(
           <Message
             actionType={lastAction}
-            product={product}
+            product={lastItemAdded}
             messageClass={messageClass}
           />,
         )}
