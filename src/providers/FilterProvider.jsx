@@ -6,6 +6,7 @@ import {
   min,
   max,
   instanceList,
+  allSizes,
 } from "../helpers/filter_helpers/filterHelpers";
 
 export function FilterProvider({ children }) {
@@ -15,7 +16,7 @@ export function FilterProvider({ children }) {
     availableColors: instanceList(products, "color"), // array to show all available colors
     selectedColors: [], // array to keep track of the selected colors
     selectedSizes: [], // array to keep track of list of sizes
-    availableSizes: instanceList(products, "size"),
+    availableSizes: allSizes(products),
     priceRange: { min, max }, // the value extracted to filter data based on the price query
     listCategories: instanceList(products, "category"), // used to display number of items per category
     inStock: false, // to filter if product is in stock

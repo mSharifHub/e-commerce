@@ -72,8 +72,8 @@ export default function ProductModal({ product, setOnClose }) {
           setItemAdded(false);
           // reset item action
           setLastAction(null);
-        }, 2000);
-      }, 2000);
+        }, 3000);
+      }, 3000);
       return () => {
         clearTimeout(timer);
         clearTimeout(fadeOutTimer);
@@ -124,6 +124,7 @@ export default function ProductModal({ product, setOnClose }) {
 
               {/* shopping cart and favorites */}
               <div className=" flex flex-col mt-8 justify-center items-center col-span-1 col-start-1   xl:row-start-2  xl:row-span-1 space-y-10">
+                <div>place holder for product sizes</div>
                 <button
                   type="button"
                   className=" w-[20rem] h-[4rem] bg-black text-white rounded-xl text-lg font-thin  capitalize transition-all duration-100 hover:scale-105"

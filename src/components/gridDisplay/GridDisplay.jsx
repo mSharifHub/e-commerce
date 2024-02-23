@@ -44,7 +44,7 @@ export function GridDisplay() {
     // Filter by selected sizes
     if (selectedSizes.length > 0) {
       updatedProducts = updatedProducts.filter((product) =>
-        selectedSizes.includes(product.size),
+        product.sizes.some((size) => selectedSizes.includes(size)),
       );
     }
 

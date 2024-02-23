@@ -27,6 +27,11 @@ export const instanceList = (products, instance) => {
   return Array.from(new Set(products.map((product) => product[instance])));
 };
 
+export const allSizes = (products) => {
+  const allsizes = products.flatMap((product) => product.sizes);
+  return Array.from(new Set(allsizes));
+};
+
 export const renderCategoryFilter = (category, onCategoryChange, isChecked) => (
   <label
     key={category}

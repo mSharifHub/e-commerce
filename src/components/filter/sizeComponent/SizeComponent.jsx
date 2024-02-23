@@ -9,6 +9,7 @@ export default function SizeComponent() {
 
   // sort sizes by ascending order
   const sorted = availableSizes.sort((a, b) => a - b);
+
   /*
   will map the available sizes and use the size box component to display each size number
   if the last element surpass 4 elements will take the full space
