@@ -40,7 +40,7 @@ export default function Message({ actionType, product, messageClass }) {
                 <span className="flex whitespace-normal text-sm text-neutral-600 font-semibold">
                   {product.category} section
                 </span>
-                {product.size !== null ? (
+                {product.size !== null && product.size !== undefined ? (
                   <span className="flex whitespace-normal capitalize text-sm text-neutral-600 font-semibold">
                     {`size ${product.size}`}
                   </span>
