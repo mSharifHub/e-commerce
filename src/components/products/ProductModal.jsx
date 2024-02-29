@@ -14,6 +14,9 @@ export default function ProductModal({ product, setOnClose }) {
   const [messageClass, setMessageClass] = useState("");
   const [selectedSize, setSelectedSize] = useState(null);
   const [lastItemAdded, setLastItemAdded] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(
+    product.image[0] || "no image",
+  ); // put image as temp value
 
   const handleSizeSelect = (size) => {
     setSelectedSize((prevSize) => (prevSize === size ? null : size));
@@ -97,11 +100,25 @@ export default function ProductModal({ product, setOnClose }) {
         {/* inner content frame */}
         <div className=" relative w-[95%] h-[95%] grid grid-cols-1 overflow-y-auto  scroll-smooth  xl:grid-cols-[1fr_0.5fr] bg-white rounded-xl ">
           {/* column left */}
-          <div className=" relative flex flex-col flex-1  col-start-1 col-p-1 justify-center items-center">
+          <div className=" relative flex flex-1  col-start-1 col-span-1 justify-center items-start mt-20">
             {/* product frame */}
-            <div className=" w-[400px] h-[400px] mt-4 sm:w-[600px] sm:h-[600px]  bg-white grid grid-cols-1 rounded-lg shadow-lg transition-all duration-100 ease-out">
-              <div className=" flex justify-center items-center ">image</div>
+            <div className="grid grid-rows-5  h-[600px] w-40  mx-8 my-2 gap-4">
+              {product.image.map((img, index) => (
+                <div
+                  key={`${img}-${index + 1}`}
+                  className="flex justify-center items-center rounded-lg shadow-md cursor-pointer"
+                  onMouseEnter={() => setSelectedImage(img)}
+                >
+                  <img src={img} alt={img} />
+                </div>
+              ))}
             </div>
+            <div className=" w-[600px] h-[600px]  bg-white grid grid-cols-1 rounded-lg shadow-lg cursor-pointer">
+              <div className=" flex justify-center items-center ">
+                <img src={selectedImage} alt={selectedImage} />
+              </div>
+            </div>
+
             {/* end product frame */}
           </div>
           {/* end column left */}
