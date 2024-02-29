@@ -11,7 +11,7 @@ export default function Message({ actionType, product, messageClass }) {
     <>
       {/* outter container */}
       <div
-        className={`absolute  top-4  inset-x-1/2 -translate-x-1/2   h-[250px] w-[400px] flex justify-center items-center bg-white shadow-lg rounded-lg  z-50  ${messageClass}
+        className={`absolute  top-10  inset-x-1/2 -translate-x-1/2   h-[250px] w-[400px] flex justify-center items-center bg-white shadow-lg rounded-lg  z-50  ${messageClass}
         `}
       >
         {/* container holding content */}

@@ -3,7 +3,7 @@ export default function ToogleButtonComponent({ inStock }) {
     <div className=" relative flex justify-center items-center cursor-pointer ">
       <div
         className={`w-[60px] h-[25px] ${
-          inStock ? "bg-green-300" : " bg-white"
+          inStock ? "bg-slate-900" : " bg-white"
         } transition duration-300 border-2 border-slate-200  mx-4 text-slate-400 shadow-md  rounded-full `}
       />
       <div

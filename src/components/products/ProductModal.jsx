@@ -98,7 +98,7 @@ export default function ProductModal({ product, setOnClose }) {
       {/* model frame */}
       <div className="fixed inset-0  flex justify-center items-center bg-black bg-opacity-50 z-50 ">
         {/* inner content frame */}
-        <div className=" relative w-[95%] h-[95%] grid grid-cols-1 overflow-y-auto  scroll-smooth  xl:grid-cols-[1fr_0.5fr] bg-white rounded-xl ">
+        <div className=" relative w-[98%] h-[98%] grid grid-cols-1 overflow-y-auto  scroll-smooth  xl:grid-cols-[1fr_0.5fr] bg-white rounded-xl ">
           {/* column left */}
           <div className=" relative flex flex-1  col-start-1 col-span-1 justify-center items-start mt-20">
             {/* product frame */}
@@ -106,14 +106,15 @@ export default function ProductModal({ product, setOnClose }) {
               {product.image.map((img, index) => (
                 <div
                   key={`${img}-${index + 1}`}
-                  className="flex justify-center items-center rounded-lg shadow-md cursor-pointer"
+                  className="relative  flex justify-center items-center rounded-lg shadow-sm cursor-pointer"
                   onMouseEnter={() => setSelectedImage(img)}
                 >
+                  <div className=" absolute inset-0 bg-black opacity-0 hover:opacity-20 rounded-lg transition-opacity duration 200" />
                   <img src={img} alt={img} />
                 </div>
               ))}
             </div>
-            <div className=" w-[600px] h-[600px]  bg-white grid grid-cols-1 rounded-lg shadow-lg cursor-pointer">
+            <div className=" w-[600px] h-[600px]  bg-white grid grid-cols-1 rounded-lg shadow-sm cursor-pointer">
               <div className=" flex justify-center items-center ">
                 <img src={selectedImage} alt={selectedImage} />
               </div>
@@ -228,17 +229,15 @@ export default function ProductModal({ product, setOnClose }) {
           {/* end column right */}
         </div>
         {/* inner content frame */}
-      </div>
-      {/* end model frame */}
-
-      {itemAdded &&
-        reusePort(
+        {itemAdded && (
           <Message
             actionType={lastAction}
             product={lastItemAdded !== null ? lastItemAdded : product}
             messageClass={messageClass}
-          />,
+          />
         )}
+      </div>
+      {/* end model frame */}
     </>
   );
 }
