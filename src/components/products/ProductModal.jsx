@@ -1,11 +1,14 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useEffect, useState } from "react";
 import ReviewList from "./components/ReviewList";
 import ProductPopUpMenu from "./components/ProductPopUpMenu";
 import WriteReview from "./components/WriteReview";
 import { useUser } from "../../providers/contexts/userContext";
-import { reusePort } from "../../helpers/modal_helpers/reusePort";
 import Message from "./components/Message";
 import ProductSizes from "./components/ProductSizes";
+import PaginationLeft from "./components/PaginationLeft";
+import PaginationRight from "./components/PaginationRight";
 
 export default function ProductModal({ product, setOnClose }) {
   const { state, dispatch } = useUser();
@@ -16,7 +19,30 @@ export default function ProductModal({ product, setOnClose }) {
   const [lastItemAdded, setLastItemAdded] = useState(null);
   const [selectedImage, setSelectedImage] = useState(
     product.image[0] || "no image",
-  ); // put image as temp value
+  );
+
+  const handleImagePagination = (direction) => {
+    const numberOfImages = product.image.length;
+    const { image } = product;
+    const currentIndex = image.indexOf(selectedImage);
+
+    let newIndex;
+
+    switch (direction) {
+      case "right":
+        newIndex = (currentIndex + 1) % numberOfImages;
+        break;
+
+      case "left":
+        newIndex = (currentIndex - 1 + numberOfImages) % numberOfImages;
+        break;
+
+      default:
+        return null;
+    }
+
+    setSelectedImage(image[newIndex]);
+  };
 
   const handleSizeSelect = (size) => {
     setSelectedSize((prevSize) => (prevSize === size ? null : size));
@@ -102,7 +128,7 @@ export default function ProductModal({ product, setOnClose }) {
           {/* column left */}
           <div className=" relative flex flex-1  col-start-1 col-span-1 justify-center items-start mt-20">
             {/* product frame */}
-            <div className="grid grid-rows-5  h-[600px] w-40  mx-8 my-2 gap-4">
+            <div className="grid grid-rows-5  h-[600px] w-[8rem]  mx-8 my-2 gap-4">
               {product.image.map((img, index) => (
                 <div
                   key={`${img}-${index + 1}`}
@@ -114,9 +140,22 @@ export default function ProductModal({ product, setOnClose }) {
                 </div>
               ))}
             </div>
-            <div className=" w-[600px] h-[600px]  bg-white grid grid-cols-1 rounded-lg shadow-sm cursor-pointer">
+            <div className=" relative w-[600px] h-[600px]  bg-white grid grid-cols-1 rounded-lg shadow-sm cursor-pointer">
               <div className=" flex justify-center items-center ">
                 <img src={selectedImage} alt={selectedImage} />
+              </div>
+
+              <div
+                onClick={() => handleImagePagination("left")}
+                className="absolute bottom-8 left-8 bg-slate-900  text-white rounded-full  flex items-center justify-center p-2 transition-transform duration-100 hover:scale-110 cursor-pointer"
+              >
+                <PaginationLeft />
+              </div>
+              <div
+                onClick={() => handleImagePagination("right")}
+                className="absolute bottom-8 right-8  bg-slate-900  text-white rounded-full  flex items-center justify-center p-2 transition-transform duration-100 hover:scale-110 cursor-pointer"
+              >
+                <PaginationRight />
               </div>
             </div>
 
