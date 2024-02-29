@@ -16,8 +16,6 @@
     -Husky
 
 # Code Formatting:
-
     Airbnb
 
-# Pre Hooks:
 
