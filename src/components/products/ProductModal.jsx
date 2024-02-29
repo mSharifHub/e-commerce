@@ -128,7 +128,7 @@ export default function ProductModal({ product, setOnClose }) {
           {/* column left */}
           <div className=" relative flex flex-1  col-start-1 col-span-1 justify-center items-start mt-20">
             {/* product frame */}
-            <div className="grid grid-rows-5  h-[600px] w-[8rem]  mx-8 my-2 gap-4">
+            <div className="hidden md:grid grid-rows-5  h-[600px] w-[8rem]  mx-8 my-2 gap-4">
               {product.image.map((img, index) => (
                 <div
                   key={`${img}-${index + 1}`}
@@ -140,7 +140,7 @@ export default function ProductModal({ product, setOnClose }) {
                 </div>
               ))}
             </div>
-            <div className=" relative w-[600px] h-[600px]  bg-white grid grid-cols-1 rounded-lg shadow-sm cursor-pointer">
+            <div className=" relative w-[400px] h-[400px] sm:w-[600px] sm:h-[600px]  bg-white grid grid-cols-1 rounded-lg shadow-sm cursor-pointer transition-all duration-175">
               <div className=" flex justify-center items-center ">
                 <img src={selectedImage} alt={selectedImage} />
               </div>
