@@ -115,6 +115,12 @@ export const filterReducer = (state, action) => {
         sortByDisplayName: null,
       };
 
+    case "ADD_REVIEW":
+      return {
+        ...state,
+        reviews: [...state.reviews, action.payload],
+      };
+
     default:
       return state;
   }

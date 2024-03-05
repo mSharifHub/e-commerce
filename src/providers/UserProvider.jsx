@@ -7,6 +7,7 @@ import { extractReviews } from "../helpers/product_helpers/extractReviews";
 export function UserProvider({ children }) {
   const initialState = {
     reviews: extractReviews(products),
+    userId: null,
     shoppingCart: [],
     favorites: [],
     balance: 0,

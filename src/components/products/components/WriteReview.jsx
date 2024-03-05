@@ -2,8 +2,10 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { useUser } from "../../../providers/contexts/userContext";
 
 export default function WriteReview({ addReview, productId, setIsVisible }) {
+  const { state } = useUser();
   const [reviewer, setReviewer] = useState("");
   const [comment, setComment] = useState("");
   const [productRating, setProductRating] = useState(0);
@@ -33,7 +35,19 @@ export default function WriteReview({ addReview, productId, setIsVisible }) {
     }
   };
 
-  return (
+  return !state.userId ? (
+    <div className="flex flex-col justify-center items-center">
+      <div className="flex justify-center items-center text-md font-semibold">
+        You must loggin or register
+      </div>
+      <button
+        type="button"
+        className=" flex justify-center mt-2   items-center w-[8rem] h-[3rem] border-2 rounded-full text-lg text-white bg-black font-thin  capitalize transition-all duration-100 hover:scale-105"
+      >
+        login
+      </button>
+    </div>
+  ) : (
     <div className="m-4">
       <form
         onSubmit={handleOnSubmit}

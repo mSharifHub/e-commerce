@@ -1,3 +1,4 @@
+/* eslint-disable react/self-closing-comp */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useEffect, useState } from "react";
@@ -132,7 +133,7 @@ export default function ProductModal({ product, setOnClose }) {
               {product.image.map((img, index) => (
                 <div
                   key={`${img}-${index + 1}`}
-                  className="relative  flex justify-center items-center rounded-lg shadow-sm cursor-pointer"
+                  className="relative  flex justify-center items-center rounded-md shadow-sm cursor-pointer"
                   onMouseEnter={() => setSelectedImage(img)}
                 >
                   <div className=" absolute inset-0 bg-black opacity-0 hover:opacity-20 rounded-lg transition-opacity duration 200" />
@@ -147,13 +148,13 @@ export default function ProductModal({ product, setOnClose }) {
 
               <div
                 onClick={() => handleImagePagination("left")}
-                className="absolute bottom-8 left-8 bg-slate-900  text-white rounded-full  flex items-center justify-center p-2 transition-transform duration-100 hover:scale-110 cursor-pointer"
+                className="absolute bottom-8 right-20 bg-neutral-100 text-black rounded-full  flex items-center justify-center p-2 transition-transform duration-100 hover:scale-110 cursor-pointer"
               >
                 <PaginationLeft />
               </div>
               <div
                 onClick={() => handleImagePagination("right")}
-                className="absolute bottom-8 right-8  bg-slate-900  text-white rounded-full  flex items-center justify-center p-2 transition-transform duration-100 hover:scale-110 cursor-pointer"
+                className="absolute bottom-8 right-8  bg-neutral-100  text-black rounded-full  flex items-center justify-center p-2 transition-transform duration-100 hover:scale-110 cursor-pointer"
               >
                 <PaginationRight />
               </div>
@@ -164,9 +165,9 @@ export default function ProductModal({ product, setOnClose }) {
           {/* end column left */}
 
           {/* column right */}
-          <div className="col-start-1  xl:col-start-2 col-span-1 xl:overflow-y-auto xl:scroll-smooth  max-h-[90%] w-full">
+          <div className=" relative col-start-1  xl:col-start-2 col-span-1 xl:overflow-y-auto xl:scroll-smooth  max-h-[90%] w-full mt-10 ">
             {/* inner content */}
-            <div className="h-full grid grid-cols-1 xl:grid-rows-[1fr_0.5fr_1fr_0.25fr]">
+            <div className=" h-full grid grid-cols-1 xl:grid-rows-[1fr_0.5fr_1fr_0.25fr]">
               {/* Product details */}
               <div className="h-full col-span-1 col-start-1 xl:row-start-1 xl:row-span-1 mt-4 mx-4 whitespace-normal">
                 <div className="flex flex-col justify-between ">
@@ -189,7 +190,7 @@ export default function ProductModal({ product, setOnClose }) {
               {/* End Product details  */}
 
               {/* shopping cart and favorites */}
-              <div className=" flex flex-col mt-8 justify-center items-center col-span-1 col-start-1   xl:row-start-2  xl:row-span-1 space-y-10">
+              <div className=" flex flex-col  justify-center items-center col-span-1 col-start-1   xl:row-start-2  xl:row-span-1 space-y-10">
                 <span
                   className={`${
                     selectedSize
@@ -208,7 +209,7 @@ export default function ProductModal({ product, setOnClose }) {
 
                 <button
                   type="button"
-                  className={` w-[20rem] h-[4rem] bg-black text-white rounded-xl text-lg font-thin  capitalize ${
+                  className={` w-[20rem] h-[4rem] bg-black text-white rounded-full text-lg font-thin  capitalize ${
                     selectedSize === null
                       ? "opacity-10"
                       : " transition-all duration-100 opacity-100 hover:scale-105"
@@ -227,7 +228,7 @@ export default function ProductModal({ product, setOnClose }) {
                 </button>
                 <button
                   type="button"
-                  className="w-[20rem] h-[4rem] border-2 rounded-xl text-lg font-thin  capitalize  
+                  className="w-[20rem] h-[4rem] border-2 rounded-full text-lg font-thin  capitalize  
                   transition-all duration-100 hover:scale-105"
                   onClick={() => addToFavorites(product)}
                 >
@@ -263,8 +264,10 @@ export default function ProductModal({ product, setOnClose }) {
                 </button>
               </div>
             </div>
+
             {/* inner content end */}
           </div>
+
           {/* end column right */}
         </div>
         {/* inner content frame */}
