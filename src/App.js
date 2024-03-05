@@ -6,11 +6,13 @@ import { SignIn } from "./components/pages/SignIn";
 import Help from "./components/pages/Help";
 import JoinUs from "./components/pages/JoinUs";
 import FindStore from "./components/pages/FindStore";
+import Header from "./components/header/Header";
 
 export function App() {
   return (
     <div className="h-screen w-screen">
       <Router>
+        <Header />
         <Nav />
         <Routes>
           <Route exact path="/" Component={Home} />

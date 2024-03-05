@@ -10,14 +10,14 @@ export function SearchBar() {
       <div className="relative flex  items-center">
         <FontAwesomeIcon
           icon={faSearch}
-          size="lg"
+          size="md"
           className="absolute left-0 p-3 cursor-pointer rounded-full  hover:bg-slate-200 transform ease-in-out"
         />
       </div>
       <input
         type="text"
         id="searchBar"
-        className="flex rounded-full  py-3 pr-3 pl-12 capitalize bg-neutral-100    text-nowrap  text-left border-none   hover:bg-slate-200 focus:outline-none  focus:border-transparent focus:ring-0"
+        className="flex rounded-full  py-2 pr-2 pl-10  bg-neutral-100  text-nowrap  text-left border-none   hover:bg-slate-200 focus:outline-none  focus:border-transparent focus:ring-0"
         placeholder="Search..."
       />
     </form>

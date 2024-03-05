@@ -40,8 +40,8 @@ export default function WriteReview({ addReview, productId, setIsVisible }) {
     <>
       {/* login handler */}
       <div className="flex flex-col justify-center items-center">
-        <div className="flex justify-center items-center text-md font-semibold">
-          You must loggin or register
+        <div className="flex justify-center items-center text-sm font-semibold mb-8">
+          You must login to comment
         </div>
         <button
           type="button"
