@@ -2,7 +2,6 @@
 
 # Summary:
 
-
     the application under development can be preview at https://productsfilter.netlify.app/
 
 # Project Stack:
@@ -15,6 +14,5 @@
     -Husky
 
 # Code Formatting:
+
     Airbnb
-
-

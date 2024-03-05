@@ -6,13 +6,15 @@ import ReviewList from "./components/ReviewList";
 import ProductPopUpMenu from "./components/ProductPopUpMenu";
 import WriteReview from "./components/WriteReview";
 import { useUser } from "../../providers/contexts/userContext";
+import { useFilter } from "../../providers/contexts/filterContext";
 import Message from "./components/Message";
 import ProductSizes from "./components/ProductSizes";
 import PaginationLeft from "./components/PaginationLeft";
 import PaginationRight from "./components/PaginationRight";
 
 export default function ProductModal({ product, setOnClose }) {
-  const { state, dispatch } = useUser();
+  const { state: userState, dispatch: userDispatch } = useUser();
+  const { state: filterState, dispatch: filterDispatch } = useFilter();
   const [itemAdded, setItemAdded] = useState(false);
   const [lastAction, setLastAction] = useState(null);
   const [messageClass, setMessageClass] = useState("");
@@ -55,9 +57,19 @@ export default function ProductModal({ product, setOnClose }) {
   };
 
   const addReview = (newReview) => {
-    dispatch({
+    userDispatch({
       type: "ADD_REVIEW",
       payload: newReview,
+    });
+
+    const newReviewId = {
+      ...newReview,
+      userId: userState.userId,
+    };
+
+    filterDispatch({
+      type: "ADD_REVIEW",
+      payload: newReviewId,
     });
   };
 
@@ -75,12 +87,12 @@ export default function ProductModal({ product, setOnClose }) {
 
     setLastItemAdded(itemToAdd);
 
-    dispatch({
+    userDispatch({
       type: "ADD_ITEM",
       payload: itemToAdd,
     });
 
-    dispatch({
+    userDispatch({
       type: "UPDATE_BALANCE",
       payload: parsedPrice,
     });
@@ -89,14 +101,14 @@ export default function ProductModal({ product, setOnClose }) {
   };
 
   const addToFavorites = (item) => {
-    dispatch({
+    userDispatch({
       type: "ADD_FAVORITES",
       payload: item,
     });
     onAddItem("favorites");
   };
 
-  const productReviews = state.reviews.filter(
+  const productReviews = filterState.reviews.filter(
     (review) => review.productId === product.id,
   );
 

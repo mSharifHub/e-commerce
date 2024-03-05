@@ -6,14 +6,15 @@ import { useUser } from "../../../providers/contexts/userContext";
 
 export default function WriteReview({ addReview, productId, setIsVisible }) {
   const { state } = useUser();
-  const [reviewer, setReviewer] = useState("");
+  const [reviewer, setReviewer] = useState("anonymous");
   const [comment, setComment] = useState("");
   const [productRating, setProductRating] = useState(0);
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
 
-    const reviewerName = reviewer.trim() !== "" ? reviewer : "Anonymous";
+    const reviewerName =
+      reviewer === "anonymous" ? "Anonymous" : state.userName;
     const commentContent =
       comment.trim() !== "" ? comment : "No comment provided";
 
@@ -28,7 +29,7 @@ export default function WriteReview({ addReview, productId, setIsVisible }) {
       };
 
       addReview(newReview);
-      setReviewer("");
+      setReviewer("anonymous");
       setComment("");
       setProductRating(0);
       setIsVisible(false);
@@ -36,24 +37,47 @@ export default function WriteReview({ addReview, productId, setIsVisible }) {
   };
 
   return !state.userId ? (
-    <div className="flex flex-col justify-center items-center">
-      <div className="flex justify-center items-center text-md font-semibold">
-        You must loggin or register
+    <>
+      {/* login handler */}
+      <div className="flex flex-col justify-center items-center">
+        <div className="flex justify-center items-center text-md font-semibold">
+          You must loggin or register
+        </div>
+        <button
+          type="button"
+          className=" flex justify-center mt-2   items-center w-[8rem] h-[3rem] border-2 rounded-full text-lg text-white bg-black font-thin  capitalize transition-all duration-100 hover:scale-105"
+        >
+          login
+        </button>
       </div>
-      <button
-        type="button"
-        className=" flex justify-center mt-2   items-center w-[8rem] h-[3rem] border-2 rounded-full text-lg text-white bg-black font-thin  capitalize transition-all duration-100 hover:scale-105"
-      >
-        login
-      </button>
-    </div>
+    </>
   ) : (
     <div className="m-4">
       <form
         onSubmit={handleOnSubmit}
         className="flex flex-col justify-around items-start"
       >
-        <label className="flex  justify-center items-center capitalize text-lg mb-4  ">
+        <label className="flex flex-col capitalize text-lg">
+          <select
+            value={reviewer}
+            onChange={(e) => setReviewer(e.target.value)}
+            className=" capitalize rounded-lg h-10 outline-none focus:outline-none focus:ring-0 text-lg font-thin"
+            required
+          >
+            <option value="anonymous">Anonymous</option>
+            <option value="username">{state.userName}</option>
+          </select>
+        </label>
+        <label className="flex  capitalize text-lg mt-4">
+          <textarea
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+            className=" flex justify-start h-12  rounded-lg outline-none ring-0 ring-transparent resize-none focus:outline-none focus:ring-0 text-lg"
+            placeholder="Type your review"
+            maxLength={200}
+          />
+        </label>
+        <label className="flex justify-center items-center capitalize text-lg  mt-4  ">
           <div>
             {[...Array(5)].map((_, index) => {
               const value = index + 1;
@@ -84,24 +108,6 @@ export default function WriteReview({ addReview, productId, setIsVisible }) {
               );
             })}
           </div>
-        </label>
-        <label className="flex capitalize text-lg">
-          <input
-            type="text"
-            value={reviewer}
-            onChange={(e) => setReviewer(e.target.value)}
-            className=" capitalize rounded-lg  h-8 outline-none  focus:outline-none focus:ring-0  text-lg font-thin "
-            placeholder="enter name"
-          />
-        </label>
-        <label className="flex  capitalize text-lg mt-4">
-          <textarea
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
-            className=" flex justify-start h-12  rounded-lg outline-none ring-0 ring-transparent resize-none focus:outline-none focus:ring-0 text-lg"
-            placeholder="Type your review"
-            maxLength={200}
-          />
         </label>
 
         <label className="mt-4">

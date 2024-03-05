@@ -1,13 +1,12 @@
 import React, { useReducer, useMemo } from "react";
 import { userReducer } from "./reducers/userReducer";
 import { userContext } from "./contexts/userContext";
-import { products } from "../data/productsData/products";
-import { extractReviews } from "../helpers/product_helpers/extractReviews";
 
 export function UserProvider({ children }) {
   const initialState = {
-    reviews: extractReviews(products),
     userId: null,
+    userName: null,
+    reviews: [],
     shoppingCart: [],
     favorites: [],
     balance: 0,
