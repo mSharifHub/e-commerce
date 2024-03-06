@@ -4,6 +4,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useUser } from "../../../providers/contexts/userContext";
 
 export function CheckEmail() {
   const [mouseOver, setMouseOver] = useState(false);
@@ -11,6 +12,8 @@ export function CheckEmail() {
   const [valid, setValid] = useState(false);
   const [touched, setTouched] = useState(false);
   const [submitemail, setSubmitemail] = useState(false);
+
+  const { state, dispatch } = useUser();
 
   const navigate = useNavigate();
 
@@ -42,6 +45,7 @@ export function CheckEmail() {
       if (email === dummyUser.email) {
         navigate("authenticate");
       } else {
+        dispatch({ type: "SET_EMAIL", payload: email });
         navigate("register");
       }
       setEmail("");
