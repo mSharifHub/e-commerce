@@ -4,6 +4,12 @@ export const userReducer = (state, action) => {
   );
 
   switch (action.type) {
+    case "SET_EMAIL":
+      return {
+        ...state,
+        userEmail: action.payload,
+      };
+
     case "ADD_REVIEW":
       return {
         ...state,

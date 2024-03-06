@@ -2,14 +2,17 @@
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 /* eslint-disable jsx-a11y/label-has-for */
 /* eslint-disable jsx-a11y/label-has-associated-control */
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-export function SignIn() {
+export function CheckEmail() {
   const [mouseOver, setMouseOver] = useState(false);
   const [email, setEmail] = useState("");
   const [valid, setValid] = useState(false);
   const [touched, setTouched] = useState(false);
   const [submitemail, setSubmitemail] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleOnMouseOver = () => {
     setMouseOver(true);
@@ -26,34 +29,39 @@ export function SignIn() {
     setValid(regex.test(input) && input.length >= 3);
   };
 
-  // const dummyUser = {
-  //   email: "msharifemail@gmail.com",
-  //   password: "MySuperSecret01$%",
-  // };
+  const dummyUser = {
+    email: "msharifemail@gmail.com",
+    password: "",
+  };
 
   const handleEmailSubmit = (event) => {
     event.preventDefault();
     setSubmitemail(true);
     setTimeout(() => {
+      // TODO  replace with the back end  server response
+      if (email === dummyUser.email) {
+        navigate("authenticate");
+      } else {
+        navigate("register");
+      }
       setEmail("");
       setTouched(false);
       setValid(false);
       setSubmitemail(false);
-    }, 2000);
-
+    }, 3000);
     // TODO logic to send data to back end//
   };
 
   const label = touched && !valid ? "Required" : "Email";
 
   return (
-    <div className="w-screen  h-screen ">
-      <span className="text-3xl font-light flex justify-center items-center mt-[4rem] mx-auto text-slate-600 whitespace-normal  max-w-md  signInSignOutslideIn ">
+    <div className="relative  flex flex-col justify-start items-center w-screen  h-screen p-4 overflow-hidden">
+      <div className="text-3xl font-light flex justify-center items-center mt-[4rem] mx-auto text-slate-600 whitespace-normal  max-w-md  signInSignOutslideIn ">
         Enter your email to join us or sign in.
-      </span>
+      </div>
       <form
         type="submit"
-        className="max-w-md mx-auto mt-[4rem] space-y-5 signInSignOutslideIn "
+        className="max-w-full mx-auto mt-[4rem] space-y-5 signInSignOutslideIn "
         onSubmit={handleEmailSubmit}
       >
         <div className="relative">
@@ -113,12 +121,14 @@ export function SignIn() {
           </button>
         </div>
       </form>
-      {/* <button
-        type="button"
-        className="flex justify-center items-center w-[8rem] h-[3rem] mt-4 bg-black text-white rounded-full text-lg font-thin  capitalize transition-all duration-100 ease-out  cursor-pointer hover:scale-110"
-      >
-        return
-      </button> */}
+      <Link to="/">
+        <button
+          type="button"
+          className="absolute  bottom-10 left-10 justify-center items-center w-[8rem] h-[3rem] mt-4 text-black border-2 rounded-lg text-lg font-thin  capitalize transition-all duration-100 ease-out  cursor-pointer hover:scale-110"
+        >
+          return
+        </button>
+      </Link>
     </div>
   );
 }

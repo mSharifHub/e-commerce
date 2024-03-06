@@ -44,7 +44,7 @@ export default function WriteReview({ addReview, productId, setIsVisible }) {
         <div className="flex justify-center items-center text-sm font-semibold mb-8">
           You must login to comment
         </div>
-        <Link to="/api/sign-in">
+        <Link to="/api/credentials/check-email">
           <button
             type="button"
             className=" flex justify-center mt-2   items-center w-[8rem] h-[3rem] border-2 rounded-full text-lg text-white bg-black font-thin  capitalize transition-all duration-100 hover:scale-105"
