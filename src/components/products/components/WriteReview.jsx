@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { useUser } from "../../../providers/contexts/userContext";
@@ -43,12 +44,14 @@ export default function WriteReview({ addReview, productId, setIsVisible }) {
         <div className="flex justify-center items-center text-sm font-semibold mb-8">
           You must login to comment
         </div>
-        <button
-          type="button"
-          className=" flex justify-center mt-2   items-center w-[8rem] h-[3rem] border-2 rounded-full text-lg text-white bg-black font-thin  capitalize transition-all duration-100 hover:scale-105"
-        >
-          login
-        </button>
+        <Link to="/api/sign-in">
+          <button
+            type="button"
+            className=" flex justify-center mt-2   items-center w-[8rem] h-[3rem] border-2 rounded-full text-lg text-white bg-black font-thin  capitalize transition-all duration-100 hover:scale-105"
+          >
+            login
+          </button>
+        </Link>
       </div>
     </>
   ) : (

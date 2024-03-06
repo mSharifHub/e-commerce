@@ -60,6 +60,34 @@ input[type="radio"] {
   animation: modalSlideUp 0.2s ease forwards;
 }
 
+@keyframes signIn-SignUp-SlideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes signIn-SignUp-SlideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.signInSignOutslideIn {
+  animation: signIn-SignUp-SlideIn 0.5s ease-out forwards;
+  display: block;
+}
+
+.signInSignOutslideOut {
+  animation: signIn-SignUp-SlideOut 0.5s ease-out forwards;
+  display: block;
+}
+
 @keyframes fadeInAnimation {
   from {
     opacity: 0;

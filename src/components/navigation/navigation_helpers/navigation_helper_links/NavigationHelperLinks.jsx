@@ -10,7 +10,7 @@ const arr = [
 
 export default function NavigationHelperLinks() {
   return (
-    <nav className="flex space-x-[8rem] text-neutral-700 font-semibold ">
+    <nav className="flex space-x-[7rem] text-neutral-700 font-semibold ">
       {arr.map((link) => (
         <React.Fragment key={link.name}>
           <Link to={link.path}>

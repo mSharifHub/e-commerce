@@ -17,7 +17,7 @@ export function SearchBar() {
       <input
         type="text"
         id="searchBar"
-        className="flex rounded-full  py-2 pr-2 pl-10  bg-neutral-100  text-nowrap  text-left border-none   hover:bg-slate-200 focus:outline-none  focus:border-transparent focus:ring-0"
+        className="flex rounded-full  py-2  px-[2rem] pl-10  bg-neutral-100  text-nowrap  text-left border-none   hover:bg-slate-200 focus:outline-none  focus:border-transparent focus:ring-0 transition-all duration-150 ease-out"
         placeholder="Search..."
       />
     </form>
