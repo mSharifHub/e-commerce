@@ -14,7 +14,7 @@ export default function ResetButton({ handleCodeReset, isWaitingForReset }) {
         onClick={handleCodeReset}
         disabled={isWaitingForReset}
       >
-        <FontAwesomeIcon icon={faRotate} size="2x" />
+        <FontAwesomeIcon icon={faRotate} size="xl" />
       </button>
     </span>
   );

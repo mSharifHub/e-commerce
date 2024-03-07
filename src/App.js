@@ -8,7 +8,7 @@ import FindStore from "./components/pages/FindStore";
 import MinimalLayout from "./components/pages/Layouts/MinimalLayout";
 import MainLayout from "./components/pages/Layouts/MainLayout";
 import TwoWayAuthentication from "./components/pages/SignInAndSignOut/TwoWayAuthentication";
-import Authenticate from "./components/pages/SignInAndSignOut/Authenticate";
+
 import Register from "./components/pages/SignInAndSignOut/Register";
 
 export function App() {
@@ -32,6 +32,14 @@ export function App() {
           >
             <Route index element={<CheckEmail />} />
             <Route path="authenticate" element={<TwoWayAuthentication />} />
+            <Route path="register" element={<Register />} />
+          </Route>
+
+          <Route
+            path="/api/credentials/check-email/authenticate"
+            element={<MinimalLayout />}
+          >
+            <Route index element={<TwoWayAuthentication />} />
             <Route path="register" element={<Register />} />
           </Route>
         </Routes>
