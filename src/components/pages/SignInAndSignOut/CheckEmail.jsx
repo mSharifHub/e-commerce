@@ -13,7 +13,7 @@ export function CheckEmail() {
   const [touched, setTouched] = useState(false);
   const [submitemail, setSubmitemail] = useState(false);
 
-  const { state, dispatch } = useUser();
+  const { dispatch } = useUser();
 
   const navigate = useNavigate();
 
@@ -46,7 +46,7 @@ export function CheckEmail() {
         navigate("authenticate");
       } else {
         dispatch({ type: "SET_EMAIL", payload: email });
-        navigate("register");
+        navigate("authenticate");
       }
       setEmail("");
       setTouched(false);
