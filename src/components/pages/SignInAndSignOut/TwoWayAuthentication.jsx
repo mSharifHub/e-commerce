@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useUser } from "../../../providers/contexts/userContext";
 import ResetButton from "./CodeResetButton";
+import { reusePort } from "../../../helpers/modal_helpers/reusePort";
 
 export default function TwoWayAuthentication() {
   const { state: userState, dispatch } = useUser();
@@ -130,11 +131,12 @@ export default function TwoWayAuthentication() {
             </span>
           )}
         </form>
-        {code.every((char) => char !== "" && !codeValid) && (
+        {code.every((char) => char !== "" && !codeValid) ? (
           <span className="flex justify-center items-center mt-2">
             code is not valid
           </span>
-        )}
+        ) : null}
+        {codeValid && reusePort(<span> </span>)}
       </div>
 
       {/* return to main page  button */}
