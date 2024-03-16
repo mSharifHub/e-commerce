@@ -50,7 +50,7 @@ export default function Register() {
         curentState.length =
           password.length > 0 && password.length < 5
             ? "Password must be at least 5 characters"
-            : "valid length";
+            : "Valid length";
 
         curentState.upperCase = !/[A-Z]/.test(password)
           ? "Password must contain at least 1 uppercase letter"
@@ -136,7 +136,11 @@ export default function Register() {
           />
           <button
             type="submit"
-            className="absolute inset-y-0 right-0 w-10 h-full flex  justify-center items-center text-lg  transition-transform duration-75 hover:text-2xl"
+            className={`absolute inset-y-0 right-0 w-10 h-full flex  justify-center items-center text-lg  transition-transform duration-120 ease-in-out  ${
+              !valid
+                ? "opacity-20 cursor-not-allowed"
+                : "opacity-100 hover:text-2xl cursor-pointer"
+            }`}
           >
             <FontAwesomeIcon icon={faArrowRight} />
           </button>
@@ -184,6 +188,7 @@ export default function Register() {
       <Link to="/">
         <button
           type="button"
+          disabled={!valid}
           className="absolute bottom-10 left-10 justify-center items-center w-[8rem] h-[3rem] mt-4 text-black border-2 rounded-lg text-lg font-thin  capitalize transition-all duration-100 ease-out  cursor-pointer hover:scale-110"
         >
           return
