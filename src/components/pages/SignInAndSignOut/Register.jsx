@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable jsx-a11y/label-has-for */
@@ -5,6 +6,8 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { useUser } from "../../../providers/contexts/userContext";
 
 export default function Register() {
@@ -17,6 +20,8 @@ export default function Register() {
     upperCase: "",
     specialChr: " ",
   });
+
+  const MAX_LEN = 16;
 
   const { dispatch } = useUser();
   const navigate = useNavigate();
@@ -68,9 +73,10 @@ export default function Register() {
     setValid(regex.test(input));
   };
 
-  // Handle submit password
-  useEffect(() => {
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
     if (touched && valid) {
+      console.log("submitted");
       setTimeout(() => {
         setPassword("");
         setTouched(false);
@@ -84,7 +90,7 @@ export default function Register() {
         });
       }, 3000);
     }
-  }, [touched, valid, setPassword, setTouched, setValid, setvalidationMessage]);
+  };
 
   const label = touched && !valid ? "Required" : "Password";
 
@@ -94,25 +100,24 @@ export default function Register() {
         Set password and you are all done.
       </div>
       <form
-        type="submit"
-        className=" max-w-full mx-auto mt-[4rem] space-y-5 signInSignOutslideIn "
-        onSubmit={(e) => e.preventDefault()}
+        className="max-w-full mx-auto mt-[4rem] space-y-5 signInSignOutslideIn"
+        onSubmit={(e) => handleOnSubmit(e)}
       >
-        <div className="relative">
-          {(mouseOver || (touched && !valid)) && (
-            <span
-              className={`absolute -top-2  -translate-y-1/8  left-4 font-thing z-4 bg-white transition-all duration-100 ease-in-out tracking-[0.25em] ${
-                touched && !valid ? "text-red-500" : "text-gray-700"
-              }`}
-            >
-              {label}
-            </span>
-          )}
+        {(mouseOver || (touched && !valid)) && (
+          <span
+            className={`absolute bottom-8  left-4 font-thing z-4 bg-white transition-all duration-100 ease-in-out tracking-[0.25em] z-20 ${
+              touched && !valid ? "text-red-500" : "text-gray-700"
+            }`}
+          >
+            {label}
+          </span>
+        )}
 
-          <label
-            htmlFor="password"
-            className="text-md font-medium  text-gray-700 capitalize "
-          />
+        <label
+          htmlFor="password"
+          className=" relative text-md font-medium  text-gray-700 capitalize "
+        />
+        <div className="relative w-[20rem]">
           <input
             ref={passwordRef}
             type="password"
@@ -122,13 +127,21 @@ export default function Register() {
             onMouseLeave={handleOnMouseLeave}
             onChange={handlePasswordChange}
             value={password}
+            maxLength={MAX_LEN}
             required
             placeholder={!mouseOver ? "Password" : ""}
-            className={`mt-1 p-2 w-[20rem] border rounded-md shadow-sm focus:outline-none  ${
+            className={` mt-1 p-2 w-[20rem] border rounded-md shadow-sm focus:outline-none  ${
               touched && !valid ? "focus:ring-red-500" : "focus:ring-indigo-500"
             } focus:border-transparent`}
           />
+          <button
+            type="submit"
+            className="absolute inset-y-0 right-0 w-10 h-full flex  justify-center items-center text-lg  transition-transform duration-75 hover:text-2xl"
+          >
+            <FontAwesomeIcon icon={faArrowRight} />
+          </button>
         </div>
+
         {/* message display */}
         <div className="absolute">
           {password.length >= 2 && (
@@ -160,12 +173,18 @@ export default function Register() {
               </div>
             </>
           )}
+
+          {MAX_LEN === password.length && (
+            <div className="text-red-500">
+              Password can not be more than {MAX_LEN} characters
+            </div>
+          )}
         </div>
       </form>
       <Link to="/">
         <button
           type="button"
-          className="absolute  bottom-10 left-10 justify-center items-center w-[8rem] h-[3rem] mt-4 text-black border-2 rounded-lg text-lg font-thin  capitalize transition-all duration-100 ease-out  cursor-pointer hover:scale-110"
+          className="absolute bottom-10 left-10 justify-center items-center w-[8rem] h-[3rem] mt-4 text-black border-2 rounded-lg text-lg font-thin  capitalize transition-all duration-100 ease-out  cursor-pointer hover:scale-110"
         >
           return
         </button>
