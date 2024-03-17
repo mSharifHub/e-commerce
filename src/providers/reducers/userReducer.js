@@ -1,5 +1,5 @@
 export const userReducer = (state, action) => {
-  const isItemFavorite = state.favorites.some(
+  const isItemFavorite = state?.favorites.some(
     (favoriteItem) => favoriteItem.id === action.payload.id,
   );
 
@@ -9,6 +9,38 @@ export const userReducer = (state, action) => {
         ...state,
         userEmail: action.payload,
       };
+
+    case "LOG_IN":
+      return {
+        ...state,
+        isLoggedIn: true,
+      };
+
+    case "LOG_OUT":
+      return Object.keys(state).reduce((acc, key) => {
+        const type = typeof state[key];
+        switch (type) {
+          case "string":
+            acc[key] = "";
+            break;
+          case "number":
+            acc[key] = 0;
+            break;
+          case "boolean":
+            acc[key] = false;
+            break;
+          case "object":
+            if (Array.isArray(state[key])) {
+              acc[key] = [];
+            } else {
+              acc[key] = {};
+            }
+            break;
+
+          default:
+        }
+        return acc;
+      }, {});
 
     case "ADD_REVIEW":
       return {

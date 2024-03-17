@@ -1,10 +1,12 @@
+/* eslint-disable prefer-const */
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 /* eslint-disable jsx-a11y/label-has-for */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { useRef, useState, useEffect, useCallback } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useUser } from "../../../providers/contexts/userContext";
+import Loading from "../../navigation/icons/Loading";
 
 export function CheckEmail() {
   const [mouseOver, setMouseOver] = useState(false);
@@ -17,6 +19,11 @@ export function CheckEmail() {
   const navigate = useNavigate();
   const emailRef = useRef(null);
 
+  const dummyUser = {
+    email: "test@gmail.com",
+    password: "mySecret123!^",
+  };
+
   useEffect(() => {
     if (emailRef.current) {
       emailRef.current.focus();
@@ -26,6 +33,7 @@ export function CheckEmail() {
   const handleOnMouseOver = () => {
     setMouseOver(true);
   };
+
   const handleOnMouseLeave = () => {
     setMouseOver(false);
   };
@@ -38,39 +46,30 @@ export function CheckEmail() {
     setValid(regex.test(input));
   };
 
-  const handleEmailSubmit = useCallback(() => {
-    setSubmitemail(true);
-    setTimeout(() => {
-      const dummyUser = {
-        email: "msharifemail@gmail.com",
-        password: "",
-      };
-      if (email === dummyUser.email) {
-        // TODO
-      } else {
-        dispatch({ type: "SET_EMAIL", payload: email });
+  // TODO code should be refractor for Jquery and Axios calls
+  useEffect(() => {
+    if (touched && valid) {
+      let timeout;
+      setSubmitemail(true);
+      timeout = setTimeout(() => {
+        if (email !== dummyUser.email) {
+          dispatch({ type: "SET_EMAIL", payload: email });
+        }
         navigate("authenticate");
-      }
 
-      setEmail("");
-      setTouched(false);
-      setValid(false);
-      setSubmitemail(false);
-      setErrmsg("");
-    }, 3000);
-  }, [email, dispatch, navigate]);
+        setEmail("");
+        setTouched(false);
+        setValid(false);
+        setSubmitemail(false);
+        setErrmsg("");
+      }, 2000);
+      return () => clearTimeout(timeout);
+    }
+  }, [dispatch, dummyUser.email, email, navigate, touched, valid]);
 
   useEffect(() => {
     setErrmsg(valid ? "email valid" : "email invalid");
   }, [valid]);
-
-  useEffect(() => {
-    if (touched && valid) {
-      handleEmailSubmit();
-    }
-  }, [email, valid, touched, handleEmailSubmit]);
-
-  const label = touched && !valid ? "Required" : "Email";
 
   return (
     <div className="relative  flex flex-col justify-start items-center w-screen  h-screen p-4 overflow-hidden">
@@ -89,7 +88,7 @@ export function CheckEmail() {
                 touched && !valid ? "text-red-500" : "text-gray-700"
               }`}
             >
-              {label}
+              {touched && !valid ? "Required" : "Email"}
             </span>
           )}
 
@@ -98,8 +97,8 @@ export function CheckEmail() {
             className="text-md font-medium  text-gray-700 capitalize "
           />
           {submitemail && (
-            <span className="absolute  -top-10 inset-x-0  z-50 flex justify-center items-center ">
-              <span className="animate-spin rounded-full h-[8rem] w-[8rem] border-t-2 border-b-2 border-neutral-700"></span>
+            <span className="absolute -bottom-20 inset-x-0  z-50 flex justify-center items-center ">
+              <Loading />
             </span>
           )}
 
@@ -113,7 +112,7 @@ export function CheckEmail() {
             onChange={handleEmailChange}
             value={email}
             required
-            placeholder={!mouseOver && "Email"}
+            placeholder={!mouseOver ? "Email" : ""}
             className={`mt-1 p-2 w-full border rounded-md shadow-sm focus:outline-none  ${
               touched && !valid ? "focus:ring-red-500" : "focus:ring-indigo-500"
             } focus:border-transparent`}

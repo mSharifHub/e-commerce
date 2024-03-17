@@ -8,14 +8,14 @@ import { useEffect, useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useUser } from "../../../providers/contexts/userContext";
 import ResetButton from "./CodeResetButton";
+import Loading from "../../navigation/icons/Loading";
 
 export default function TwoWayAuthentication() {
-  const { state: userState, dispatch } = useUser();
+  const { state: userState } = useUser();
   const [codeValid, setCodeValid] = useState(false); // Gets the result true if all chars are valid
   const [inputValidity, setInputValidity] = useState(Array(5).fill(false)); // used to fill up array as true or false by char
   const [isWaitingForReset, setIsWaitingForReset] = useState(false); // to control timer
   const [timer, setTimer] = useState(10); // timer state
-  const [touchedCodeInput, setTouchedCodeInput] = useState(false); // control user interaction with input
   const [code, setCode] = useState(Array(5).fill("")); // code as array of lenght 5
   const navigate = useNavigate(); // to move to next page
 
@@ -48,11 +48,12 @@ export default function TwoWayAuthentication() {
   }, [isWaitingForReset, timer]);
 
   // Use Effect to  move to register or login
+  // TODO change later with useUser, axios, and React Query
   useEffect(() => {
     if (codeValid) {
       const redirect = setTimeout(() => {
         navigate("register");
-      }, 4000);
+      }, 2000);
 
       return () => clearTimeout(redirect);
     }
@@ -87,9 +88,6 @@ export default function TwoWayAuthentication() {
   }, [isFilled, codeValid]);
 
   const handleCodeInput = (index, value) => {
-    // User touched the input
-    setTouchedCodeInput(true);
-
     // Update the code with the new value entered by the user
     const newCode = [...code];
 
@@ -173,6 +171,12 @@ export default function TwoWayAuthentication() {
             }`}
           >
             code is {codeValid ? "valid" : "not valid"}
+          </span>
+        )}
+
+        {codeValid && (
+          <span className="mt-4">
+            <Loading />
           </span>
         )}
       </div>

@@ -10,6 +10,7 @@ import MainLayout from "./components/pages/Layouts/MainLayout";
 import TwoWayAuthentication from "./components/pages/SignInAndSignOut/TwoWayAuthentication";
 
 import Register from "./components/pages/SignInAndSignOut/Register";
+import Login from "./components/pages/SignInAndSignOut/Login";
 
 export function App() {
   return (
@@ -41,6 +42,7 @@ export function App() {
           >
             <Route index element={<TwoWayAuthentication />} />
             <Route path="register" element={<Register />} />
+            <Route path="login" element={<Login />} />
           </Route>
         </Routes>
       </Router>

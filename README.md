@@ -16,3 +16,13 @@
 # Code Formatting:
 
     Airbnb
+
+
+
+# User login/register dummy data before implementing back end
+  const dummyUser = {
+        email: "test@gmail.com",
+        password: "mySecret123!^",
+      };
+
+    email one time code : 1234

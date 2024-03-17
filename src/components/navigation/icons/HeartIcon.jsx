@@ -17,7 +17,7 @@ export default function HeartIcon() {
             </span>
           </div>
         ) : null}
-        <FontAwesomeIcon icon={faHeart} size="xl" />
+        <FontAwesomeIcon icon={faHeart} size="lg" />
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ export function SearchBar() {
       <div className="relative flex  items-center">
         <FontAwesomeIcon
           icon={faSearch}
-          size="md"
+          size="lg"
           className="absolute left-0 p-3 cursor-pointer rounded-full  hover:bg-slate-200 transform ease-in-out"
         />
       </div>

@@ -9,10 +9,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { useUser } from "../../../providers/contexts/userContext";
+import Loading from "../../navigation/icons/Loading";
 
 export default function Register() {
   const [mouseOver, setMouseOver] = useState(false);
   const [password, setPassword] = useState("");
+  const [passwordSubmit, setPasswordSubmit] = useState(false);
   const [valid, setValid] = useState(false);
   const [touched, setTouched] = useState(false);
   const [validationMessage, setvalidationMessage] = useState({
@@ -21,11 +23,13 @@ export default function Register() {
     specialChr: " ",
   });
 
+  const { state, dispatch } = useUser();
+
   const MAX_LEN = 16;
 
-  const { dispatch } = useUser();
-  const navigate = useNavigate();
   const passwordRef = useRef(null);
+
+  const navigate = useNavigate();
 
   // Use effect to focus on input on component mount
   useEffect(() => {
@@ -76,11 +80,14 @@ export default function Register() {
   const handleOnSubmit = (e) => {
     e.preventDefault();
     if (touched && valid) {
-      console.log("submitted");
+      // Toggler logs in and out
+      dispatch({ type: "LOG_IN" });
+      setPasswordSubmit(true);
       setTimeout(() => {
         setPassword("");
         setTouched(false);
         setValid(false);
+        setPasswordSubmit(false);
         setvalidationMessage((prevState) => {
           const resetState = Object.keys(prevState).reduce((acc, key) => {
             acc[key] = "";
@@ -88,7 +95,8 @@ export default function Register() {
           }, {});
           return resetState;
         });
-      }, 3000);
+        navigate("/");
+      }, 2000);
     }
   };
 
@@ -129,15 +137,26 @@ export default function Register() {
             value={password}
             maxLength={MAX_LEN}
             required
+            disabled={passwordSubmit}
             placeholder={!mouseOver ? "Password" : ""}
             className={` mt-1 p-2 w-[20rem] border rounded-md shadow-sm focus:outline-none  ${
               touched && !valid ? "focus:ring-red-500" : "focus:ring-indigo-500"
-            } focus:border-transparent`}
+            } focus:border-transparent ${
+              passwordSubmit ? "opacity-20" : "opacity-100"
+            }`}
           />
+
+          {passwordSubmit && (
+            <div className="absolute -bottom-40 inset-x-0  z-50 flex  justify-center items-center ">
+              <Loading />
+            </div>
+          )}
+
           <button
             type="submit"
+            disabled={passwordSubmit}
             className={`absolute inset-y-0 right-0 w-10 h-full flex  justify-center items-center text-lg  transition-transform duration-120 ease-in-out  ${
-              !valid
+              !valid || passwordSubmit
                 ? "opacity-20 cursor-not-allowed"
                 : "opacity-100 hover:text-2xl cursor-pointer"
             }`}
@@ -188,8 +207,7 @@ export default function Register() {
       <Link to="/">
         <button
           type="button"
-          disabled={!valid}
-          className="absolute bottom-10 left-10 justify-center items-center w-[8rem] h-[3rem] mt-4 text-black border-2 rounded-lg text-lg font-thin  capitalize transition-all duration-100 ease-out  cursor-pointer hover:scale-110"
+          className="absolute  bottom-10 left-10 justify-center items-center w-[8rem] h-[3rem] mt-4 text-black border-2 rounded-lg text-lg font-thin  capitalize transition-all duration-100 ease-out  cursor-pointer hover:scale-110"
         >
           return
         </button>

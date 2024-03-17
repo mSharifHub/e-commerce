@@ -113,3 +113,33 @@ input[type="radio"] {
 .messageFade-out {
   animation: fadeOutAnimation 2s ease-out forwards;
 }
+
+@keyframes dotFlashing {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.dot {
+  animation: dotFlashing 1.5s infinite;
+}
+
+.animation-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animation-delay-400 {
+  animation-delay: 0.4s;
+}
+
+.animation-delay-600 {
+  animation-delay: 0.6s;
+}
+
+.animation-delay-800 {
+  animation-delay: 0.8s;
+}

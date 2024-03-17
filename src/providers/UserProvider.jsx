@@ -5,16 +5,13 @@ import { userContext } from "./contexts/userContext";
 export function UserProvider({ children }) {
   const initialState = {
     userId: "",
-    userAuthenticationCode: "",
     userName: "",
     userEmail: "",
-    userPassword: "",
-    userMailingAddress: "",
-    userPaymentMethods: [],
     reviews: [],
     shoppingCart: [],
     favorites: [],
     balance: 0,
+    isLoggedIn: false,
     orders: [],
   };
 

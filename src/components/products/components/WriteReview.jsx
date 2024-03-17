@@ -37,7 +37,7 @@ export default function WriteReview({ addReview, productId, setIsVisible }) {
     }
   };
 
-  return !state.userId ? (
+  return !state.isLoggedIn ? (
     <>
       {/* login handler */}
       <div className="flex flex-col justify-center items-center">
