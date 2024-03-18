@@ -3,19 +3,19 @@
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable jsx-a11y/label-has-for */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { useUser } from "../../../providers/contexts/userContext";
 import Loading from "../../navigation/icons/Loading";
+import PasswordValidationIcon from "./icons/PasswordValidationIcon";
 
 export default function Register() {
   const [mouseOver, setMouseOver] = useState(false);
   const [password, setPassword] = useState("");
   const [passwordSubmit, setPasswordSubmit] = useState(false);
-  const [valid, setValid] = useState(false);
+  const [isValid, setValid] = useState(false);
   const [touched, setTouched] = useState(false);
   const [validationMessage, setvalidationMessage] = useState({
     length: "",
@@ -73,13 +73,14 @@ export default function Register() {
     setTouched(true);
     const input = event.target.value;
     setPassword(input);
-    const regex = /^(?=.*[A-Z])(?=(?:[^!@#$&*]*[!@#$&*]){2})(?=.*[0-9]).{5,}$/;
+    const regex =
+      /^(?=(?:[^A-Z]*[A-Z]){1,})(?=(?:[^!@#$&*]*[!@#$&*]){2,}).{5,12}$/;
     setValid(regex.test(input));
   };
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    if (touched && valid) {
+    if (touched && isValid) {
       // Toggler logs in and out
       dispatch({ type: "LOG_IN" });
       setPasswordSubmit(true);
@@ -100,7 +101,7 @@ export default function Register() {
     }
   };
 
-  const label = touched && !valid ? "Required" : "Password";
+  const label = touched && !isValid ? "Required" : "Password";
 
   return (
     <div className="relative  flex flex-col justify-start items-center w-screen  h-screen p-4 overflow-hidden">
@@ -111,10 +112,10 @@ export default function Register() {
         className="max-w-full mx-auto mt-[4rem] space-y-5 signInSignOutslideIn"
         onSubmit={(e) => handleOnSubmit(e)}
       >
-        {(mouseOver || (touched && !valid)) && (
+        {(mouseOver || (touched && !isValid)) && (
           <span
             className={`absolute bottom-8  left-4 font-thing z-4 bg-white transition-all duration-100 ease-in-out tracking-[0.25em] z-20 ${
-              touched && !valid ? "text-red-500" : "text-gray-700"
+              touched && !isValid ? "text-red-500" : "text-gray-700"
             }`}
           >
             {label}
@@ -140,7 +141,9 @@ export default function Register() {
             disabled={passwordSubmit}
             placeholder={!mouseOver ? "Password" : ""}
             className={` mt-1 p-2 w-[20rem] border rounded-md shadow-sm focus:outline-none  ${
-              touched && !valid ? "focus:ring-red-500" : "focus:ring-indigo-500"
+              touched && !isValid
+                ? "focus:ring-red-500"
+                : "focus:ring-indigo-500"
             } focus:border-transparent ${
               passwordSubmit ? "opacity-20" : "opacity-100"
             }`}
@@ -154,44 +157,53 @@ export default function Register() {
 
           <button
             type="submit"
-            disabled={passwordSubmit}
-            className={`absolute inset-y-0 right-0 w-10 h-full flex  justify-center items-center text-lg  transition-transform duration-120 ease-in-out  ${
-              !valid || passwordSubmit
+            className={`absolute inset-y-[5px] right-0 w-10 h-10 flex  justify-center items-center text-lg  border-l-2 border-black transition-transform duration-120 ease-in-out ${
+              !isValid
                 ? "opacity-20 cursor-not-allowed"
-                : "opacity-100 hover:text-2xl cursor-pointer"
+                : "opacity-100 cursor-pointer"
             }`}
+            disabled={!isValid && !passwordSubmit}
           >
             <FontAwesomeIcon icon={faArrowRight} />
           </button>
         </div>
 
         {/* message display */}
-        <div className="absolute">
+        <div className="absolute text-sm">
           {password.length >= 2 && (
             <>
               <div
                 className={`${
-                  password.length >= 5 ? "text-indigo-500" : "text-red-500"
+                  password.length >= 5 ? "text-green-500" : "text-red-500"
                 }`}
               >
+                <PasswordValidationIcon passwdLen={password.length} />
                 {validationMessage.length}
               </div>
 
               <div
                 className={`${
                   /(?=.*[!@#$&*].*[!@#$&*])/.test(password)
-                    ? "text-indigo-500"
+                    ? "text-green-500"
                     : "text-red-500"
                 }`}
               >
+                <PasswordValidationIcon
+                  regexCheckSpecialChar={/(?=.*[!@#$&*].*[!@#$&*])/.test(
+                    password,
+                  )}
+                />
                 {validationMessage.specialChr}
               </div>
 
               <div
                 className={`${
-                  /[A-Z]/.test(password) ? "text-indigo-500" : "text-red-500"
+                  /[A-Z]/.test(password) ? "text-green-500" : "text-red-500"
                 }`}
               >
+                <PasswordValidationIcon
+                  regexCheckUpperChar={/[A-Z]/.test(password)}
+                />
                 {validationMessage.upperCase}
               </div>
             </>
