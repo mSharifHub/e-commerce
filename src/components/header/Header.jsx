@@ -1,11 +1,12 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/self-closing-comp */
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useUser } from "../../providers/contexts/userContext";
 import useSignOut from "../pages/SignInAndSignOut/helpers/signOut";
 import { reusePort } from "../../helpers/modal_helpers/reusePort";
 import Loading from "../navigation/icons/Loading";
+import UserIcon from "../navigation/icons/User";
 
 export default function Header() {
   const [isSignOut, setSignOut] = useState(false);
@@ -21,13 +22,8 @@ export default function Header() {
 
   return (
     <>
-      <div className=" grid grid-cols-2 bg-neutral-100 px-4 py-2 ">
-        {state?.userEmail && (
-          <span className="hidden md:flex col-start-1 col-span-1  justify-start items-center text-sm">
-            {state.userEmail}
-          </span>
-        )}
-        <nav className=" col-span-2 md:col-start-2 md:col-span-1 flex justify-center md:justify-end items-center text-sm">
+      <div className=" flex justify-end items-center bg-neutral-100 px-4 py-2 ">
+        <nav className="flex justify-center items-center space-x-4  mx-4 text-sm">
           {navigationLinks.map((link, index) => (
             <React.Fragment key={link.name}>
               <Link to={link.path} className="px-2">
@@ -39,20 +35,20 @@ export default function Header() {
             </React.Fragment>
           ))}
           {state.isLoggedIn ? (
-            <button
-              onClick={() => {
-                setSignOut(true);
-                signOut(isSignOut);
-              }}
-            >
-              Sign Out
-            </button>
+            <div className="flex justify-around items-center space-x-4">
+              <span className="hidden md:flex col-start-1 col-span-1  justify-start items-center text-sm">
+                welcome, {state.userEmail}
+              </span>
+              <span>
+                <UserIcon />
+              </span>
+            </div>
           ) : (
             <Link to="api/credentials/check-email"> Sign In</Link>
           )}
         </nav>
       </div>
-      {isSignOut &&
+      {/* {isSignOut &&
         reusePort(
           <div className=" absolute top-[2rem] left-1/2 transform -translate-x-1/2 -translate-y-1/2   bg-white  w-[20rem] h-[4rem]  z-50 flex  flex-col justify-center items-center  rounded-lg">
             <span className="flex capitalize  text-md font-semibold mb-2">
@@ -60,7 +56,7 @@ export default function Header() {
             </span>
             <Loading />
           </div>,
-        )}
+        )} */}
     </>
   );
 }

@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import CartIcon from "../icons/CartIcon";
 import HeartIcon from "../icons/HeartIcon";
-import UserIcon from "../icons/User";
+
 import NavigationHelperLinks from "./navigation_helper_links/NavigationHelperLinks";
 import Linkedin from "./navigation_helpers_icons/Linkedin";
 import Github from "./navigation_helpers_icons/Github";
@@ -25,7 +25,6 @@ export default function NavHelper() {
         <SearchBar />
         <HeartIcon />
         <CartIcon />
-        <UserIcon />
       </div>
     </div>
   );

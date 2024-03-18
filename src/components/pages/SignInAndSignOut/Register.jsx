@@ -157,10 +157,10 @@ export default function Register() {
 
           <button
             type="submit"
-            className={`absolute inset-y-[5px] right-0 w-10 h-10 flex  justify-center items-center text-lg  border-l-2 border-black transition-transform duration-120 ease-in-out ${
+            className={`absolute inset-y-[5px] right-0 w-10 h-10 flex  justify-center items-center text-lg  bg-black rounded-r-md text-white transition-transform duration-120 ease-in-out ${
               !isValid
                 ? "opacity-20 cursor-not-allowed"
-                : "opacity-100 cursor-pointer"
+                : "opacity-100 cursor-pointer hover:scale-110"
             }`}
             disabled={!isValid && !passwordSubmit}
           >

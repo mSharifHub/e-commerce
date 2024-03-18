@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../../../providers/contexts/userContext";
 
-export default function useSignOut(onSignOut) {
+export default function useSignOut() {
   const { dispatch } = useUser();
   const navigate = useNavigate();
 
@@ -9,9 +9,6 @@ export default function useSignOut(onSignOut) {
     setTimeout(() => {
       dispatch({ type: "LOG_OUT" });
       navigate("/");
-      if (onSignOut) {
-        onSignOut();
-      }
     }, 800);
   };
 }
