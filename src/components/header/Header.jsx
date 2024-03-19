@@ -5,55 +5,46 @@ import { Link } from "react-router-dom";
 import { useUser } from "../../providers/contexts/userContext";
 import UserIcon from "../navigation/icons/User";
 import ModalMenu from "./components/ModalMenu";
+import { navigationOptions } from "./header_navigation_links/navigationLinks";
 
 export default function Header() {
   const { state } = useUser();
   const [isLinkHelpHovered, setIsLinkHelpHovered] = useState(false);
+  const [isLinkAccountHovered, setIsLinkAccountHovered] = useState(false);
   const [isModalHelpHovered, setIsModalHelpHovered] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  const [isModalAccountHovered, setIsModalAccountHovered] = useState(false);
+  const [showHelpModal, setShowHelpModal] = useState(false);
+  const [showAccountModal, setShowAccountModal] = useState(false);
 
-  const navigationOptions = {
-    help: {
-      title: "Help",
-      links: [
-        { name: "Order Help", path: "#" },
-        { name: "Tracking Help", path: "#" },
-        { name: "Issue with an Order", path: "#" },
-        { name: "Returns", path: "#" },
-        { name: "Send us feefback", path: "#" },
-        { name: "Contact us", path: "#" },
-      ],
-    },
-    user: {
-      title: "Account",
-      links: [
-        { name: "Profile", path: "#" },
-        { name: "Orders", path: "#" },
-        { name: "Favorites", path: "#" },
-        { name: "Inbox", path: "#" },
-        { name: "Experiences", path: "#" },
-        { name: "Account Settings", path: "#" },
-        { name: "Log Out", path: "#" },
-      ],
-    },
-  };
-
-  // Handle mouse transaction
+  // handle link to transition for help link
   useEffect(() => {
-    let timer;
+    let helpTimer;
     if (isLinkHelpHovered || isModalHelpHovered) {
-      setShowModal(true);
+      setShowHelpModal(true);
     } else {
-      timer = setTimeout(() => {
-        setShowModal(false);
+      helpTimer = setTimeout(() => {
+        setShowHelpModal(false);
       }, 100);
     }
-    return () => clearTimeout(timer);
+    return () => clearTimeout(helpTimer);
   }, [isLinkHelpHovered, isModalHelpHovered]);
 
+  // handle link to transition for Account link
+  useEffect(() => {
+    let userTimer;
+    if (isLinkAccountHovered || isModalAccountHovered) {
+      setShowAccountModal(true);
+    } else {
+      userTimer = setTimeout(() => {
+        setShowAccountModal(false);
+      }, 100);
+    }
+    return () => clearTimeout(userTimer);
+  }, [isLinkAccountHovered, isModalAccountHovered]);
+
   return (
-    <div className=" flex justify-end items-center bg-neutral-100 px-4 py-2">
-      <nav className="flex items-center space-x-2 mx-4 text-sm ">
+    <div className=" flex justify-end items-center bg-neutral-100 ">
+      <nav className="flex items-center  mx-8 text-sm ">
         <Link to="/api/find-store" className="px-2">
           Find a Store
         </Link>
@@ -67,7 +58,7 @@ export default function Header() {
           >
             Help
           </Link>
-          {showModal && (
+          {showHelpModal && (
             <div
               className="absolute top-7 -right-4 z-50"
               onMouseEnter={() => setIsModalHelpHovered(true)}
@@ -82,13 +73,29 @@ export default function Header() {
         </div>
         <span className="px-2">|</span>
         {state.isLoggedIn ? (
-          <div className="relative flex justify-around items-center space-x-2 cursor-pointer">
+          <div
+            className="relative flex justify-around items-center space-x-2 cursor-pointer"
+            onMouseEnter={() => setIsLinkAccountHovered(true)}
+            onMouseLeave={() => setIsLinkAccountHovered(false)}
+          >
             <span className="hidden md:flex col-start-1 col-span-1 justify-start items-center text-sm transition-transform duration-100 hover:opacity-50">
-              Hi, {state.userName}
+              Hi, {state.userEmail}
             </span>
             <span className="inline-flex justify-center items-center rounded-full h-10 w-10 transition-colors duration-175 ease-out hover:bg-gray-200">
               <UserIcon />
             </span>
+            {showAccountModal && (
+              <div
+                className="absolute top-7 -right-4 z-50"
+                onMouseEnter={() => setIsModalAccountHovered(true)}
+                onMouseLeave={() => setIsModalAccountHovered(false)}
+              >
+                <ModalMenu
+                  title={navigationOptions.user.title}
+                  links={navigationOptions.user.links}
+                />
+              </div>
+            )}
           </div>
         ) : (
           <Link to="/api/credentials/check-email"> Sign In</Link>
