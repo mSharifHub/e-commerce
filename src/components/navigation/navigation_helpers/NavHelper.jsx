@@ -1,3 +1,4 @@
+/* eslint-disable react/self-closing-comp */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import CartIcon from "../icons/CartIcon";
 import HeartIcon from "../icons/HeartIcon";
@@ -6,6 +7,7 @@ import NavigationHelperLinks from "./navigation_helper_links/NavigationHelperLin
 import Linkedin from "./navigation_helpers_icons/Linkedin";
 import Github from "./navigation_helpers_icons/Github";
 import { SearchBar } from "../search/SearchBar";
+import MenuBars from "../icons/MenuBars";
 
 export default function NavHelper() {
   return (
@@ -18,13 +20,14 @@ export default function NavHelper() {
           <Github />
         </a>
       </div>
-      <div className=" hidden lg:flex justify-around col-span-1 col-start-2 ">
+      <div className=" hidden lg:flex  justify-center items-center col-span-1 col-start-2  ">
         <NavigationHelperLinks />
       </div>
-      <div className="flex  justify-center lg:justify-end  items-center  space-x-8 col-span-1 col-start-1 md:col-start-2 lg:col-start-3 transition-all duration-100 ease-out">
+      <div className="flex justify-end  items-center  space-x-8 col-span-1 col-start-1 md:col-start-2 lg:col-start-3 transition-all duration-100 ease-out">
         <SearchBar />
         <HeartIcon />
         <CartIcon />
+        <MenuBars />
       </div>
     </div>
   );

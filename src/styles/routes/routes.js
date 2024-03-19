@@ -1,4 +1,12 @@
-export const navigationOptions = {
+export const navigationHelperRoutes = [
+  { name: "New & Featured", path: "/api/navigation-helpers/news_&_feature" },
+  { name: "Men", path: "/api/navigation-helpers/men" },
+  { name: "Women", path: "/api/navigation-helpers/women" },
+  { name: "Kids", path: "/api/navigation-helpers/kids" },
+  { name: "Sales", path: "/api/navigation-helpers/sales" },
+];
+
+export const navigationHeaderRoutes = {
   help: {
     title: "Help",
     links: [

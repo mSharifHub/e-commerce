@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useUser } from "../../providers/contexts/userContext";
 import UserIcon from "../navigation/icons/User";
 import ModalMenu from "./components/ModalMenu";
-import { navigationOptions } from "./header_navigation_links/navigationLinks";
+import { navigationHeaderRoutes } from "../../styles/routes/routes";
 
 export default function Header() {
   const { state } = useUser();
@@ -43,7 +43,7 @@ export default function Header() {
   }, [isLinkAccountHovered, isModalAccountHovered]);
 
   return (
-    <div className=" flex justify-end items-center bg-neutral-100 ">
+    <div className="hidden md:flex justify-end items-center bg-neutral-100 ">
       <nav className="flex items-center  mx-8 text-sm ">
         <Link to="/api/find-store" className="px-2">
           Find a Store
@@ -65,8 +65,8 @@ export default function Header() {
               onMouseLeave={() => setIsModalHelpHovered(false)}
             >
               <ModalMenu
-                title={navigationOptions.help.title}
-                links={navigationOptions.help.links}
+                title={navigationHeaderRoutes.help.title}
+                links={navigationHeaderRoutes.help.links}
               />
             </div>
           )}
@@ -91,8 +91,8 @@ export default function Header() {
                 onMouseLeave={() => setIsModalAccountHovered(false)}
               >
                 <ModalMenu
-                  title={navigationOptions.user.title}
-                  links={navigationOptions.user.links}
+                  title={navigationHeaderRoutes.user.title}
+                  links={navigationHeaderRoutes.user.links}
                 />
               </div>
             )}
