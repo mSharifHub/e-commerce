@@ -84,9 +84,9 @@ export default function Header() {
         {state.isLoggedIn ? (
           <div className="relative flex justify-around items-center space-x-2 cursor-pointer">
             <span className="hidden md:flex col-start-1 col-span-1 justify-start items-center text-sm transition-transform duration-100 hover:opacity-50">
-              Welcome, {state.userEmail}
+              Hi, {state.userName}
             </span>
-            <span className="inline-flex justify-center items-center rounded-full h-10 w-10 transition-colors duration-175 ease-out hover:bg-slate-200">
+            <span className="inline-flex justify-center items-center rounded-full h-10 w-10 transition-colors duration-175 ease-out hover:bg-gray-200">
               <UserIcon />
             </span>
           </div>

@@ -24,4 +24,4 @@ email: "test@gmail.com",
 password: "mySecret123!^",
 };
 
-    email one time code : 1234
+    email one time code : 12345
