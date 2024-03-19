@@ -31,12 +31,15 @@ export default function ProductSize({
   );
 
   return (
-    <div className="w-[50px] h-[50px]  flex justify-center items-center border-2 border-slate-200 transition-all">
+    <div
+      className={`w-[50px] h-[50px]  flex justify-center items-center border-2 border-slate-200 transition-all duration-75 ease-in ${
+        isAvailable ? "hover:ring-1 ring-black" : ""
+      }`}
+    >
       <input
-        type="radio" // Changed to radio to allow single selection
+        type="radio"
         id={`pSize-${size}`}
         name="pSize"
-        onChange={() => {}}
         checked={isChecked}
         disabled={!isAvailable}
         className="hidden"
