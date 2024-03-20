@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Home } from "./components/pages/Home";
+import Home from "./components/pages/Home";
+import { ProductsDisplay } from "./components/pages/ProductsDisplay";
 import { Cart } from "./components/pages/Cart";
 import { CheckEmail } from "./components/pages/SignInAndSignOut/CheckEmail";
 import Help from "./components/pages/Help";
@@ -20,6 +21,7 @@ export function App() {
           {/* Main layout routes */}
           <Route path="/" element={<MainLayout />}>
             <Route index element={<Home />} />
+            <Route path="api/product-display" element={<ProductsDisplay />} />
             <Route path="api/find-store" element={<FindStore />} />
             <Route path="api/help" element={<Help />} />
             <Route path="api/join-us" element={<JoinUs />} />

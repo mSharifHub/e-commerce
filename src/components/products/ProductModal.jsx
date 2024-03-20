@@ -9,8 +9,8 @@ import { useUser } from "../../providers/contexts/userContext";
 import { useFilter } from "../../providers/contexts/filterContext";
 import Message from "./components/Message";
 import ProductSizes from "./components/ProductSizes";
-import PaginationLeft from "./components/PaginationLeft";
-import PaginationRight from "./components/PaginationRight";
+import PaginationLeft from "./components/icons/PaginationLeft";
+import PaginationRight from "./components/icons/PaginationRight";
 
 export default function ProductModal({ product, setOnClose }) {
   const { state: userState, dispatch: userDispatch } = useUser();

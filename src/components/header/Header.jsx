@@ -60,7 +60,7 @@ export default function Header() {
           </Link>
           {showHelpModal && (
             <div
-              className="absolute top-7 -right-4 z-50"
+              className="absolute top-10 -right-4 z-50"
               onMouseEnter={() => setIsModalHelpHovered(true)}
               onMouseLeave={() => setIsModalHelpHovered(false)}
             >
@@ -86,7 +86,7 @@ export default function Header() {
             </span>
             {showAccountModal && (
               <div
-                className="absolute top-7 -right-4 z-50"
+                className="absolute top-10 -right-4 z-50"
                 onMouseEnter={() => setIsModalAccountHovered(true)}
                 onMouseLeave={() => setIsModalAccountHovered(false)}
               >
