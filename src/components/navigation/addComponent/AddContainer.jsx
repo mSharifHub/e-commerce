@@ -49,7 +49,7 @@ export default function AddContainer() {
     >
       <div
         onClick={handleClickLeft}
-        className={`absolute left-[5rem] md:left-[10rem] lg:left-[20rem] xl:left-[70rem]  transition-opacity duration-150 z-20 rounded-full w-8 h-8  flex justify-center items-center ${
+        className={` absolute top-1/2 -translate-y-1/2 left-[1rem]  sm:left-[5rem] md:left-[10rem]  lg:left-[15rem]  xl:left-[40rem]    transition-opacity duration-150 z-20 rounded-full w-8 h-8  flex justify-center items-center ${
           isMouseOver ? "opacity-100 cursor-pointer" : "opacity-0"
         } hover:bg-slate-200`}
       >
@@ -58,7 +58,7 @@ export default function AddContainer() {
       <div className={`w-full ${swipe} `}>{iterateArr(arr, currIndex)}</div>
       <div
         onClick={handleClickRight}
-        className={`absolute right-[5rem] md:right-[10rem] lg:right-[20rem]  xl:right-[70rem] transition-opacity duration-150 z-20 rounded-full w-8 h-8  flex justify-center items-center ${
+        className={`absolute top-1/2 -translate-y-1/2 right-[1rem] sm:right-[5rem] md:right-[10rem] lg:right-[15rem] xl:right-[40rem] transition-opacity duration-150 z-20 rounded-full w-8 h-8  flex justify-center items-center ${
           isMouseOver ? "opacity-100 cursor-pointer" : "opacity-0"
         } hover:bg-slate-200`}
       >
