@@ -3,12 +3,9 @@
 import { useEffect, useState } from "react";
 import ArrowLeft from "../icons/ArrowLeft";
 import ArrowRight from "../icons/ArrowRight";
-import AddOne from "./AddOne";
-import AddThree from "./AddThree";
-import AddTwo from "./AddTwo";
+import { advertisingArr as adds } from "./advertisingArray";
 
-// this array holds the components and is accessed using the a state hook that iterates the index
-const arr = [<AddOne />, <AddTwo />, <AddThree />];
+const arr = [...adds];
 
 const iterateArr = (array, index) => {
   return array[index];
