@@ -130,5 +130,5 @@ input[type="radio"] {
 }
 
 .animate-slide-down {
-  animation: slideDown 0.25s ease-out forwards;
+  animation: slideDown 0.2s ease-out forwards;
 }

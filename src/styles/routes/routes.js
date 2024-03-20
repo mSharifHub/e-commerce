@@ -1,9 +1,9 @@
 export const navigationHelperRoutes = [
-  { name: "New & Featured", path: "/api/navigation-helpers/news_&_feature" },
-  { name: "Men", path: "/api/navigation-helpers/men" },
-  { name: "Women", path: "/api/navigation-helpers/women" },
-  { name: "Kids", path: "/api/navigation-helpers/kids" },
-  { name: "Sales", path: "/api/navigation-helpers/sales" },
+  { name: "New & Featured", path: "api/product-display" },
+  { name: "Men", path: "api/product-display" },
+  { name: "Women", path: "api/product-display" },
+  { name: "Kids", path: "api/product-display" },
+  { name: "Sales", path: "api/product-display" },
 ];
 
 export const navigationHeaderRoutes = {
