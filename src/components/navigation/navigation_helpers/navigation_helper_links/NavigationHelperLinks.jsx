@@ -1,3 +1,4 @@
+/* eslint-disable react/self-closing-comp */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import NavigationHelperModal from "../NavigationHelperModal";
@@ -39,9 +40,9 @@ export default function NavigationHelperLinks() {
           }}
           className="relative"
         >
-          <span className="cursor-pointer capitalize">
+          <div className=" relative cursor-pointer capitalize flex flex-col">
             {section.replace("_", " ")}
-          </span>
+          </div>
         </div>
       ))}
       {showModal &&
