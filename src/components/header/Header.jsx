@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/self-closing-comp */
 import { useEffect, useState } from "react";
@@ -9,96 +10,78 @@ import { navigationHeaderRoutes } from "../../styles/routes/routes";
 
 export default function Header() {
   const { state } = useUser();
-  const [isLinkHelpHovered, setIsLinkHelpHovered] = useState(false);
-  const [isLinkAccountHovered, setIsLinkAccountHovered] = useState(false);
-  const [isModalHelpHovered, setIsModalHelpHovered] = useState(false);
-  const [isModalAccountHovered, setIsModalAccountHovered] = useState(false);
-  const [showHelpModal, setShowHelpModal] = useState(false);
-  const [showAccountModal, setShowAccountModal] = useState(false);
+  const sections = !state.isLoggedIn ? ["help"] : ["help", "user"];
 
-  // handle link to transition for help link
-  useEffect(() => {
-    let helpTimer;
-    if (isLinkHelpHovered || isModalHelpHovered) {
-      setShowHelpModal(true);
-    } else {
-      helpTimer = setTimeout(() => {
-        setShowHelpModal(false);
-      }, 100);
-    }
-    return () => clearTimeout(helpTimer);
-  }, [isLinkHelpHovered, isModalHelpHovered]);
+  const [activeModal, setActiveModal] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [isSectionHovered, setIsSectionHovered] = useState(false);
+  const [isModalHovered, setIsModalHovered] = useState(false);
 
-  // handle link to transition for Account link
   useEffect(() => {
-    let userTimer;
-    if (isLinkAccountHovered || isModalAccountHovered) {
-      setShowAccountModal(true);
+    let timerModal;
+    if (isSectionHovered || isModalHovered) {
+      setShowModal(true);
     } else {
-      userTimer = setTimeout(() => {
-        setShowAccountModal(false);
-      }, 100);
+      timerModal = setTimeout(() => {
+        setShowModal(false);
+        setShowModal(null);
+      }, 200);
+
+      return () => clearTimeout(timerModal);
     }
-    return () => clearTimeout(userTimer);
-  }, [isLinkAccountHovered, isModalAccountHovered]);
+  }, [isSectionHovered, isModalHovered]);
 
   return (
     <div className="hidden md:flex justify-end items-center bg-neutral-100 ">
-      <nav className="flex items-center  mx-8 text-sm ">
-        <Link to="/api/find-store" className="px-2">
+      <nav className="items-center  mx-8 text-sm inline-flex cursor pointer">
+        <Link
+          to="/api/find-store"
+          className="px-2 transition-opacity duration-75 ease-out hover:opacity-50"
+        >
           Find a Store
         </Link>
-        <span className="px-2">|</span>
-        <div className="relative">
-          <Link
-            to="/api/help"
-            className="px-2"
-            onMouseEnter={() => setIsLinkHelpHovered(true)}
-            onMouseLeave={() => setIsLinkHelpHovered(false)}
-          >
-            Help
-          </Link>
-          {showHelpModal && (
-            <div
-              className="absolute top-10 -right-4 z-50"
-              onMouseEnter={() => setIsModalHelpHovered(true)}
-              onMouseLeave={() => setIsModalHelpHovered(false)}
-            >
-              <ModalMenu
-                title={navigationHeaderRoutes.help.title}
-                links={navigationHeaderRoutes.help.links}
-              />
-            </div>
-          )}
-        </div>
-        <span className="px-2">|</span>
-        {state.isLoggedIn ? (
+        {sections.map((section) => (
           <div
-            className="relative flex justify-around items-center space-x-2 cursor-pointer"
-            onMouseEnter={() => setIsLinkAccountHovered(true)}
-            onMouseLeave={() => setIsLinkAccountHovered(false)}
+            key={section}
+            onMouseEnter={() => {
+              setActiveModal(section);
+              setIsSectionHovered(true);
+            }}
+            onMouseLeave={() => {
+              setIsModalHovered(false);
+              setIsSectionHovered(false);
+            }}
+            className="relative px-2  "
           >
-            <span className="hidden md:flex col-start-1 col-span-1 justify-start items-center text-sm transition-transform duration-100 hover:opacity-50">
-              Hi, {state.userEmail}
-            </span>
-            <span className="inline-flex justify-center items-center rounded-full h-10 w-10 transition-colors duration-175 ease-out hover:bg-gray-200">
-              <UserIcon />
-            </span>
-            {showAccountModal && (
+            <div className="space-x-4">
+              {section === "user" ? (
+                <UserIcon className="cursor-pointer transition-opacity duration-75 ease-out hover:opacity-50" /> // Display UserIcon for signed-in user
+              ) : (
+                <span className="cursor-pointer transition-opacity duration-75 ease-out hover:opacity-50">
+                  {navigationHeaderRoutes[section]?.title}
+                </span>
+              )}
+            </div>
+
+            {showModal && activeModal === section && (
               <div
-                className="absolute top-10 -right-4 z-50"
-                onMouseEnter={() => setIsModalAccountHovered(true)}
-                onMouseLeave={() => setIsModalAccountHovered(false)}
+                onMouseEnter={() => setIsModalHovered(true)}
+                onMouseLeave={() => setIsModalHovered(false)}
+                className="absolute top-4 -left-[12rem] mt-2 w-[8rem] h-[10rem] bg-white shadow-lg z-50"
               >
                 <ModalMenu
-                  title={navigationHeaderRoutes.user.title}
-                  links={navigationHeaderRoutes.user.links}
+                  title={navigationHeaderRoutes[section]?.title}
+                  links={navigationHeaderRoutes[section]?.links}
                 />
               </div>
             )}
           </div>
-        ) : (
-          <Link to="/api/credentials/check-email"> Sign In</Link>
+        ))}
+
+        {!state.isLoggedIn && (
+          <span className="transition-opacity duration-75 ease-out hover:opacity-50">
+            <Link to="/api/credentials/check-email">Sign In</Link>
+          </span>
         )}
       </nav>
     </div>
