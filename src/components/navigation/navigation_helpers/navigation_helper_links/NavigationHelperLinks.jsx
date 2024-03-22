@@ -40,9 +40,16 @@ export default function NavigationHelperLinks() {
           }}
           className="relative"
         >
-          <div className=" relative cursor-pointer capitalize flex flex-col">
+          <span className="relative cursor-pointer">
             {section.replace("_", " ")}
-          </div>
+            <span
+              className={`absolute top-6 left-0  transition-all duration-150 ease-out ${
+                activeModal === section
+                  ? "opacity-100 w-full border-[1px] border-black"
+                  : "opacity-0 w-0"
+              } `}
+            ></span>
+          </span>
         </div>
       ))}
       {showModal &&
