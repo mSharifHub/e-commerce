@@ -50,14 +50,21 @@ export function SearchBar() {
           id="searchBar"
           onChange={() => setShowSearchModal(true)}
           className={`hidden md:flex rounded-full  transition-all duration-300 ease-out ${
-            showSearchModal ? "w-[50rem] " : "w-[10rem]"
+            showSearchModal
+              ? " w-[10rem] xl:w-[50rem] lg:w-[40rem] md:w-[30rem]  sm:w-[20rem] "
+              : "w-[10rem]"
           } pl-10  bg-neutral-100  text-nowrap  border-none   hover:bg-slate-200 focus:outline-none  focus:border-transparent focus:ring-0 `}
           placeholder="Search"
         />
       </form>
       {/* modal to appear on render */}
       {showSearchModal &&
-        reusePort(<SearchModal setIsModalHovered={setIsModalHovered} />)}
+        reusePort(
+          <SearchModal
+            setIsModalHovered={setIsModalHovered}
+            isModalHovered={isModalHovered}
+          />,
+        )}
     </>
   );
 }
