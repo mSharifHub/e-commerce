@@ -8,6 +8,10 @@ input[type="radio"] {
   position: absolute;
 }
 
+.screen-blur {
+  filter: blur(8px);
+}
+
 @keyframes enterAdd {
   from {
     transform: translateX(100%);
