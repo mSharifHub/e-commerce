@@ -56,7 +56,19 @@ export function SearchBar() {
           } pl-10  bg-neutral-100  text-nowrap  border-none   hover:bg-slate-200 focus:outline-none  focus:border-transparent focus:ring-0 `}
           placeholder="Search"
         />
+        <button
+          type="button"
+          onClick={() => setShowSearchModal(false)}
+          className={`absolute top-1/2 -translate-y-1/2 -right-20 text-lg capitalize text-gray-700 font-light transition-transform duration-500 ease-in-out ${
+            showSearchModal
+              ? "opacity-100 scale-100 hover:text-gray-500 "
+              : " opacity-0 scale-0"
+          }`}
+        >
+          cancel
+        </button>
       </form>
+
       {/* modal to appear on render */}
       {showSearchModal &&
         reusePort(
