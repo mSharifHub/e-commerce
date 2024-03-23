@@ -13,9 +13,21 @@ module.exports = {
           "50%": { width: "100%", opacity: "1", right: 0, top: "1.25rem" },
           "100%": { width: "100%", opacity: "1", right: 0, top: "0" },
         },
+        blur_screen: {
+          "0%": { filter: "blur(0)", backgroundColor: "rgba(0, 0, 0, 0)" },
+          "50%": {
+            filter: "blur(4px)",
+            backgroundColor: "rgba(0, 0, 0, 0.25)",
+          },
+          "100%": {
+            filter: "blur(8px)",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+          },
+        },
       },
       animation: {
         expandModalRightToLeft: "expandModalRightToLeft 0.5s ease-out forwards",
+        blur_screen: " blur_screen 0.5s ease-out forwards",
       },
     },
   },

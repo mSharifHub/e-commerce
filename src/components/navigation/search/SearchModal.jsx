@@ -1,7 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/label-has-for */
 /* eslint-disable react/self-closing-comp */
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { UseModal } from "../../../providers/contexts/ModalOpenContext";
@@ -10,9 +11,23 @@ export default function SearchModal({
   setIsModalHovered,
   setShowSearchModal,
   showSearchModal,
+  input,
 }) {
   const [inputExpand, setInputExpand] = useState(false);
+  const [contInput, setContInput] = useState("");
   const { setIsModalOpen } = UseModal();
+  const inputRef = useRef(null);
+
+  // on mount setInput to pass prop input
+  useEffect(() => {
+    setContInput(input);
+  }, []);
+
+  useEffect(() => {
+    if (showSearchModal && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [showSearchModal]);
 
   useEffect(() => {
     let timer;
@@ -24,6 +39,11 @@ export default function SearchModal({
     return () => clearTimeout(timer);
   }, [showSearchModal]);
 
+  const handleInputChange = (event) => {
+    const contValue = event.target.value;
+    setContInput(contValue);
+  };
+
   return (
     <div
       onMouseEnter={() => setIsModalHovered(true)}
@@ -31,7 +51,7 @@ export default function SearchModal({
       className=" absolute top-0 flex justify-end items-center   animate-expandModalRightToLeft h-[30rem]  bg-white z-50"
     >
       <div className=" relative w-full h-full ">
-        <form className="absolute top-10 right-[10rem] flex justify-center items-center">
+        <form className=" mt-5 flex justify-center items-center">
           <div className="relative flex align-center w-auto">
             <label htmlFor="searchBar"></label>
             <div className="absolute left-0 pl-3 flex items-center justify-center h-10 z-10">
@@ -39,6 +59,9 @@ export default function SearchModal({
             </div>
 
             <input
+              ref={inputRef}
+              value={contInput}
+              onChange={handleInputChange}
               type="text"
               name="searchBar"
               id="searchBar"

@@ -10,9 +10,9 @@ export default function MainLayout() {
   useEffect(() => {
     const rootElement = document.getElementById("root");
     if (isModalOpen) {
-      rootElement.classList.add("screen-blur");
+      rootElement.classList.add("animate-blur_screen");
     } else {
-      rootElement.classList.remove("screen-blur");
+      rootElement.classList.remove("animate-blur_screen");
     }
   }, [isModalOpen]);
 

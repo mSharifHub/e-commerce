@@ -3,7 +3,7 @@
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable jsx-a11y/label-has-for */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { reusePort } from "../../../helpers/modal_helpers/reusePort";
@@ -14,7 +14,22 @@ export function SearchBar() {
   const [showSearchModal, setShowSearchModal] = useState(false);
   const [isInputHovered, setIsInputHovered] = useState(false);
   const [isModalHovered, setIsModalHovered] = useState(false);
-  const { setIsModalOpen } = UseModal();
+  const [input, setInput] = useState(" ");
+  const { isModalOpen, setIsModalOpen } = UseModal();
+
+  /* 
+      Use effect to clear the input once modal is open
+      as input is passed to modal
+  */
+  useEffect(() => {
+    let timer;
+    if (isModalOpen) {
+      timer = setTimeout(() => {
+        setInput(" ");
+      }, 0);
+    }
+    return () => clearTimeout(timer);
+  }, [isModalOpen]);
 
   useEffect(() => {
     let timer;
@@ -26,6 +41,15 @@ export function SearchBar() {
       return () => clearTimeout(timer);
     }
   }, [isInputHovered, isModalHovered, setIsModalOpen]);
+
+  const handleOnInputChange = (event) => {
+    const newValue = event.target.value;
+    setInput(newValue);
+    if (newValue.length >= 3) {
+      setShowSearchModal(true);
+      setIsModalOpen(true);
+    }
+  };
 
   return (
     <>
@@ -50,10 +74,8 @@ export function SearchBar() {
           type="text"
           name="searchBar"
           id="searchBar"
-          onChange={() => {
-            setShowSearchModal(true);
-            setIsModalOpen(true);
-          }}
+          value={input}
+          onChange={handleOnInputChange}
           className="flex rounded-full  w-[10rem] pl-10  bg-neutral-100  text-nowrap  border-none   hover:bg-slate-200 focus:outline-none  focus:border-transparent focus:ring-0 "
           placeholder="Search"
         />
@@ -66,6 +88,7 @@ export function SearchBar() {
             setIsModalHovered={setIsModalHovered}
             setShowSearchModal={setShowSearchModal}
             showSearchModal={showSearchModal}
+            input={input}
           />,
         )}
     </>
