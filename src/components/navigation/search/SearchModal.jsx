@@ -18,17 +18,19 @@ export default function SearchModal({
   const { setIsModalOpen } = UseModal();
   const inputRef = useRef(null);
 
-  // on mount setInput to pass prop input
+  // use effect on mount setInput to pass prop input
   useEffect(() => {
     setContInput(input);
   }, []);
 
+  // use effect to  put focus on input
   useEffect(() => {
     if (showSearchModal && inputRef.current) {
       inputRef.current.focus();
     }
   }, [showSearchModal]);
 
+  // useEffect to handle modal animation
   useEffect(() => {
     let timer;
     if (showSearchModal) {
@@ -47,11 +49,10 @@ export default function SearchModal({
   return (
     <div
       onMouseEnter={() => setIsModalHovered(true)}
-      onMouseLeave={() => setIsModalHovered(false)}
-      className=" absolute top-0 flex justify-end items-center   animate-expandModalRightToLeft h-[30rem]  bg-white z-50"
+      className="fixed top-0 flex justify-end items-center   animate-expandModalRightToLeft h-[30rem]  bg-white z-50"
     >
-      <div className=" relative w-full h-full ">
-        <form className=" mt-5 flex justify-center items-center">
+      <div className=" relative w-full h-full">
+        <form className="flex mt-5  justify-center items-center">
           <div className="relative flex align-center w-auto">
             <label htmlFor="searchBar"></label>
             <div className="absolute left-0 pl-3 flex items-center justify-center h-10 z-10">

@@ -3,7 +3,7 @@
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable jsx-a11y/label-has-for */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { reusePort } from "../../../helpers/modal_helpers/reusePort";
@@ -45,7 +45,7 @@ export function SearchBar() {
   const handleOnInputChange = (event) => {
     const newValue = event.target.value;
     setInput(newValue);
-    if (newValue.length >= 3) {
+    if (newValue.length > 3) {
       setShowSearchModal(true);
       setIsModalOpen(true);
     }
