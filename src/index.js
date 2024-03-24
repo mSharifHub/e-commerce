@@ -5,7 +5,7 @@ import "./styles/main.css";
 import "./index.css";
 import { FilterProvider } from "./providers/FilterProvider";
 import { UserProvider } from "./providers/UserProvider";
-import { ModalOpenProvider } from "./providers/ModalOpenProvider";
+import { ModalProvider } from "./providers/ModalProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -13,9 +13,9 @@ root.render(
   <StrictMode>
     <UserProvider>
       <FilterProvider>
-        <ModalOpenProvider>
+        <ModalProvider>
           <App />
-        </ModalOpenProvider>
+        </ModalProvider>
       </FilterProvider>
     </UserProvider>
   </StrictMode>,

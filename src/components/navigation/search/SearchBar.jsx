@@ -8,46 +8,32 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { reusePort } from "../../../helpers/modal_helpers/reusePort";
 import SearchModal from "./SearchModal";
-import { UseModal } from "../../../providers/contexts/ModalOpenContext";
+import { useModal } from "../../../providers/contexts/modalContext";
 
 export function SearchBar() {
   const [showSearchModal, setShowSearchModal] = useState(false);
   const [isInputHovered, setIsInputHovered] = useState(false);
   const [isModalHovered, setIsModalHovered] = useState(false);
   const [input, setInput] = useState(" ");
-  const { isModalOpen, setIsModalOpen } = UseModal();
-
-  /* 
-      Use effect to clear the input once modal is open
-      as input is passed to modal
-  */
-  useEffect(() => {
-    let timer;
-    if (isModalOpen) {
-      timer = setTimeout(() => {
-        setInput(" ");
-      }, 0);
-    }
-    return () => clearTimeout(timer);
-  }, [isModalOpen]);
+  const { dispatch } = useModal();
 
   useEffect(() => {
     let timer;
     if (!isInputHovered && !isModalHovered) {
+      dispatch({ type: "UNBLUR_SCREEN" });
       timer = setTimeout(() => {
-        setIsModalOpen(false);
         setShowSearchModal(false);
       }, 250);
       return () => clearTimeout(timer);
     }
-  }, [isInputHovered, isModalHovered, setIsModalOpen]);
+  }, [isInputHovered, isModalHovered, dispatch]);
 
   const handleOnInputChange = (event) => {
     const newValue = event.target.value;
     setInput(newValue);
     if (newValue.length > 3) {
       setShowSearchModal(true);
-      setIsModalOpen(true);
+      dispatch({ type: "BLUR_SCREEN", payload: "fullScreen" });
     }
   };
 
@@ -63,7 +49,7 @@ export function SearchBar() {
           type="button"
           onClick={() => {
             setShowSearchModal(true);
-            setIsModalOpen(true);
+            dispatch({ type: "BLUR_SCREEN", payload: "fullScreen" });
           }}
           className="absolute  left-0 w-10 h-10  flex justify-center items-center cursor-pointer rounded-full transition-all duration-100 ease-out  hover:bg-slate-200 hover:scale-110"
         >

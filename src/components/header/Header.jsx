@@ -32,7 +32,7 @@ export default function Header() {
   }, [isSectionHovered, isModalHovered]);
 
   return (
-    <div className="hidden md:flex justify-end items-center bg-neutral-100 ">
+    <div className="hidden md:flex justify-end items-center bg-neutral-100 py-1">
       <nav className="items-center  mx-8 text-sm inline-flex cursor pointer">
         <Link
           to="/api/find-store"

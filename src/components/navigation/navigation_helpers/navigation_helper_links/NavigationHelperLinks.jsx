@@ -58,7 +58,7 @@ export default function NavigationHelperLinks() {
           <div
             onMouseEnter={() => setIsModalHovered(true)}
             onMouseLeave={() => setIsModalHovered(false)}
-            className="absolute top-[5rem]  w-full h-1/4 bg-white z-50"
+            className="absolute top-[5.4rem]  w-full h-1/4 bg-white z-50"
           >
             <NavigationHelperModal
               title={navigationHeaderRoutes[activeModal]?.title}
