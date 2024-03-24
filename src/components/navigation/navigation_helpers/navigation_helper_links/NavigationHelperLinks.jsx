@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import NavigationHelperModal from "../NavigationHelperModal";
 import { navigationHeaderRoutes } from "../../../../styles/routes/routes";
 import { reusePort } from "../../../../helpers/modal_helpers/reusePort";
+import { useModal } from "../../../../providers/contexts/modalContext";
 
 export default function NavigationHelperLinks() {
   const sections = ["news_feature", "men", "women", "kids"];
@@ -11,15 +12,18 @@ export default function NavigationHelperLinks() {
   const [showModal, setShowModal] = useState(false);
   const [isSectionHovered, setIsSectionHovered] = useState(false);
   const [isModalHovered, setIsModalHovered] = useState(false);
+  const { state, dispatch } = useModal();
 
   useEffect(() => {
     let modalTimer;
 
     if (isSectionHovered || isModalHovered) {
       setShowModal(true);
+      dispatch({ type: "BLUR_SCREEN", payload: "main-content" });
     } else {
       modalTimer = setTimeout(() => {
         setShowModal(false);
+        dispatch({ type: "UNBLUR_SCREEN" });
         setActiveModal(null);
       }, 100);
     }

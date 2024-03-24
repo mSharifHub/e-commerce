@@ -5,6 +5,7 @@
 import { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { useModal } from "../../../providers/contexts/modalContext";
 
 export default function SearchModal({
   setIsModalHovered,
@@ -15,6 +16,7 @@ export default function SearchModal({
   const [inputExpand, setInputExpand] = useState(false);
   const [contInput, setContInput] = useState("");
   const inputRef = useRef(null);
+  const { dispatch } = useModal();
 
   // use effect on mount setInput to pass prop input
   useEffect(() => {
@@ -71,6 +73,7 @@ export default function SearchModal({
                   : "w-[10rem]"
               } pl-20  bg-neutral-100  text-nowrap  border-none   hover:bg-slate-200 focus:outline-none  focus:border-transparent focus:ring-0 `}
               placeholder="Search"
+              autoComplete="off"
             />
           </div>
 
@@ -78,7 +81,7 @@ export default function SearchModal({
             type="button"
             onClick={() => {
               setShowSearchModal(false);
-              // closeModal();
+              dispatch({ type: "UNBLUR_SCREEN" });
             }}
             className={`flex justify-center items-center ml-10 text-lg capitalize text-gray-700 font-light transition-transform duration-500 ease-in-out ${
               inputExpand

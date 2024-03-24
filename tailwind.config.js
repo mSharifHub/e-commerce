@@ -15,19 +15,15 @@ module.exports = {
         },
         blur_screen: {
           "0%": { filter: "blur(0)", backgroundColor: "rgba(0, 0, 0, 0)" },
-          "50%": {
-            filter: "blur(4px)",
-            backgroundColor: "rgba(0, 0, 0, 0.25)",
-          },
           "100%": {
-            filter: "blur(8px)",
+            filter: "blur(2px)",
             backgroundColor: "rgba(0, 0, 0, 0.5)",
           },
         },
       },
       animation: {
         expandModalRightToLeft: "expandModalRightToLeft 0.5s ease-out forwards",
-        blur_screen: " blur_screen 0.5s ease-out forwards",
+        blur_screen: " blur_screen 0.25s ease-out forwards",
       },
     },
   },

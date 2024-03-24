@@ -15,13 +15,23 @@ export function SearchBar() {
   const [isInputHovered, setIsInputHovered] = useState(false);
   const [isModalHovered, setIsModalHovered] = useState(false);
   const [input, setInput] = useState(" ");
-  const { dispatch } = useModal();
+  const { state, dispatch } = useModal();
+
+  useEffect(() => {
+    let timer;
+    if (state.isOpen) {
+      timer = setTimeout(() => {
+        setInput(" ");
+      }, 0);
+    }
+    return () => clearTimeout(timer);
+  }, [state.isOpen]);
 
   useEffect(() => {
     let timer;
     if (!isInputHovered && !isModalHovered) {
-      dispatch({ type: "UNBLUR_SCREEN" });
       timer = setTimeout(() => {
+        dispatch({ type: "UNBLUR_SCREEN" });
         setShowSearchModal(false);
       }, 250);
       return () => clearTimeout(timer);
@@ -31,7 +41,7 @@ export function SearchBar() {
   const handleOnInputChange = (event) => {
     const newValue = event.target.value;
     setInput(newValue);
-    if (newValue.length > 3) {
+    if (newValue.length >= 2) {
       setShowSearchModal(true);
       dispatch({ type: "BLUR_SCREEN", payload: "fullScreen" });
     }
@@ -64,6 +74,7 @@ export function SearchBar() {
           onChange={handleOnInputChange}
           className="flex rounded-full  w-[10rem] pl-10  bg-neutral-100  text-nowrap  border-none   hover:bg-slate-200 focus:outline-none  focus:border-transparent focus:ring-0 "
           placeholder="Search"
+          autoComplete="off"
         />
       </form>
 
