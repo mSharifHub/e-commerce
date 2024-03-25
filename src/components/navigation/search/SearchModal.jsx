@@ -14,23 +14,30 @@ export default function SearchModal({
   input,
 }) {
   const [inputExpand, setInputExpand] = useState(false);
-  const [contInput, setContInput] = useState("");
+  const [contInput, setContInput] = useState(input);
   const inputRef = useRef(null);
+  const prevContInputRef = useRef(input);
   const { dispatch } = useModal();
 
-  // use effect on mount setInput to pass prop input
-  useEffect(() => {
-    setContInput(input);
-  }, []);
-
-  // use effect to  put focus on input
+  // Use effect to  put focus on input
   useEffect(() => {
     if (showSearchModal && inputRef.current) {
       inputRef.current.focus();
     }
   }, [showSearchModal]);
 
-  // useEffect to handle modal animation
+  useEffect(() => {
+    if (
+      contInput.length < prevContInputRef.current.length &&
+      contInput.length === 0
+    ) {
+      setShowSearchModal(false);
+      dispatch({ type: "UNBLUR_SCREEN" });
+    }
+    prevContInputRef.current = contInput;
+  }, [contInput, setShowSearchModal, dispatch]);
+
+  // UseEffect to handle modal animation
   useEffect(() => {
     let timer;
     if (showSearchModal) {

@@ -14,14 +14,14 @@ export function SearchBar() {
   const [showSearchModal, setShowSearchModal] = useState(false);
   const [isInputHovered, setIsInputHovered] = useState(false);
   const [isModalHovered, setIsModalHovered] = useState(false);
-  const [input, setInput] = useState(" ");
+  const [input, setInput] = useState("");
   const { state, dispatch } = useModal();
 
   useEffect(() => {
     let timer;
     if (state.isOpen) {
       timer = setTimeout(() => {
-        setInput(" ");
+        setInput("");
       }, 0);
     }
     return () => clearTimeout(timer);
