@@ -52,7 +52,11 @@ export function SearchBar() {
       <form
         onMouseEnter={() => setIsInputHovered(true)}
         onMouseLeave={() => setIsInputHovered(false)}
-        className="relative flex justify-center items-center"
+        className={`${
+          showSearchModal
+            ? "hidden "
+            : "relative  flex  justify-center items-center"
+        }`}
       >
         <label htmlFor="searchBar"></label>
         <div

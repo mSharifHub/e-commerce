@@ -9,14 +9,14 @@ export default function MainLayout() {
 
   useEffect(() => {
     const mainContent = document.getElementById("main-content");
-    const root = document.getElementById("root");
+    const overlay = document.getElementById("overlay");
 
-    root.classList.remove("animate-blur_screen");
+    overlay.classList.remove("animate-blur_screen");
     mainContent.classList.remove("animate-blur_screen");
 
     if (state.isOpen) {
       if (state.type === "fullScreen") {
-        root.classList.add("animate-blur_screen");
+        overlay.classList.add("animate-blur_screen");
       } else if (state.type === "main-content") {
         mainContent.classList.add("animate-blur_screen");
       }
@@ -24,12 +24,12 @@ export default function MainLayout() {
   }, [state.isOpen, state.type]);
 
   return (
-    <>
+    <div id="overlay">
       <Header />
       <Nav />
       <main id="main-content">
         <Outlet />
       </main>
-    </>
+    </div>
   );
 }

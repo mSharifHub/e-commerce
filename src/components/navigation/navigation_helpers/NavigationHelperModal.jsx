@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 export default function NavigationHelperModal({ title, links }) {
   return (
-    <div className="bg-white w-full h-[17rem] flex flex-col  cursor-pointer animate-slide-down ">
-      <h1 className="flex justify-center items-center  mt-4 ml-4 text-lg font-semibold  text-slate-600">
+    <div>
+      <h1 className="flex justify-center items-center  mt-4 ml-4 text-lg font-semibold  text-slate-600 ">
         {title}
       </h1>
       <ul className="flex flex-col space-y-3 mt-8 mx-2 ">

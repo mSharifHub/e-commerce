@@ -1,22 +1,11 @@
-html,
-body,
-#root {
-  position: fixed;
+* {
   padding: 0;
   margin: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
 }
 
 input[type="radio"] {
   opacity: 0;
   position: absolute;
-}
-
-#modal {
-  width: 100%;
-  height: 100%;
 }
 
 @keyframes enterAdd {
@@ -131,48 +120,31 @@ input[type="radio"] {
 
 @keyframes slideDown {
   from {
-    transform: translateY(-10%);
-    opacity: 0;
+    transform: translateY(-5%);
   }
   to {
     transform: translateY(0);
-    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-5%);
   }
 }
 
 .animate-slide-down {
-  animation: slideDown 0.2s ease-out forwards;
+  animation: slideDown 0.3s ease-out forwards;
 }
 
-@keyframes expandModalRightToLeft {
-  0% {
-    width: 0;
-    opacity: 0;
-    right: 0;
-    top: 1.25rem;
-  }
-  50% {
-    width: 100%;
-    opacity: 1;
-    right: 0;
-    top: 1.25rem;
-  }
-  100% {
-    width: 100%;
-    opacity: 1;
-    right: 0;
-    top: 0;
-  }
+.animate-slide-up {
+  animation: slideUp 0.3s ease-out forwards;
 }
 
-@keyframes blur_screen {
-  0% {
-    filter: blur(0);
-    background-color: rgba(0, 0, 0, 0);
-  }
 
-  100% {
-    filter: blur(2px);
-    background-color: rgba(0, 0, 0, 0.5);
-  }
-}
+/* .no-scroll {
+  overflow: hidden; 
+} */
