@@ -92,7 +92,7 @@ export function SearchBar() {
           <div
             onMouseEnter={() => setIsModalHovered(true)}
             onMouseLeave={() => setIsModalHovered(false)}
-            className={`fixed top-0 flex justify-end items-center h-[30rem] bg-white  ${modalAnimation} z-50`}
+            className={`fixed top-0 flex justify-end items-center h-[20rem] bg-white  ${modalAnimation} z-50`}
           >
             <SearchModal
               setIsModalHovered={setIsModalHovered}

@@ -45,7 +45,7 @@ export default function AddContainer() {
     <div
       onMouseEnter={() => setIsMouseOver(true)}
       onMouseLeave={() => setIsMouseOver(false)}
-      className="relative bg-neutral-100 w-full  p-1 flex justify-center items-center "
+      className="relative bg-neutral-100 w-full   mt-3 py-2 flex justify-center items-center "
     >
       <div
         onClick={handleClickLeft}

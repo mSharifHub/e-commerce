@@ -52,15 +52,15 @@ module.exports = {
           "0%": { filter: "blur(0)", backgroundColor: "rgba(0, 0, 0, 0)" },
           "100%": {
             filter: "blur(2px)",
-            backgroundColor: "rgba(0, 0, 0, 0.25)",
+            backgroundColor: "rgba(0, 0, 0, 0.2)",
           },
         },
       },
       animation: {
-        expandModalRightToLeft: "expandModalRightToLeft 0.4s ease-out forwards",
+        expandModalRightToLeft: "expandModalRightToLeft 0.3s ease-out forwards",
         contractModalLeftToRight:
           "contractModalLeftToRight 0.3s ease-out forwards",
-        blur_screen: " blur_screen 0.2s ease-out forwards",
+        blur_screen: " blur_screen 0.3s ease-out forwards",
       },
     },
   },

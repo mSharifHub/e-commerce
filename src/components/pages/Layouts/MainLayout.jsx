@@ -1,11 +1,26 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import Header from "../../header/Header";
 import Nav from "../../navigation/Nav";
 import { useModal } from "../../../providers/contexts/modalContext";
+import AddContainer from "../../navigation/addComponent/AddContainer";
 
 export default function MainLayout() {
+  const [isOverHeadNav, setIsOverHeadNav] = useState(false);
   const { state } = useModal();
+
+  const handleScroll = () => {
+    const scrollTop = window.scrollY;
+    const navTopPosition = document.getElementById("nav-helper").offsetTop;
+    setIsOverHeadNav(scrollTop >= navTopPosition && scrollTop !== 0);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     const mainContent = document.getElementById("main-content");
@@ -25,8 +40,21 @@ export default function MainLayout() {
 
   return (
     <div id="overlay">
-      <Header />
-      <Nav />
+      <div
+        id="nav-helper"
+        className={`transition-all duration-300 ease-out  ${
+          isOverHeadNav
+            ? "transform -translate-y-full"
+            : "transform translate-y-0"
+        }`}
+      >
+        <Header />
+        <Nav />
+      </div>
+      <div>
+        <AddContainer />
+      </div>
+
       <main id="main-content">
         <Outlet />
       </main>

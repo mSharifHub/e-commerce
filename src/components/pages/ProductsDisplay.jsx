@@ -70,17 +70,17 @@ export function ProductsDisplay() {
 
       {/* main home container */}
       <div className="min-w-screen  flex transition-all duration-500 ease-in-out mx-0   xl:mx-[5%]">
-        <div className="w-full h-screen flex flex-row  justify-between my-8  overflow-hidden">
+        <div className="w-full flex flex-row  justify-between my-8 ">
           {/* filter component */}
           <div
             className={` ${
               isFilterVisible ? "w-72" : "w-0"
-            }  hidden md:flex  flex-initial   transition-all duration-700 ease-in-out  overflow-hidden overflow-y-auto scroll-smooth `}
+            }  hidden md:flex  flex-initial   transition-all duration-700 ease-in-out   `}
           >
             <Filter />
           </div>
           {/* Grid Display of Products */}
-          <div className="flex-1 mx-8 overflow-y-auto scroll-smooth scrollbar-hide transition-all duration-500 ease-out  whitespace-nowrap ">
+          <div className="flex-1 mx-8  transition-all duration-500 ease-out  whitespace-nowrap ">
             <GridDisplay />
           </div>
         </div>

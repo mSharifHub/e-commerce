@@ -37,8 +37,8 @@ export default function NavHelper() {
   }, [isSectionHovered, isModalHovered, dispatch]);
 
   return (
-    <div className=" relative grid grid-cols-1 lg:grid-cols-[0.2fr_2fr] xl:grid-cols-[0.5fr_1fr_0.5fr] ">
-      <nav className=" hidden lg:flex  space-x-[2rem]  justify-center items-center col-span-1 col-start-2  ">
+    <div className="relative grid grid-cols-1 lg:grid-cols-[0.2fr_2fr] xl:grid-cols-[0.5fr_1fr_0.5fr]">
+      <nav className="hidden  transition-all duration-300 ease-out lg:flex  space-x-[2rem]  justify-center items-center col-span-1 col-start-2">
         {sections.map((section) => (
           <div
             key={section}
