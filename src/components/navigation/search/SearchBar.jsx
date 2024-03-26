@@ -70,7 +70,7 @@ export function SearchBar() {
             dispatch({ type: "BLUR_SCREEN", payload: "fullScreen" });
             setModalAnimation("animate-expandModalRightToLeft"); // Ensure we're setting the correct initial animation
           }}
-          className="absolute left-0 w-10 h-10 flex justify-center items-center cursor-pointer rounded-full transition-all duration-100 ease-out hover:bg-slate-200 hover:scale-110"
+          className="absolute top-1/2 -translate-y-1/2 right-0 sm:left-0 w-10 h-10 flex justify-center items-center cursor-pointer rounded-full transition-all duration-100 ease-out hover:bg-slate-200 hover:scale-110"
         >
           <FontAwesomeIcon icon={faSearch} size="lg" />
         </div>
@@ -81,7 +81,7 @@ export function SearchBar() {
           id="searchBar"
           value={input}
           onChange={handleOnInputChange}
-          className="flex rounded-full w-[10rem] pl-10 bg-neutral-100 text-nowrap border-none hover:bg-slate-200 focus:outline-none focus:border-transparent focus:ring-0"
+          className="hidden sm:flex rounded-full w-[10rem] pl-10 bg-neutral-100 text-nowrap border-none hover:bg-slate-200 focus:outline-none focus:border-transparent focus:ring-0"
           placeholder="Search"
           autoComplete="off"
         />

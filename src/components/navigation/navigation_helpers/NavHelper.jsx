@@ -65,7 +65,7 @@ export default function NavHelper() {
         ))}
       </nav>
 
-      <div className=" flex justify-end  items-center  space-x-8 col-span-1 col-start-1 md:col-start-2 lg:col-start-3 transition-all duration-100 ease-out">
+      <div className=" flex transition-all duration-150 ease-out justify-center md:justify-end  items-center space-x-20 md:space-x-8 col-span-1 col-start-1 md:col-start-2 lg:col-start-3 ">
         <SearchBar />
         <HeartIcon />
         <CartIcon />
