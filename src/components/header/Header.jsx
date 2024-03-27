@@ -16,7 +16,7 @@ export default function Header() {
   const [activeModal, setActiveModal] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [isSectionHovered, setIsSectionHovered] = useState(false);
-  const [isModalHovered, setIsModalHovered] = useState(false);
+  const [_, setIsModalHovered] = useState(false);
 
   useEffect(() => {
     let timerModal;
@@ -33,7 +33,7 @@ export default function Header() {
   }, [isSectionHovered]);
 
   return (
-    <div className="hidden md:flex justify-end items-center bg-neutral-100 py-1">
+    <div className="transtion-transform duration-300 -translate-y-full  md:translate-y-0  flex justify-end items-center bg-neutral-100 py-1">
       <nav className="items-center  mx-8 text-sm inline-flex cursor pointer">
         <Link
           to="/api/find-store"

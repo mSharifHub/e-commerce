@@ -19,6 +19,7 @@ export default function NavHelper() {
   const [isOverModal, setIsOverModal] = useState(false);
   const { dispatch } = useModal();
 
+  // useEffect to set modal either true or false
   useEffect(() => {
     let modalTimer;
 
@@ -37,6 +38,7 @@ export default function NavHelper() {
     return () => clearTimeout(modalTimer);
   }, [isSectionHovered, isModalHovered, dispatch]);
 
+  // useEffect  to scroll down modal as window scrolls down on y-axis
   useEffect(() => {
     const modalOnScrollDown = () => {
       const modalElement = document.getElementById("modal-nav-helper");
@@ -56,8 +58,8 @@ export default function NavHelper() {
   }, []);
 
   return (
-    <div className="relative grid grid-cols-1 lg:grid-cols-[0.2fr_2fr] xl:grid-cols-[0.5fr_1fr_0.5fr]">
-      <nav className="hidden  transition-all duration-300 ease-out lg:flex  space-x-[2rem]  justify-center items-center col-span-1 col-start-2 ">
+    <div className="relative  transition-all duration-300 ease-out -translate-y-1/2  md:translate-y-0 grid grid-cols-1 lg:grid-cols-[0.2fr_2fr] ">
+      <nav className="hidden  md:flex  space-x-[2rem]  justify-center items-center col-span-1  col-start-1 lg:col-start-2">
         {sections.map((section) => (
           <div
             key={section}
@@ -65,8 +67,12 @@ export default function NavHelper() {
               setActiveModal(section);
               setIsSectionHovered(true);
             }}
-            onMouseLeave={() => setIsSectionHovered(false)}
-            className="relative  cursor-pointer"
+            onMouseLeave={() =>
+              setTimeout(() => {
+                setIsSectionHovered(false);
+              }, 100)
+            }
+            className="relative cursor-pointer capitalize"
           >
             {section.replace("_", " ")}
             <span
@@ -80,7 +86,7 @@ export default function NavHelper() {
         ))}
       </nav>
 
-      <div className=" flex transition-all duration-150 ease-out justify-center md:justify-end  items-center space-x-20 md:space-x-8 col-span-1 col-start-1 md:col-start-2 lg:col-start-3 ">
+      <div className=" flex transition-all duration-150 ease-out justify-end  items-center space-x-10 col-span-1 col-start-1 md:col-start-2 lg:col-start-3 ">
         <SearchBar />
         <HeartIcon />
         <CartIcon />
@@ -92,11 +98,17 @@ export default function NavHelper() {
           <div
             id="modal-nav-helper"
             onMouseEnter={() => setIsModalHovered(true)}
-            onMouseLeave={() => setIsModalHovered(false)}
+            onMouseLeave={() =>
+              setTimeout(() => {
+                setIsModalHovered(false);
+              }, 100)
+            }
             className={`${
-              !isOverModal ? "absolute top-[6rem]" : "fixed top-0 "
+              !isOverModal ? "absolute top-[5.5rem]" : "fixed top-0 "
             } inset-x-0  h-[30rem] bg-white z-50 ${
-              isSectionHovered ? "animate-slide-down" : "animate-slide-up"
+              isSectionHovered || isModalHovered
+                ? "animate-slide-down"
+                : "animate-slide-up"
             }`}
           >
             <NavigationHelperModal

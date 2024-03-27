@@ -71,7 +71,7 @@ export default function SearchModal({
             className={`flex rounded-full  transition-all duration-300 ease-out ${
               inputExpand
                 ? " w-[15rem]  sm:w-[20rem]  md:w-[30rem] lg:w-[40rem] xl:w-[50rem]"
-                : "w-[10rem]"
+                : "w-[12rem]"
             } pl-20  bg-neutral-100  text-nowrap  border-none   hover:bg-slate-200 focus:outline-none  focus:border-transparent focus:ring-0 `}
             placeholder="Search"
             autoComplete="off"

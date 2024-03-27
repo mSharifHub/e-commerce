@@ -9,7 +9,7 @@ export default function HeartIcon() {
   } = useUser();
 
   return (
-    <div className="mx-2 transition-all duration-300 hover:scale-125 cursor-pointer">
+    <div className="mx-2 transition-all duration-75 hover:scale-125 cursor-pointer">
       <div className=" relative flex justify-center items-center">
         <span className="md:hidden absolute  w-10 h-10 rounded-full opacity-0 bg-slate-300 transition-opacity duration-150 hover:opacity-30"></span>
         {favorites.length > 0 ? (
