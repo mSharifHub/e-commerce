@@ -7,6 +7,7 @@ import { useUser } from "../../providers/contexts/userContext";
 import UserIcon from "../navigation/icons/User";
 import ModalMenu from "./components/ModalMenu";
 import { navigationHeaderRoutes } from "../../styles/routes/routes";
+import { reusePort } from "../../helpers/modal_helpers/reusePort";
 
 export default function Header() {
   const { state } = useUser();
@@ -19,7 +20,7 @@ export default function Header() {
 
   useEffect(() => {
     let timerModal;
-    if (isSectionHovered || isModalHovered) {
+    if (isSectionHovered) {
       setShowModal(true);
     } else {
       timerModal = setTimeout(() => {
@@ -29,7 +30,7 @@ export default function Header() {
 
       return () => clearTimeout(timerModal);
     }
-  }, [isSectionHovered, isModalHovered]);
+  }, [isSectionHovered]);
 
   return (
     <div className="hidden md:flex justify-end items-center bg-neutral-100 py-1">
@@ -63,18 +64,20 @@ export default function Header() {
               )}
             </div>
 
-            {showModal && activeModal === section && (
-              <div
-                onMouseEnter={() => setIsModalHovered(true)}
-                onMouseLeave={() => setIsModalHovered(false)}
-                className="absolute top-4 -left-[12rem] mt-2 w-[8rem] h-[10rem] bg-white shadow-lg z-50"
-              >
-                <ModalMenu
-                  title={navigationHeaderRoutes[section]?.title}
-                  links={navigationHeaderRoutes[section]?.links}
-                />
-              </div>
-            )}
+            {showModal &&
+              activeModal === section &&
+              reusePort(
+                <div
+                  onMouseEnter={() => setIsModalHovered(true)}
+                  onMouseLeave={() => setIsModalHovered(false)}
+                  className="absolute top-5 right-[9rem] mt-2 w-[8rem] h-[10rem] bg-white  z-50"
+                >
+                  <ModalMenu
+                    title={navigationHeaderRoutes[section]?.title}
+                    links={navigationHeaderRoutes[section]?.links}
+                  />
+                </div>,
+              )}
           </div>
         ))}
 

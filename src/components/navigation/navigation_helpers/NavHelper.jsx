@@ -16,12 +16,13 @@ export default function NavHelper() {
   const [showModal, setShowModal] = useState(false);
   const [isSectionHovered, setIsSectionHovered] = useState(false);
   const [isModalHovered, setIsModalHovered] = useState(false);
+  const [isOverModal, setIsOverModal] = useState(false);
   const { dispatch } = useModal();
 
   useEffect(() => {
     let modalTimer;
 
-    if (isSectionHovered || isModalHovered) {
+    if (isSectionHovered) {
       setShowModal(true);
       dispatch({ type: "BLUR_SCREEN", payload: "main-content" });
     } else {
@@ -31,14 +32,32 @@ export default function NavHelper() {
           dispatch({ type: "UNBLUR_SCREEN" });
           setActiveModal(null);
         }
-      }, 100);
+      }, 200);
     }
     return () => clearTimeout(modalTimer);
   }, [isSectionHovered, isModalHovered, dispatch]);
 
+  useEffect(() => {
+    const modalOnScrollDown = () => {
+      const modalElement = document.getElementById("modal-nav-helper");
+      if (!modalElement) return;
+
+      const scrollTop = window.scrollY;
+      const modalTopPosition = modalElement.offsetTop;
+
+      setIsOverModal(scrollTop >= modalTopPosition && scrollTop !== 0);
+    };
+
+    window.addEventListener("scroll", modalOnScrollDown);
+
+    return () => {
+      window.removeEventListener("scroll", modalOnScrollDown);
+    };
+  }, []);
+
   return (
     <div className="relative grid grid-cols-1 lg:grid-cols-[0.2fr_2fr] xl:grid-cols-[0.5fr_1fr_0.5fr]">
-      <nav className="hidden  transition-all duration-300 ease-out lg:flex  space-x-[2rem]  justify-center items-center col-span-1 col-start-2">
+      <nav className="hidden  transition-all duration-300 ease-out lg:flex  space-x-[2rem]  justify-center items-center col-span-1 col-start-2 ">
         {sections.map((section) => (
           <div
             key={section}
@@ -46,16 +65,12 @@ export default function NavHelper() {
               setActiveModal(section);
               setIsSectionHovered(true);
             }}
-            onMouseLeave={() => {
-              setTimeout(() => {
-                setIsSectionHovered(false);
-              }, 100);
-            }}
+            onMouseLeave={() => setIsSectionHovered(false)}
             className="relative  cursor-pointer"
           >
             {section.replace("_", " ")}
             <span
-              className={`absolute top-6 left-0 transition-all duration-150 ease-out ${
+              className={`absolute top-7 left-0 transition-all duration-150 ease-out  ${
                 activeModal === section
                   ? "opacity-100 w-full border-[1px] border-black"
                   : "opacity-0 w-0"
@@ -75,16 +90,13 @@ export default function NavHelper() {
         activeModal &&
         reusePort(
           <div
+            id="modal-nav-helper"
             onMouseEnter={() => setIsModalHovered(true)}
-            onMouseLeave={() => {
-              setTimeout(() => {
-                setIsModalHovered(false);
-              }, 100);
-            }}
-            className={`absolute top-[6rem] inset-x-0  h-[30rem] bg-white z-50 ${
-              isModalHovered || isSectionHovered
-                ? "animate-slide-down"
-                : "animate-slide-up"
+            onMouseLeave={() => setIsModalHovered(false)}
+            className={`${
+              !isOverModal ? "absolute top-[6rem]" : "fixed top-0 "
+            } inset-x-0  h-[30rem] bg-white z-50 ${
+              isSectionHovered ? "animate-slide-down" : "animate-slide-up"
             }`}
           >
             <NavigationHelperModal
